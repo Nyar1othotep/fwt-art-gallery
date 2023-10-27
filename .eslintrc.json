@@ -21,6 +21,7 @@
       "project": ["./tsconfig.json"],
       "warnOnUnsupportedTypeScriptVersion": false
     },
+    "ignorePatterns": ["build/"],
     "plugins": ["react", "@typescript-eslint", "prettier"],
     "rules": {
       "no-unused-vars": ["off"],
