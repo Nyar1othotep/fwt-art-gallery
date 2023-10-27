@@ -28,7 +28,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
@@ -49,8 +51,18 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.5.1",
+    "@storybook/addon-interactions": "^7.5.1",
+    "@storybook/addon-links": "^7.5.1",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.5.1",
+    "@storybook/preset-create-react-app": "^7.5.1",
+    "@storybook/react": "^7.5.1",
+    "@storybook/react-webpack5": "^7.5.1",
+    "@storybook/testing-library": "^0.2.2",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
+    "babel-plugin-named-exports-order": "^0.0.2",
     "eslint": "^8.17.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
@@ -60,7 +72,11 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-plugin-storybook": "^0.6.15",
+    "husky": "^8.0.0",
     "prettier": "^2.7.0",
-    "husky": "^8.0.0"
+    "prop-types": "^15.8.1",
+    "storybook": "^7.5.1",
+    "webpack": "^5.89.0"
   }
 }

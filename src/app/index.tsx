@@ -1,8 +1,10 @@
+import { Button } from "shared/ui";
+
 export function App() {
   return (
     <div>
       <div>Test</div>
-      <div />
+      <Button label="button" />
     </div>
   );
 }
