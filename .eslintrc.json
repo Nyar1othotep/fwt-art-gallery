@@ -25,25 +25,41 @@
   "ignorePatterns": ["build/"],
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "no-unused-vars": "off",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "@typescript-eslint/no-unused-vars": "error",
-    "react/react-in-jsx-scope": "off",
-    "react/jsx-uses-react": "off",
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-    "react/jsx-props-no-spreading": "off",
-    "react/no-unescaped-entities": "off",
+    "no-unused-vars": "warn",
     "import/prefer-default-export": "off",
-    "import/extensions": "off",
-    "no-console": "off",
-    "no-param-reassign": [
+    "import/order": [
       "error",
       {
-        "props": false
+        "groups": ["builtin", "external", "internal"],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
       }
     ],
-    "react/require-default-props": "off",
-    "react-hooks/exhaustive-deps": "off",
-    "@typescript-eslint/naming-convention": "off",
-    "react/button-has-type": "off"
+    "import/extensions": 0,
+    "react/jsx-filename-extension": [1, { "extensions": ["tsx"] }],
+    "react/function-component-definition": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/require-default-props": 0,
+    "import/no-extraneous-dependencies": 0,
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": "*", "next": "export" }
+    ],
+    "react/prop-types": 0,
+    "react/button-has-type": 0
   }
 }

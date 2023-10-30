@@ -1,27 +1,34 @@
-import { ButtonHTMLAttributes } from "react";
-import cn from "classnames";
+import React, { ButtonHTMLAttributes, FC } from "react";
+
+import cn from "classnames/bind";
 
 import styles from "./Button.module.scss";
 
 const cx = cn.bind(styles);
 
+type TButtonTheme = "light" | "dark";
+type TButtonVariant = "default" | "text" | "menu" | "icon" | "back-to-top";
+
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
-  label: string;
-  type?: "submit" | "button";
-  isDarkTheme?: boolean;
-  onClick?: () => void;
+  theme?: TButtonTheme;
+  variant?: TButtonVariant;
 }
 
-export function Button({ label, type, isDarkTheme, ...props }: IButton) {
+const Button: FC<IButton> = ({
+  theme = "light",
+  variant = "default",
+  ...props
+}) => {
   return (
     <button
-      type={type}
-      className={cx("Button", {
-        "Button-dark": isDarkTheme,
-      })}
+      className={cx(
+        "button",
+        [`button--${variant}`],
+        [`button--${variant}--${theme}`],
+      )}
       {...props}
-    >
-      {label}
-    </button>
+    />
   );
-}
+};
+
+export default Button;

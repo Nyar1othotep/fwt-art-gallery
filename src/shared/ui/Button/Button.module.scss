@@ -1,3 +1,155 @@
-.Button {
-  min-height: 47px;
+@import "../../styles/mixins.scss";
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &--default,
+  &--text {
+    font-family: "Inter";
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  // Default button
+
+  &--default {
+    width: 200px;
+    min-height: 47px;
+    padding: 0 20px;
+    border-radius: 30px;
+    color: var(--primary-white);
+    background: var(--primary-black);
+
+    &:hover:not([disabled]) {
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+    }
+
+    &:focus {
+      background: #232323;
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    &--dark {
+      background: var(--accent-gold);
+
+      &:hover:not([disabled]) {
+        box-shadow: 0px 4px 10px 0px rgba(171, 137, 86, 0.25);
+      }
+
+      &:disabled {
+        opacity: 0.5;
+      }
+
+      &:focus {
+        background: #ba9052;
+        box-shadow: 0px 4px 10px 0px rgba(171, 137, 86, 0.25);
+      }
+    }
+  }
+
+  // Text button
+
+  &--text {
+    position: relative;
+    padding: 10px;
+    gap: 12px;
+    color: var(--primary-dark-gray);
+    text-decoration: underline;
+    text-underline-offset: 5px;
+
+    &:hover:not([disabled]) {
+      color: var(--primary-black);
+    }
+
+    &:disabled {
+      color: var(--primary-light-gray);
+    }
+
+    &:focus {
+      color: var(--primary-black);
+    }
+
+    &--dark {
+      color: var(--primary-light-gray);
+      background: none !important;
+
+      &:hover:not([disabled]) {
+        color: var(--primary-white);
+      }
+
+      &:disabled {
+        color: var(--secondary-gray);
+      }
+
+      &:focus {
+        color: var(--primary-white);
+      }
+    }
+  }
+
+  // Icon button
+
+  &--icon {
+    padding: 2px;
+    border-radius: 4px;
+    background: var(--secondary-white);
+  }
+
+  // Menu button
+
+  &--menu {
+    padding: 8px;
+    border-radius: 50%;
+  }
+
+  // Back to top button
+
+  &--back-to-top {
+    padding: 18px;
+    border-radius: 50%;
+  }
+
+  &--text,
+  &--icon,
+  &--menu,
+  &--back-to-top {
+    @include svgFill(--primary-dark-gray);
+
+    &:hover:not([disabled]) {
+      @include svgFill(--primary-black);
+    }
+
+    &:disabled {
+      @include svgFill(--primary-light-gray);
+    }
+
+    &:focus {
+      @include svgFill(--primary-black);
+    }
+
+    &--dark {
+      background: var(--secondary-black);
+      @include svgFill(--primary-light-gray);
+
+      &:hover:not([disabled]) {
+        @include svgFill(--primary-white);
+      }
+
+      &:disabled {
+        @include svgFill(--primary-light-gray);
+      }
+
+      &:focus {
+        @include svgFill(--primary-white);
+      }
+    }
+  }
 }
