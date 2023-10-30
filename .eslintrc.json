@@ -19,10 +19,10 @@
     },
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": ["./tsconfig.json"],
+    "project": ["./tsconfig.json", "./tsconfig.node.json"],
     "warnOnUnsupportedTypeScriptVersion": false
   },
-  "ignorePatterns": ["build/"],
+  "ignorePatterns": ["dist/", "build/"],
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
