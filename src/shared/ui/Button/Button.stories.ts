@@ -50,7 +50,23 @@ export const Menu: Story = {
   args: {
     variant: "menu",
     theme: "light",
-    children: "svg",
+    children: "☺",
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    variant: "icon",
+    theme: "light",
+    children: "☺",
+  },
+};
+
+export const BackToTop: Story = {
+  args: {
+    variant: "back-to-top",
+    theme: "light",
+    children: "☺",
   },
 };
 

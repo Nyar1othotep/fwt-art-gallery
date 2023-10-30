@@ -1,5 +1,3 @@
-@import "@/shared/styles/mixins.scss";
-
 .button {
   display: flex;
   align-items: center;
@@ -121,34 +119,34 @@
   &--icon,
   &--menu,
   &--back-to-top {
-    @include svgFill(--primary-dark-gray);
+    color: var(--primary-dark-gray);
 
     &:hover:not([disabled]) {
-      @include svgFill(--primary-black);
+      color: var(--primary-black);
     }
 
     &:disabled {
-      @include svgFill(--primary-light-gray);
+      color: var(--primary-light-gray);
     }
 
     &:focus {
-      @include svgFill(--primary-black);
+      color: var(--primary-black);
     }
 
     &--dark {
       background: var(--secondary-black);
-      @include svgFill(--primary-light-gray);
+      color: var(--primary-light-gray);
 
       &:hover:not([disabled]) {
-        @include svgFill(--primary-white);
+        color: var(--primary-white);
       }
 
       &:disabled {
-        @include svgFill(--primary-light-gray);
+        color: var(--primary-light-gray);
       }
 
       &:focus {
-        @include svgFill(--primary-white);
+        color: var(--primary-white);
       }
     }
   }
