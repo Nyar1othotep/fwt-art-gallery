@@ -70,3 +70,8 @@
   font-size: 8px;
   font-weight: 500;
 }
+
+@mixin pBase {
+  font-size: 16px;
+  font-weight: 500;
+}
