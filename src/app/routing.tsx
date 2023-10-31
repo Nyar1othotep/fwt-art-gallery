@@ -3,7 +3,8 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import baseLayout from "./baseLayout";
-import { Link } from "@/shared/ui/Link";
+import { Card } from "@/shared/ui/Card";
+import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
 
 export const routing = () =>
   createBrowserRouter([
@@ -14,9 +15,28 @@ export const routing = () =>
         {
           path: "/",
           element: (
-            <div>
-              <Link to="/some">Link</Link>
-            </div>
+            <GridLayout>
+              <Card
+                title="Jean-Honore Fragonard"
+                year="1732 - 1806"
+                image="/images/mock-image.png"
+              />
+              <Card
+                title="Jean-Honore Fragonard"
+                year="1732 - 1806"
+                image="/images/mock-image.png"
+              />
+              <Card
+                title="Jean-Honore Fragonard"
+                year="1732 - 1806"
+                image="/images/mock-image.png"
+              />
+              <Card
+                title="Jean-Honore Fragonard"
+                year="1732 - 1806"
+                image="/images/mock-image.png"
+              />
+            </GridLayout>
           ),
         },
       ],

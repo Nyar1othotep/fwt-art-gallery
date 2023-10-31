@@ -14,7 +14,7 @@
     transition: 500ms ease-out;
 
     @include mediaLarge {
-      .card:hover &__image {
+      .card:hover & {
         transform: scale(1.3);
       }
     }
