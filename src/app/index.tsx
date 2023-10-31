@@ -1,15 +1,16 @@
 import React from "react";
 
-import { ReactComponent as Icon } from "@/shared/assets/delete_icon.svg";
-import { Button } from "@/shared/ui/Button";
+import ReactDOM from "react-dom/client";
+import "@/shared/styles/base.scss";
+import { RouterProvider } from "react-router-dom";
 
-export function App() {
-  return (
-    <div>
-      <div>Test</div>
-      <Button variant="text">
-        <Icon /> Btn
-      </Button>
-    </div>
-  );
-}
+import { routing } from "./routing";
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement,
+);
+root.render(
+  <React.StrictMode>
+    <RouterProvider router={routing()} />
+  </React.StrictMode>,
+);

@@ -12,8 +12,6 @@
     text-transform: uppercase;
   }
 
-  // Default button
-
   &--default {
     width: 200px;
     min-height: 47px;
@@ -53,8 +51,6 @@
     }
   }
 
-  // Text button
-
   &--text {
     position: relative;
     padding: 10px;
@@ -93,22 +89,16 @@
     }
   }
 
-  // Icon button
-
   &--icon {
     padding: 2px;
     border-radius: 4px;
     background: var(--secondary-white);
   }
 
-  // Menu button
-
   &--menu {
     padding: 8px;
     border-radius: 50%;
   }
-
-  // Back to top button
 
   &--back-to-top {
     padding: 18px;

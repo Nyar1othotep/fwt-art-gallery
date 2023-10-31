@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, FC } from "react";
+import React from "react";
 
 import cn from "classnames/bind";
 
@@ -6,15 +6,14 @@ import styles from "./Button.module.scss";
 
 const cx = cn.bind(styles);
 
-type TButtonTheme = "light" | "dark";
 type TButtonVariant = "default" | "text" | "menu" | "icon" | "back-to-top";
 
-interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
-  theme?: TButtonTheme;
+interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  theme?: string;
   variant?: TButtonVariant;
 }
 
-const Button: FC<IButton> = ({
+const Button: React.FC<IButton> = ({
   theme = "light",
   variant = "default",
   ...props

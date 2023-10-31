@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-// import { ReactComponent as MockIcon } from "../../assets/delete_icon.svg";
 import Button from "./Button";
 
 const meta: Meta<typeof Button> = {
