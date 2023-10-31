@@ -1,0 +1,72 @@
+@import "./breakpoints.scss";
+
+@mixin mediaLarge {
+  @media screen and (min-width: $l-viewport) {
+    @content;
+  }
+}
+
+@mixin mediaMedium {
+  @media screen and (min-width: $m-viewport) {
+    @content;
+  }
+}
+
+@mixin mediaSmall {
+  @media screen and (min-width: $s-viewport) {
+    @content;
+  }
+}
+
+@mixin mediaExtraSmall {
+  @media screen and (min-width: $xs-viewport) {
+    @content;
+  }
+}
+
+@mixin h1 {
+  font-family: "Cormorant SC";
+  font-size: 60px;
+  font-weight: 500;
+}
+
+@mixin h2 {
+  font-family: "Cormorant SC";
+  font-size: 48px;
+  font-weight: 500;
+}
+
+@mixin h3 {
+  font-family: "Cormorant SC";
+  font-size: 32px;
+  font-weight: 500;
+}
+
+@mixin h4 {
+  font-family: "Cormorant SC";
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@mixin h5 {
+  font-family: "Cormorant SC";
+  font-size: 16px;
+  font-weight: 700;
+}
+
+@mixin h6 {
+  font-family: "Cormorant SC";
+  font-size: 12px;
+  font-weight: 500;
+}
+
+@mixin pButton {
+  font-family: "Inter";
+  font-size: 12px;
+  font-weight: 700;
+}
+
+@mixin pCaptionBold {
+  font-size: 8px;
+  font-weight: 500;
+}

@@ -82,6 +82,7 @@
     "prettier": "^2.7.0",
     "prop-types": "^15.8.1",
     "storybook": "^7.5.1",
+    "storybook-addon-react-router-v6": "^2.0.8",
     "storybook-css-modules": "^1.0.8",
     "vite-tsconfig-paths": "^4.2.1",
     "webpack": "^5.89.0"

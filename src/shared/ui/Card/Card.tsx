@@ -25,13 +25,25 @@ const Card: React.FC<ICard> = ({
 }) => {
   return (
     <Link className={cx("card", [`card--${theme}`])} onClick={onClick} to="/">
-      <div className={cx("card__image")}>
-        <img src={image} alt={title} />
-      </div>
+      <img className={cx("card__image")} src={image} alt={title} />
       <div className={cx("card__content")}>
-        <div className={cx("card__info info-card")}>
-          <div className={cx("info-card__title")}>{title}</div>
-          <div className={cx("info-card__year")}>{year}</div>
+        <div className={cx("card__info", "info-card", [`info-card--${theme}`])}>
+          <div
+            className={cx("info-card__content", [
+              `info-card__content--${theme}`,
+            ])}
+          >
+            <div
+              className={cx("info-card__title", [`info-card__title--${theme}`])}
+            >
+              {title}
+            </div>
+            <div
+              className={cx("info-card__year", [`info-card__year--${theme}`])}
+            >
+              {year}
+            </div>
+          </div>
         </div>
         <div className={cx("card__button")}>
           <Icon />

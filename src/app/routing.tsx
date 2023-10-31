@@ -3,7 +3,6 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import baseLayout from "./baseLayout";
-import image from "./image.png";
 import { Card } from "@/shared/ui/Card";
 
 export const routing = () =>
@@ -15,11 +14,33 @@ export const routing = () =>
         {
           path: "/",
           element: (
-            <div style={{ maxWidth: "300px" }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                gridAutoRows: "max-content",
+                gap: "24px",
+              }}
+            >
               <Card
                 title="Jean-Honore Fragonard"
                 year="1732 - 1806"
-                image={image}
+                image="/images/mock-image.png"
+              />
+              <Card
+                title="Jean-Honore Fragonard"
+                year="1732 - 1806"
+                image="/images/mock-image.png"
+              />
+              <Card
+                title="Jean-Honore Fragonard"
+                year="1732 - 1806"
+                image="/images/mock-image.png"
+              />
+              <Card
+                title="Jean-Honore Fragonard"
+                year="1732 - 1806"
+                image="/images/mock-image.png"
               />
             </div>
           ),

@@ -1,5 +1,6 @@
 @import url("./colors.scss");
 @import url("./fonts.scss");
+@import "./mixins.scss";
 
 :root {
   font-family: "Iter", sans-serif;
@@ -24,4 +25,10 @@ li {
 button {
   border: none;
   background: none;
+}
+
+#root {
+  max-width: 1240px;
+  padding: 0 20px;
+  margin: 0 auto;
 }

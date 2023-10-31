@@ -12,6 +12,7 @@ const config: StorybookConfig = {
     "@storybook/addon-interactions",
     "storybook-css-modules",
     "@storybook/addon-styling-webpack",
+    "storybook-addon-react-router-v6",
   ],
   core: {
     builder: "@storybook/builder-vite",
