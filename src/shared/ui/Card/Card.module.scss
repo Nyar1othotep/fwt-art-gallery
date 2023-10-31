@@ -2,22 +2,15 @@
 
 .card {
   position: relative;
-  height: 185px;
   overflow: hidden;
 
-  @include mediaSmall {
-    height: 220px;
-  }
-
-  @include mediaLarge {
-    height: 260px;
+  &__image-wrapper {
+    position: relative;
+    display: block;
+    padding: 0px 0px 66.32%;
   }
 
   &__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
     transition: 500ms ease-out;
 
     @include mediaLarge {
@@ -29,9 +22,19 @@
 
   &__content {
     position: absolute;
+    width: 100%;
+    padding: 0px 20px 0px 0px;
     display: flex;
     left: 0;
     bottom: 0;
+
+    @include mediaSmall {
+      padding: 0px 28px 0px 0px;
+    }
+
+    @include mediaLarge {
+      padding: 0px 92px 0px 0px;
+    }
   }
 
   &__button {
@@ -51,8 +54,8 @@
 }
 
 .info-card {
-  width: 236px;
-  padding: 8px 0 8px 12px;
+  width: 100%;
+  padding: 8px 12px 8px 12px;
   background: var(--primary-black);
 
   &--dark {
@@ -60,12 +63,11 @@
   }
 
   @include mediaSmall {
-    padding: 12px 0 12px 12px;
-    width: 300px;
+    padding: 12px;
   }
 
   @include mediaLarge {
-    padding: 20px 0 20px 20px;
+    padding: 20px;
   }
 
   &__content {

@@ -17,9 +17,9 @@ export const routing = () =>
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
                 gridAutoRows: "max-content",
-                gap: "24px",
+                gap: "32px",
               }}
             >
               <Card
