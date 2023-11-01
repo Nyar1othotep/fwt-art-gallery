@@ -103,6 +103,10 @@
   &--back-to-top {
     padding: 18px;
     border-radius: 50%;
+
+    &--dark:hover {
+      background: #242222;
+    }
   }
 
   &--text,

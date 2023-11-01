@@ -1,3 +1,5 @@
+import React from "react";
+
 import type { Meta, StoryObj } from "@storybook/react";
 import { withRouter } from "storybook-addon-react-router-v6";
 
@@ -18,7 +20,7 @@ const meta: Meta<typeof Card> = {
       },
     },
   },
-};
+} satisfies Meta<typeof Card>;
 
 type Story = StoryObj<typeof Card>;
 
@@ -29,6 +31,18 @@ export const Default: Story = {
     image: "/images/mock-image.png",
     theme: "light",
   },
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          width: "400px",
+          overflow: "hidden",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
