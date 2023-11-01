@@ -8,7 +8,6 @@ const cx = cn.bind(styles);
 type TButtonVariant = "default" | "text" | "menu" | "icon" | "back-to-top";
 
 interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  className: string;
   theme?: string;
   variant?: TButtonVariant;
 }

@@ -1,7 +1,8 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import { Card } from "shared/ui/Card";
-import { GridLayout } from "shared/ui/Layouts/GridLayout";
+
+import { Card } from "@/shared/ui/Card";
+import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
 
 import baseLayout from "./baseLayout";
 
