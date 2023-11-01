@@ -14,9 +14,6 @@ const config: StorybookConfig = {
     "@storybook/addon-styling-webpack",
     "storybook-addon-react-router-v6",
   ],
-  core: {
-    builder: "@storybook/builder-vite",
-  },
   framework: {
     name: "@storybook/react-webpack5",
     options: {},

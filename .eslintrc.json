@@ -22,7 +22,7 @@
     "project": ["./tsconfig.json", "./tsconfig.node.json"],
     "warnOnUnsupportedTypeScriptVersion": false
   },
-  "ignorePatterns": ["dist/", "build/"],
+  "ignorePatterns": ["build/"],
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }],
@@ -32,15 +32,27 @@
     "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", "internal"],
+        "groups": ["builtin", "external", "internal", "parent", "sibling"],
         "pathGroups": [
           {
             "pattern": "react",
             "group": "external",
             "position": "before"
+          },
+          {
+            "pattern": "*.css",
+            "group": "index",
+            "patternOptions": {
+              "matchBase": true
+            },
+            "position": "after"
+          },
+          {
+            "pattern": "@/**",
+            "group": "external",
+            "position": "after"
           }
         ],
-        "pathGroupsExcludedImportTypes": ["react"],
         "newlines-between": "always",
         "alphabetize": {
           "order": "asc",

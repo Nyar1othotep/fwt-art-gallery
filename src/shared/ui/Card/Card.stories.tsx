@@ -1,6 +1,5 @@
-import React from "react";
-
 import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 import { withRouter } from "storybook-addon-react-router-v6";
 
 import Card from "./Card";

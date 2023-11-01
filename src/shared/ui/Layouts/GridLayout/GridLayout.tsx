@@ -1,6 +1,5 @@
-import React, { ReactNode } from "react";
-
 import cn from "classnames/bind";
+import React, { ReactNode } from "react";
 
 import styles from "./GridLayout.module.scss";
 
