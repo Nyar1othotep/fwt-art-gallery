@@ -1,15 +1,21 @@
 .base-layout {
-  padding: 35px 0px 35px 0px;
   display: flex;
   flex-direction: column;
-  gap: 35px;
+  gap: 80px;
+
+  @include mediaSmall {
+    gap: 100px;
+  }
 
   &__container {
     display: flex;
   }
 
   &__content {
+    max-width: 1280px;
     width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 45px;

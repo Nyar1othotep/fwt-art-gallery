@@ -1,6 +1,7 @@
 import cn from "classnames/bind";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
+import { ThemeContext } from "@/features/theme";
 import { Button } from "@/shared/ui/Button";
 import { AccountLayout } from "@/shared/ui/Layouts/AccountLayout";
 import { Sidebar } from "@/shared/ui/Sidebar";
@@ -14,31 +15,45 @@ import styles from "./HeaderLayout.module.scss";
 const cx = cn.bind(styles);
 
 const HeaderLayout: React.FC = () => {
-  const isAuth = false;
-  //   const isHomePage = true;
-  const theme = "light";
+  const isAuth = false; // Под будущий хук useAuth
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const [isShow, setIsShow] = useState(false);
 
   const handleShow = () => setIsShow(true);
   const handleClose = () => setIsShow(false);
 
   return (
-    <header className={cx("header")}>
+    <header className={cx("header", `header--${theme}`)}>
       <HeaderLogo className={cx("header__logo")} theme={theme} />
-      {/* if window size > 768 return Search */}
+      {/* if (window size > 768 && page === !main) return Search */}
       <menu className={cx("header__menu")}>
-        <AccountLayout className={cx("header__nav")} isAuth={isAuth} />
-        <Button className={cx("header__button")} variant="menu" theme={theme}>
+        <AccountLayout
+          className={cx("header__nav")}
+          isAuth={isAuth}
+          theme={theme}
+          role="navigation"
+        />
+        <Button variant="menu" theme={theme} onClick={toggleTheme}>
           <Icon />
         </Button>
       </menu>
-      <IconBurger className={cx("header__icon-burger")} onClick={handleShow} />
+      <IconBurger
+        className={cx("header__icon-burger", `header__icon-burger--${theme}`)}
+        onClick={handleShow}
+      />
       <Sidebar isShow={isShow} onClose={handleClose} theme={theme}>
-        <Button className={cx("header__button")} variant="text" theme={theme}>
-          <Icon />
-          {theme} mode
-        </Button>
-        <AccountLayout isAuth={isAuth} />
+        <div className={cx("header__sidebar-content", "sidebar-content")}>
+          <Button
+            className={cx("sidebar-content__button")}
+            variant="text"
+            theme={theme}
+            onClick={toggleTheme}
+          >
+            <Icon />
+            {theme} mode
+          </Button>
+          <AccountLayout isAuth={isAuth} theme={theme} />
+        </div>
       </Sidebar>
     </header>
   );

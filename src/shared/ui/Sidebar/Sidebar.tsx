@@ -23,9 +23,9 @@ const Sidebar: React.FC<ISidebar> = ({
   children,
 }) => {
   const sidebarRef = useRef(null);
-  const contentRef = useRef(null);
+  const wrapperRef = useRef(null);
 
-  useOutsideClick(contentRef, onClose);
+  useOutsideClick(wrapperRef, onClose);
 
   useEffect(() => {
     if (isShow) {
@@ -52,8 +52,8 @@ const Sidebar: React.FC<ISidebar> = ({
         <div ref={sidebarRef} className={cx(className, "sidebar")}>
           <div className={cx("sidebar__background")} />
           <div
-            ref={contentRef}
-            className={cx("sidebar__content", [`sidebar__content--${theme}`])}
+            ref={wrapperRef}
+            className={cx("sidebar__wrapper", `sidebar__wrapper--${theme}`)}
           >
             <Icon className={cx("sidebar__icon")} onClick={onClose} />
             {children}

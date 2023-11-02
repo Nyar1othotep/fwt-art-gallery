@@ -1,6 +1,25 @@
 .header {
+  padding: 0 20px;
+  position: sticky;
+  min-height: 64px;
+  top: 0;
+  left: 0;
   @include flexItemsCenter;
   justify-content: space-between;
+  background: var(--primary-white);
+  z-index: 50;
+
+  &--dark {
+    background: var(--primary-black);
+  }
+
+  @include mediaSmall {
+    min-height: 88px;
+  }
+
+  @include mediaLarge {
+    min-height: 80px;
+  }
 
   &__menu {
     display: none;
@@ -14,8 +33,32 @@
   &__icon-burger {
     display: block;
 
+    &--dark {
+      color: var(--primary-light-gray);
+    }
+
     @include mediaLarge {
       display: none;
+    }
+  }
+}
+
+.sidebar-content {
+  padding: 144px 0 0 47px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @include mediaSmall {
+    padding: 200px 0 0 94px;
+    gap: 60px;
+  }
+
+  &__button {
+    max-width: max-content;
+
+    &--inner {
+      padding: 0;
     }
   }
 }

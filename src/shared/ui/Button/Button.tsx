@@ -23,8 +23,8 @@ const Button: React.FC<IButton> = ({
       className={cx(
         className,
         "button",
-        [`button--${variant}`],
-        [`button--${variant}--${theme}`],
+        `button--${variant}`,
+        `button--${variant}--${theme}`,
       )}
       {...props}
     />

@@ -1,10 +1,24 @@
 .account-layout {
   display: flex;
-  align-items: center;
   flex-direction: column;
   gap: 40px;
 
+  & a {
+    @include h3;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    @include mediaSmall {
+      @include h1;
+    }
+
+    @include mediaLarge {
+      @include h5;
+    }
+  }
+
   @include mediaLarge {
+    align-items: center;
     flex-direction: row;
     gap: 20px;
   }

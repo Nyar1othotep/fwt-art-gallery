@@ -19,7 +19,7 @@ const Link: React.FC<ILink> = ({
 }) => {
   return (
     <RouterLink
-      className={cx(className, "link", [`link--${theme}`])}
+      className={cx(className, "link", `link--${theme}`)}
       onClick={onClick}
       to={to}
     >
