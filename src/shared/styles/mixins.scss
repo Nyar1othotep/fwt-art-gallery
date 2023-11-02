@@ -24,6 +24,11 @@
   }
 }
 
+@mixin flexItemsCenter {
+  display: flex;
+  align-items: center;
+}
+
 @mixin h1 {
   font-family: "Cormorant SC";
   font-size: 60px;

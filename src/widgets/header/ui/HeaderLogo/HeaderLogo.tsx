@@ -4,12 +4,12 @@ import { Link } from "@/shared/ui/Link";
 
 import { ReactComponent as Icon } from "../assets/logo.svg";
 
-interface ILogo {
+interface IHeaderLogo {
   className?: string;
   theme?: string;
 }
 
-const Logo: React.FC<ILogo> = ({ className = "", theme }) => {
+const HeaderLogo: React.FC<IHeaderLogo> = ({ className = "", theme }) => {
   return (
     <Link to="/" className={className} theme={theme}>
       <Icon />
@@ -17,4 +17,4 @@ const Logo: React.FC<ILogo> = ({ className = "", theme }) => {
   );
 };
 
-export default Logo;
+export default HeaderLogo;

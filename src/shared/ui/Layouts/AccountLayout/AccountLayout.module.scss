@@ -1,0 +1,11 @@
+.account-layout {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+
+  @include mediaLarge {
+    flex-direction: row;
+    gap: 20px;
+  }
+}

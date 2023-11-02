@@ -1,5 +1,21 @@
 .header {
-  &__button {
+  @include flexItemsCenter;
+  justify-content: space-between;
+
+  &__menu {
     display: none;
+
+    @include mediaLarge {
+      @include flexItemsCenter;
+      gap: 60px;
+    }
+  }
+
+  &__icon-burger {
+    display: block;
+
+    @include mediaLarge {
+      display: none;
+    }
   }
 }

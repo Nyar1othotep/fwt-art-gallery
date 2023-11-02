@@ -1,0 +1,52 @@
+.sidebar {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  z-index: 100;
+
+  &__background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background: rgba(3, 3, 3, 0.3);
+    transition: 500ms ease-in-out;
+  }
+
+  &__content {
+    position: absolute;
+    width: calc(252px + 120 * ((100vw - 320px) / (768 - 320)));
+    height: 100%;
+    right: -100%;
+    background: var(--primary-white);
+    transition: 500ms ease-in-out;
+    color: var(--primary-dark-gray);
+
+    &--dark {
+      background: var(--primary-black);
+      color: var(--primary-light-gray);
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    @include mediaSmall {
+      top: 32px;
+    }
+  }
+}
+
+.enter-done {
+  .sidebar__background {
+    opacity: 1;
+  }
+
+  .sidebar__content {
+    right: 0;
+  }
+}
