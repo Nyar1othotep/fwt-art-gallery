@@ -56,10 +56,3 @@
     color: var(--secondary-gray);
   }
 }
-
-.social-footer {
-  &__list {
-    @include flexItemsCenter;
-    gap: 20px;
-  }
-}

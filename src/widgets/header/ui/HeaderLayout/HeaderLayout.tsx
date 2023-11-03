@@ -32,11 +32,7 @@ const HeaderLayout: React.FC = () => {
           </Link>
           {/* if (window size > 768 && page === !main) return Search */}
           <menu className={cx("header__menu")}>
-            <HeaderAccount
-              className={cx("header__nav")}
-              isAuth={isAuth}
-              role="navigation"
-            />
+            <HeaderAccount isAuth={isAuth} role="navigation" />
             <Button variant="menu" theme={theme} onClick={toggleTheme}>
               <IconTheme />
             </Button>

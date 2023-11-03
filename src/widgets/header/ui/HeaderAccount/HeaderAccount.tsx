@@ -17,7 +17,7 @@ const HeaderAccount: React.FC<IHeaderAccount> = memo(
     const { theme } = useContext(ThemeContext);
 
     return (
-      <div className={cx(className, "account-layout")} {...props}>
+      <div className={cx(className, "account-header")} {...props}>
         {isAuth ? (
           <Link theme={theme} to="/">
             Log out

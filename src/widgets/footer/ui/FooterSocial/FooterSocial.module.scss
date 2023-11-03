@@ -1,0 +1,10 @@
+.social-footer {
+  &__list {
+    @include flexItemsCenter;
+    gap: 20px;
+  }
+
+  &__link {
+    display: flex;
+  }
+}

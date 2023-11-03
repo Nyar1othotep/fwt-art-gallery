@@ -1,1 +1,1 @@
-export { default as Footer } from "./ui/FooterLayout/FooterLayout";
+export { Footer } from "./ui/FooterLayout";

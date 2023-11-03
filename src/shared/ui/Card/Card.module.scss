@@ -40,7 +40,7 @@
   &__button {
     display: flex;
     align-items: center;
-    background: var(--accent-gold);
+    background: var(--accent-red);
     color: var(--primary-white);
 
     @include mediaLarge {
@@ -49,17 +49,17 @@
   }
 
   &--dark .card__button {
-    background: var(--accent-red);
+    background: var(--accent-gold);
   }
 }
 
 .info-card {
   width: 100%;
   padding: 8px 12px 8px 12px;
-  background: var(--primary-black);
+  background: var(--primary-white);
 
   &--dark {
-    background: var(--primary-white);
+    background: var(--primary-black);
   }
 
   @include mediaSmall {
@@ -80,7 +80,7 @@
       left: -12px;
       width: 2px;
       height: 100%;
-      background: var(--accent-gold);
+      background: var(--accent-red);
 
       @include mediaLarge {
         left: -20px;
@@ -88,7 +88,7 @@
     }
 
     &--dark::before {
-      background: var(--accent-red);
+      background: var(--accent-gold);
     }
   }
 
@@ -96,10 +96,10 @@
     margin-bottom: 8px;
     @include h6;
     text-transform: uppercase;
-    color: var(--primary-white);
+    color: var(--primary-black);
 
     &--dark {
-      color: var(--primary-black);
+      color: var(--primary-white);
     }
 
     @include mediaSmall {
@@ -109,10 +109,10 @@
 
   &__year {
     @include pCaptionBold;
-    color: var(--accent-gold);
+    color: var(--accent-red);
 
     &--dark {
-      color: var(--accent-red);
+      color: var(--accent-gold);
     }
 
     @include mediaSmall {
