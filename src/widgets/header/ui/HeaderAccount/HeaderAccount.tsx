@@ -1,19 +1,21 @@
 import cn from "classnames/bind";
-import React, { HTMLAttributes, memo } from "react";
+import React, { HTMLAttributes, memo, useContext } from "react";
 
-import { Link } from "../../Link";
+import { ThemeContext } from "@/features/theme";
+import { Link } from "@/shared/ui/Link";
 
-import styles from "./AccountLayout.module.scss";
+import styles from "./HeaderAccount.module.scss";
 
 const cx = cn.bind(styles);
 
-interface IAccountLayout extends HTMLAttributes<HTMLDivElement> {
+interface IHeaderAccount extends HTMLAttributes<HTMLDivElement> {
   isAuth: boolean;
-  theme?: string;
 }
 
-const AccountLayout: React.FC<IAccountLayout> = memo(
-  ({ className, isAuth, theme = "light", ...props }) => {
+const HeaderAccount: React.FC<IHeaderAccount> = memo(
+  ({ className, isAuth, ...props }) => {
+    const { theme } = useContext(ThemeContext);
+
     return (
       <div className={cx(className, "account-layout")} {...props}>
         {isAuth ? (
@@ -35,4 +37,4 @@ const AccountLayout: React.FC<IAccountLayout> = memo(
   },
 );
 
-export default AccountLayout;
+export default HeaderAccount;

@@ -1,7 +1,7 @@
 @import "../../styles/mixins.scss";
 
 .link {
-  @include pBase;
+  @include pBaseMedium;
   color: var(--primary-dark-gray);
   text-decoration: underline;
   text-underline-offset: 5px;

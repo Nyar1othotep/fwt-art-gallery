@@ -1,5 +1,12 @@
 @import "./breakpoints.scss";
 
+@mixin container {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
 @mixin mediaLarge {
   @media screen and (min-width: $l-viewport) {
     @content;
@@ -76,7 +83,27 @@
   font-weight: 500;
 }
 
-@mixin pBase {
+@mixin pBaseLight {
   font-size: 16px;
+  font-weight: 300;
+}
+
+@mixin pBaseMedium {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@mixin pSmallLight {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+@mixin pSmallMedium {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+@mixin pTinyMedium {
+  font-size: 8px;
   font-weight: 500;
 }

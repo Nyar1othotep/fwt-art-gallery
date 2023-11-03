@@ -3,12 +3,13 @@ import React, { useContext, useState } from "react";
 
 import { ThemeContext } from "@/features/theme";
 import { Button } from "@/shared/ui/Button";
-import { AccountLayout } from "@/shared/ui/Layouts/AccountLayout";
+import { Link } from "@/shared/ui/Link";
 import { Sidebar } from "@/shared/ui/Sidebar";
 
 import { ReactComponent as IconBurger } from "../assets/buger_icon.svg";
-import { ReactComponent as Icon } from "../dark_icon.svg";
-import { HeaderLogo } from "../HeaderLogo";
+import { ReactComponent as IconTheme } from "../assets/dark_icon.svg";
+import { ReactComponent as IconLogo } from "../assets/logo.svg";
+import { HeaderAccount } from "../HeaderAccount";
 
 import styles from "./HeaderLayout.module.scss";
 
@@ -24,37 +25,45 @@ const HeaderLayout: React.FC = () => {
 
   return (
     <header className={cx("header", `header--${theme}`)}>
-      <HeaderLogo className={cx("header__logo")} theme={theme} />
-      {/* if (window size > 768 && page === !main) return Search */}
-      <menu className={cx("header__menu")}>
-        <AccountLayout
-          className={cx("header__nav")}
-          isAuth={isAuth}
-          theme={theme}
-          role="navigation"
-        />
-        <Button variant="menu" theme={theme} onClick={toggleTheme}>
-          <Icon />
-        </Button>
-      </menu>
-      <IconBurger
-        className={cx("header__icon-burger", `header__icon-burger--${theme}`)}
-        onClick={handleShow}
-      />
-      <Sidebar isShow={isShow} onClose={handleClose} theme={theme}>
-        <div className={cx("header__sidebar-content", "sidebar-content")}>
-          <Button
-            className={cx("sidebar-content__button")}
-            variant="text"
-            theme={theme}
-            onClick={toggleTheme}
-          >
-            <Icon />
-            {theme} mode
-          </Button>
-          <AccountLayout isAuth={isAuth} theme={theme} />
+      <div className={cx("header__container")}>
+        <div className={cx("header__content")}>
+          <Link to="/" className={cx("header__logo")} theme={theme}>
+            <IconLogo />
+          </Link>
+          {/* if (window size > 768 && page === !main) return Search */}
+          <menu className={cx("header__menu")}>
+            <HeaderAccount
+              className={cx("header__nav")}
+              isAuth={isAuth}
+              role="navigation"
+            />
+            <Button variant="menu" theme={theme} onClick={toggleTheme}>
+              <IconTheme />
+            </Button>
+          </menu>
+          <IconBurger
+            className={cx(
+              "header__icon-burger",
+              `header__icon-burger--${theme}`,
+            )}
+            onClick={handleShow}
+          />
+          <Sidebar isShow={isShow} onClose={handleClose} theme={theme}>
+            <div className={cx("header__sidebar-content", "sidebar-content")}>
+              <Button
+                className={cx("sidebar-content__button")}
+                variant="text"
+                theme={theme}
+                onClick={toggleTheme}
+              >
+                <IconTheme />
+                {theme} mode
+              </Button>
+              <HeaderAccount isAuth={isAuth} />
+            </div>
+          </Sidebar>
         </div>
-      </Sidebar>
+      </div>
     </header>
   );
 };

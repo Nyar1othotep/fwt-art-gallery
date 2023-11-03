@@ -15,8 +15,8 @@ const Layout: React.FC<ILayout> = ({ headerSlot, footerSlot }) => {
   return (
     <div className={cx("base-layout")}>
       {headerSlot}
-      <main className={cx("base-layout__container")}>
-        <div className={cx("base-layout__content")}>
+      <main className={cx("base-layout__main")}>
+        <div className={cx("base-layout__container")}>
           <Outlet />
         </div>
       </main>

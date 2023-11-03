@@ -1,11 +1,9 @@
 .header {
-  padding: 0 20px;
   position: sticky;
+  @include flexItemsCenter;
   min-height: 64px;
   top: 0;
   left: 0;
-  @include flexItemsCenter;
-  justify-content: space-between;
   background: var(--primary-white);
   z-index: 50;
 
@@ -19,6 +17,15 @@
 
   @include mediaLarge {
     min-height: 80px;
+  }
+
+  &__container {
+    @include container;
+  }
+
+  &__content {
+    @include flexItemsCenter;
+    justify-content: space-between;
   }
 
   &__menu {
@@ -56,9 +63,5 @@
 
   &__button {
     max-width: max-content;
-
-    &--inner {
-      padding: 0;
-    }
   }
 }
