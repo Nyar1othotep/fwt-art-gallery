@@ -1,5 +1,6 @@
 import cn from "classnames/bind";
 import React, { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
 import { useOutsideClick } from "@/shared/lib/useOutsideClick";
@@ -48,18 +49,21 @@ const Sidebar: React.FC<ISidebar> = ({
       }}
       unmountOnExit
     >
-      {() => (
-        <div ref={sidebarRef} className={cx(className, "sidebar")}>
-          <div className={cx("sidebar__background")} />
-          <div
-            ref={wrapperRef}
-            className={cx("sidebar__wrapper", `sidebar__wrapper--${theme}`)}
-          >
-            <Icon className={cx("sidebar__icon")} onClick={onClose} />
-            {children}
-          </div>
-        </div>
-      )}
+      {() =>
+        createPortal(
+          <div ref={sidebarRef} className={cx(className, "sidebar")}>
+            <div className={cx("sidebar__background")} />
+            <div
+              ref={wrapperRef}
+              className={cx("sidebar__wrapper", `sidebar__wrapper--${theme}`)}
+            >
+              <Icon className={cx("sidebar__icon")} onClick={onClose} />
+              {children}
+            </div>
+          </div>,
+          document.body,
+        )
+      }
     </CSSTransition>
   );
 };
