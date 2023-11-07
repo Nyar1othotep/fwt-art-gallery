@@ -25,9 +25,17 @@ type Story = StoryObj<typeof Card>;
 
 export const Default: Story = {
   args: {
+    to: "/",
     title: "Jean-Honore Fragonard",
     year: "1732 - 1806",
-    image: "/images/mock-image.png",
+    image: {
+      _id: "dwdyu23vdbwudvwbh",
+      src: "/images/64e5d1f4af5d7f5991789c57/image.webp",
+      src2x: "/images/64e5d1f4af5d7f5991789c57/image2x.jpg",
+      webp: "/images/64e5d1f4af5d7f5991789c57/image.webp",
+      webp2x: "/images/64e5d1f4af5d7f5991789c57/image2x.webp",
+      original: "/images/64e5d1f4af5d7f5991789c57/image.webp",
+    },
     theme: "light",
   },
   decorators: [

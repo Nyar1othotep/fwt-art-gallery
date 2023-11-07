@@ -2,21 +2,26 @@ import cn from "classnames/bind";
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { TImage } from "@/shared/model/types";
+
 import { ReactComponent as Icon } from "../../assets/arrow_icon.svg";
+import { Image } from "../Image";
 
 import styles from "./Card.module.scss";
 
 const cx = cn.bind(styles);
 
 interface ICard extends React.HTMLAttributes<HTMLDivElement> {
+  to: string;
   title: string;
   year: string;
-  image: string;
+  image: TImage;
   theme?: string;
   onClick?: () => void;
 }
 
 const Card: React.FC<ICard> = ({
+  to,
   title,
   year,
   image,
@@ -24,9 +29,9 @@ const Card: React.FC<ICard> = ({
   onClick,
 }) => {
   return (
-    <Link className={cx("card", `card--${theme}`)} onClick={onClick} to="/">
+    <Link className={cx("card", `card--${theme}`)} onClick={onClick} to={to}>
       <div className={cx("card__image-wrapper", "_ibg")}>
-        <img className={cx("card__image")} src={image} alt={title} />
+        <Image className={cx("card__image")} image={image} alt={title} />
       </div>
       <div className={cx("card__content")}>
         <div className={cx("card__info", "info-card", `info-card--${theme}`)}>

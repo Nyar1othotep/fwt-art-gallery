@@ -8,9 +8,6 @@
     position: relative;
     display: block;
     padding: 0px 0px 66.32%;
-  }
-
-  &__image {
     transition: 500ms ease-out;
 
     @include mediaLarge {

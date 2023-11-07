@@ -1,10 +1,8 @@
 .footer {
-  background: var(--primary-white);
   color: var(--primary-dark-gray);
   border-top: 1px solid var(--secondary-gray);
 
   &--dark {
-    background: var(--primary-black);
     color: var(--primary-light-gray);
   }
 
