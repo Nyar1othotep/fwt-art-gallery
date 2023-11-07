@@ -1,6 +1,8 @@
-import React, { HTMLAttributes, useState } from "react";
+import React, { HTMLAttributes, useEffect, useState } from "react";
 
 import { TTheme } from "../model/types";
+
+import { getTheme } from "./getTheme";
 
 interface IThemeContext {
   theme: TTheme;
@@ -12,7 +14,11 @@ export const ThemeContext = React.createContext<IThemeContext>(
 );
 
 const ThemeProvider: React.FC<HTMLAttributes<HTMLElement>> = ({ children }) => {
-  const [theme, setTheme] = useState<TTheme>("light");
+  const [theme, setTheme] = useState(getTheme);
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
