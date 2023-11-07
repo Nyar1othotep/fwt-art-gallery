@@ -1,0 +1,82 @@
+.skeleton {
+  position: relative;
+  padding: 0px 0px 66.32%;
+  display: block;
+  background: #eeeded;
+  overflow: hidden;
+
+  &--dark {
+    background: #0d0d0d;
+  }
+
+  &__content {
+    position: absolute;
+    width: 100%;
+    padding: 0px 20px 0px 0px;
+    display: flex;
+    left: 0;
+    bottom: 0;
+
+    @include mediaSmall {
+      padding: 0px 28px 0px 0px;
+    }
+
+    @include mediaLarge {
+      padding: 0px 92px 0px 0px;
+    }
+  }
+}
+
+.info-card {
+  width: 100%;
+  padding: 8px 88px 8px 12px;
+  background: var(--primary-white);
+
+  &--dark {
+    background: var(--primary-black);
+  }
+
+  @include mediaSmall {
+    padding: 12px 98px 12px 12px;
+  }
+
+  @include mediaLarge {
+    padding: 20px 66px 20px 20px;
+  }
+
+  &__title,
+  &__year {
+    width: 100%;
+    background: #eeeded;
+
+    &--dark {
+      background: #0d0d0d;
+    }
+  }
+
+  &__title {
+    height: 15px;
+    margin-bottom: 4px;
+
+    @include mediaSmall {
+      margin-bottom: 8px;
+    }
+
+    @include mediaLarge {
+      height: 19px;
+    }
+  }
+
+  &__year {
+    max-width: 47px;
+    height: 10px;
+
+    @include mediaSmall {
+      max-width: 70px;
+    }
+
+    @include mediaLarge {
+      height: 15px;
+    }
+  }
+}

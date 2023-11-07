@@ -4,6 +4,7 @@ import { useGetArtistsQuery, StaticDto } from "@/entities/artists";
 import { ThemeContext } from "@/features/theme";
 import { Card } from "@/shared/ui/Card";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
+import { Skeleton } from "@/shared/ui/Skeleton";
 
 interface IArtistsList {
   isAuth: boolean;
@@ -18,7 +19,12 @@ const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
     isSuccess,
   } = useGetArtistsQuery({ filters, isAuth });
 
-  if (isLoading) return <div>Loading</div>;
+  if (isLoading)
+    return (
+      <GridLayout>
+        <Skeleton theme={theme} />
+      </GridLayout>
+    );
 
   if (artists && artists.length === 0) return <div>No data</div>;
 
