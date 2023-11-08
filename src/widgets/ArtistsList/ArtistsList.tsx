@@ -1,6 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
-import { useGetArtistsQuery, StaticDto } from "@/entities/artists";
+import {
+  useGetStaticArtistsQuery,
+  useGetArtistsQuery,
+  TArtistsResponse,
+} from "@/entities/artists";
 import { ThemeContext } from "@/features/theme";
 import { Card } from "@/shared/ui/Card";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
@@ -12,14 +17,35 @@ interface IArtistsList {
 }
 
 const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
+  const [pageNumber, setPageNumber] = useState(1);
   const { theme } = useContext(ThemeContext);
-  const {
-    data: artists,
-    isLoading,
-    isSuccess,
-  } = useGetArtistsQuery({ filters, isAuth });
+  const { data: staticData, isLoading: isStaticLoading } =
+    useGetStaticArtistsQuery(undefined, { skip: isAuth });
 
-  if (isLoading) {
+  const {
+    data: {
+      data,
+      meta: { count = 0, perPage = 0 } = {},
+    } = {} as TArtistsResponse,
+    isLoading,
+  } = useGetArtistsQuery(
+    {
+      filters: { ...filters, pageNumber },
+    },
+    { skip: !isAuth },
+  );
+  const { ref, inView } = useInView({ rootMargin: "400px", threshold: 1 });
+
+  const artists = data ?? staticData;
+  const isArtistsLoading = isLoading || isStaticLoading;
+
+  useEffect(() => {
+    if (inView && isAuth && pageNumber <= Math.ceil(count / perPage)) {
+      setPageNumber((prev) => prev + 1);
+    }
+  }, [inView, pageNumber, isAuth]);
+
+  if (isArtistsLoading) {
     return (
       <GridLayout>
         {Array.from({ length: 6 }, (_, key) => (
@@ -29,25 +55,26 @@ const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
     );
   }
 
-  if (artists && artists.length === 0) return <div>No data</div>;
-
-  if (!isSuccess) return null;
+  if (artists.length === 0) return <div>No data</div>;
 
   return (
-    <GridLayout>
-      {artists.map(({ _id, name, yearsOfLife, mainPainting }: StaticDto) => {
-        return (
-          <Card
-            key={_id}
-            to={_id}
-            title={name}
-            year={yearsOfLife}
-            image={mainPainting?.image}
-            theme={theme}
-          />
-        );
-      })}
-    </GridLayout>
+    <>
+      <GridLayout>
+        {artists.map(({ _id, name, yearsOfLife, mainPainting }) => {
+          return (
+            <Card
+              key={_id}
+              to={_id}
+              title={name}
+              year={yearsOfLife}
+              image={mainPainting?.image}
+              theme={theme}
+            />
+          );
+        })}
+      </GridLayout>
+      <div ref={ref} />
+    </>
   );
 };
 

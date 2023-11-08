@@ -1,6 +1,6 @@
 import { TImage } from "@/shared/model/types";
 
-type MainPainting = {
+type TMainPainting = {
   _id: string;
   name: string;
   yearOfCreation: string;
@@ -8,12 +8,23 @@ type MainPainting = {
   artist: string;
 };
 
-export type StaticDto = {
+export type TDataDto = {
   genres: string[];
   _id: string;
   name: string;
   description: string;
   yearsOfLife: string;
   __v: number;
-  mainPainting: MainPainting;
+  mainPainting: TMainPainting;
+};
+
+export type TMetaDto = {
+  count: number;
+  perPage: number;
+  pageNumber: number;
+};
+
+export type TArtistsResponse = {
+  data: TDataDto[];
+  meta: TMetaDto;
 };

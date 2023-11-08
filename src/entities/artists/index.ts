@@ -1,3 +1,3 @@
-export { useGetArtistsQuery } from "./api/artistsApi";
+export { useGetStaticArtistsQuery, useGetArtistsQuery } from "./api/artistsApi";
 
-export type { StaticDto } from "./model/types";
+export type { TArtistsResponse } from "./model/types";
