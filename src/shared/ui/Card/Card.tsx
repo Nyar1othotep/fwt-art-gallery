@@ -1,5 +1,5 @@
 import cn from "classnames/bind";
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 
 import { TImage } from "@/shared/model/types";
@@ -20,40 +20,40 @@ interface ICard extends React.HTMLAttributes<HTMLDivElement> {
   onClick?: () => void;
 }
 
-const Card: React.FC<ICard> = ({
-  to,
-  title,
-  year,
-  image,
-  theme = "light",
-  onClick,
-}) => {
-  return (
-    <Link className={cx("card", `card--${theme}`)} onClick={onClick} to={to}>
-      <div className={cx("card__image-wrapper", "_ibg")}>
-        <Image className={cx("card__image")} image={image} alt={title} />
-      </div>
-      <div className={cx("card__content")}>
-        <div className={cx("card__info", "info-card", `info-card--${theme}`)}>
-          <div
-            className={cx("info-card__content", `info-card__content--${theme}`)}
-          >
+const Card: React.FC<ICard> = memo(
+  ({ to, title, year, image, theme = "light", onClick }) => {
+    return (
+      <Link className={cx("card", `card--${theme}`)} onClick={onClick} to={to}>
+        <div className={cx("card__image-wrapper", "_ibg")}>
+          <Image className={cx("card__image")} image={image} alt={title} />
+        </div>
+        <div className={cx("card__content")}>
+          <div className={cx("card__info", "info-card", `info-card--${theme}`)}>
             <div
-              className={cx("info-card__title", `info-card__title--${theme}`)}
+              className={cx(
+                "info-card__content",
+                `info-card__content--${theme}`,
+              )}
             >
-              {title}
-            </div>
-            <div className={cx("info-card__year", `info-card__year--${theme}`)}>
-              {year}
+              <div
+                className={cx("info-card__title", `info-card__title--${theme}`)}
+              >
+                {title}
+              </div>
+              <div
+                className={cx("info-card__year", `info-card__year--${theme}`)}
+              >
+                {year}
+              </div>
             </div>
           </div>
+          <div className={cx("card__button")}>
+            <Icon />
+          </div>
         </div>
-        <div className={cx("card__button")}>
-          <Icon />
-        </div>
-      </div>
-    </Link>
-  );
-};
+      </Link>
+    );
+  },
+);
 
 export default Card;
