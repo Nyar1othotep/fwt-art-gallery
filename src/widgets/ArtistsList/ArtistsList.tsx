@@ -19,12 +19,15 @@ const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
     isSuccess,
   } = useGetArtistsQuery({ filters, isAuth });
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <GridLayout>
-        <Skeleton theme={theme} />
+        {Array.from({ length: 6 }, (_, key) => (
+          <Skeleton key={key} theme={theme} />
+        ))}
       </GridLayout>
     );
+  }
 
   if (artists && artists.length === 0) return <div>No data</div>;
 

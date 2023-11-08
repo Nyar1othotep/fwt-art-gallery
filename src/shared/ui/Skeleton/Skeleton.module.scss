@@ -5,6 +5,24 @@
   background: #eeeded;
   overflow: hidden;
 
+  &::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 159px;
+    display: block;
+    left: -100%;
+    top: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(18, 18, 18, 0) 6.82%,
+      rgba(13, 13, 13, 0) 6.83%,
+      rgba(87, 87, 87, 0.1) 58.56%,
+      rgba(13, 13, 13, 0) 109.66%
+    );
+    animation: animate-skeleton 1s ease-out infinite;
+  }
+
   &--dark {
     background: #0d0d0d;
   }
@@ -78,5 +96,14 @@
     @include mediaLarge {
       height: 15px;
     }
+  }
+}
+
+@keyframes animate-skeleton {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 100%;
   }
 }
