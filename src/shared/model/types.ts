@@ -13,3 +13,5 @@ export type TImage = {
   webp2x: string;
   original: string;
 };
+
+export type TModalVarian = "default" | "popup" | "edit";

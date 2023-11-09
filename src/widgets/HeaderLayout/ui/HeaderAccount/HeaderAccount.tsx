@@ -1,5 +1,6 @@
 import cn from "classnames/bind";
 import React, { HTMLAttributes, memo, useContext } from "react";
+import { useLocation } from "react-router-dom";
 
 import { ThemeContext } from "@/features/theme";
 import { Link } from "@/shared/ui/Link";
@@ -15,6 +16,7 @@ interface IHeaderAccount extends HTMLAttributes<HTMLDivElement> {
 const HeaderAccount: React.FC<IHeaderAccount> = memo(
   ({ className, isAuth, ...props }) => {
     const { theme } = useContext(ThemeContext);
+    const location = useLocation();
 
     return (
       <div className={cx(className, "account-header")} {...props}>
@@ -24,7 +26,7 @@ const HeaderAccount: React.FC<IHeaderAccount> = memo(
           </Link>
         ) : (
           <>
-            <Link theme={theme} to="/">
+            <Link theme={theme} to="/login" state={{ from: location }}>
               Log in
             </Link>
             <Link theme={theme} to="/">

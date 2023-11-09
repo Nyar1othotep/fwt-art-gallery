@@ -1,1 +1,1 @@
-export { default as ArtistsList } from "./ArtistsList";
+export { ArtistsList } from "./ui";
