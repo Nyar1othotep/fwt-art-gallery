@@ -1,9 +1,7 @@
 import cn from "classnames/bind";
-import React, { useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
-import { CSSTransition } from "react-transition-group";
+import React from "react";
 
-import { useOutsideClick } from "@/shared/lib/useOutsideClick";
+import { TransitionWrapper } from "../TransitionWrapper";
 
 import { ReactComponent as Icon } from "./assets/close_icon.svg";
 import styles from "./Sidebar.module.scss";
@@ -23,48 +21,18 @@ const Sidebar: React.FC<ISidebar> = ({
   onClose,
   children,
 }) => {
-  const sidebarRef = useRef(null);
-  const wrapperRef = useRef(null);
-
-  useOutsideClick(wrapperRef, onClose);
-
-  useEffect(() => {
-    if (isShow) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-  }, [isShow]);
-
   return (
-    <CSSTransition
-      nodeRef={sidebarRef}
-      in={isShow}
-      timeout={{ exit: 500 }}
-      classNames={{
-        enterActive: cx("enter-active"),
-        enterDone: cx("enter-done"),
-        exitActive: cx("exit-active"),
-        exitDone: cx("exit-done"),
-      }}
-      unmountOnExit
+    <TransitionWrapper
+      className={className}
+      enterDoneClass={cx("sidebar__enter-done")}
+      isShow={isShow}
+      onClose={onClose}
     >
-      {() =>
-        createPortal(
-          <div ref={sidebarRef} className={cx(className, "sidebar")}>
-            <div className={cx("sidebar__background")} />
-            <div
-              ref={wrapperRef}
-              className={cx("sidebar__wrapper", `sidebar__wrapper--${theme}`)}
-            >
-              <Icon className={cx("sidebar__icon")} onClick={onClose} />
-              {children}
-            </div>
-          </div>,
-          document.body,
-        )
-      }
-    </CSSTransition>
+      <div className={cx("sidebar__wrapper", `sidebar__wrapper--${theme}`)}>
+        <Icon className={cx("sidebar__icon")} onClick={onClose} />
+        {children}
+      </div>
+    </TransitionWrapper>
   );
 };
 
