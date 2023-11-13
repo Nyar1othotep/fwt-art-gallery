@@ -6,6 +6,7 @@ import { RouterProvider } from "react-router-dom";
 
 import { routing } from "./app/routing";
 import { store } from "./app/store/store";
+import { AuthProvider } from "./features/auth";
 import { ThemeProvider } from "./features/theme";
 
 const root = ReactDOM.createRoot(
@@ -14,9 +15,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ReduxProvider store={store}>
-      <ThemeProvider>
-        <RouterProvider router={routing()} />
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider>
+          <RouterProvider router={routing()} />
+        </ThemeProvider>
+      </AuthProvider>
     </ReduxProvider>
   </React.StrictMode>,
 );

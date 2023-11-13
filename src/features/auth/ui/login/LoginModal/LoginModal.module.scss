@@ -1,0 +1,9 @@
+.login-modal {
+  display: flex;
+
+  &__background {
+    max-width: 100%;
+    flex: 0 1 48%;
+    object-fit: cover;
+  }
+}

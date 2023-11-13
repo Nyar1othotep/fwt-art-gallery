@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Outlet } from "react-router-dom";
 
+import { AuthContext } from "@/features/auth";
 import { ArtistsList } from "@/widgets/ArtistsList";
 
 const MainPage: React.FC = () => {
-  const isAuth = false; // На будущее
+  const { isAuth } = useContext(AuthContext);
   const [filters] = useState({ perPage: 6 });
 
   return (

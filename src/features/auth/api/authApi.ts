@@ -1,15 +1,18 @@
 import { baseApi } from "@/shared/api";
 
-export const artistsApi = baseApi.injectEndpoints({
+import { TAuthResponse, TRequestLoginBody } from "../model/types";
+
+export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    login: build.query({
-      query: (body) => ({
+    login: build.mutation<TAuthResponse, TRequestLoginBody>({
+      query: (data) => ({
         url: "/auth/login",
         method: "POST",
-        body,
+        data,
       }),
+      invalidatesTags: ["AUTH"],
     }),
   }),
 });
 
-export const { useLoginQuery } = artistsApi;
+export const { useLoginMutation } = authApi;

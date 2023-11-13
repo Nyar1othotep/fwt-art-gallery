@@ -51,7 +51,6 @@ const TransitionWrapper: React.FC<ITransitionWrapper> = ({
       {() =>
         createPortal(
           <div ref={wrapperRef} className={cx(className, "transition-wrapper")}>
-            <div className={cx("transition-wrapper__background")} />
             <div
               ref={childrenRef}
               className={cx("transition-wrapper__children")}

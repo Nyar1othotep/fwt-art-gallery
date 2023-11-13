@@ -1,3 +1,5 @@
-export { useLoginQuery } from "./api/authApi";
+export { default as AuthProvider, AuthContext } from "./lib/AuthProvider";
 
-export { LoginModal } from "./ui/LoginModal";
+export { useLoginMutation } from "./api/authApi";
+
+export { LoginModal } from "./ui/login/LoginModal";

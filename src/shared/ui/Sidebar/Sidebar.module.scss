@@ -3,6 +3,7 @@
     position: fixed;
     width: 252px;
     height: 100%;
+    top: 0;
     right: -100%;
     background: var(--primary-white);
     transition: right 500ms ease-in-out;
