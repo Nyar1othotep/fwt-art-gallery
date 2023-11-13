@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useEffect, useState } from "react";
+import React, { HTMLAttributes, useCallback, useEffect, useState } from "react";
 
 import { TTheme } from "../model/types";
 
@@ -20,9 +20,9 @@ const ThemeProvider: React.FC<HTMLAttributes<HTMLElement>> = ({ children }) => {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+  const toggleTheme = useCallback(() => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  }, []);
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
