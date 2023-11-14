@@ -14,7 +14,6 @@ import styles from "./HeaderLayout.module.scss";
 const cx = cn.bind(styles);
 
 const HeaderLayout: React.FC = () => {
-  const isAuth = false; // Под будущий хук useAuth
   const { theme } = useContext(ThemeContext);
   const [isShow, setIsShow] = useState(false);
 
@@ -30,7 +29,7 @@ const HeaderLayout: React.FC = () => {
           </Link>
           {/* if (window size > 768 && page === !main) return Search */}
           <menu className={cx("header__menu")}>
-            <HeaderAccount isAuth={isAuth} role="navigation" />
+            <HeaderAccount role="navigation" />
             <ToggleTheme variant="menu" />
           </menu>
           <IconBurger
@@ -43,7 +42,7 @@ const HeaderLayout: React.FC = () => {
           <Sidebar isShow={isShow} onClose={handleClose} theme={theme}>
             <div className={cx("header__sidebar-content", "sidebar-content")}>
               <ToggleTheme variant="text">{theme} mode</ToggleTheme>
-              <HeaderAccount isAuth={isAuth} />
+              <HeaderAccount />
             </div>
           </Sidebar>
         </div>

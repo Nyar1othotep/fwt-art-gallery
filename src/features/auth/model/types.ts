@@ -14,3 +14,11 @@ export type TRequestLoginBody = {
   password: string;
   fingerprint: string;
 };
+
+export type TErrorResponse =
+  | {
+      statusCode: number;
+      message: string;
+      error: string;
+    }
+  | unknown;

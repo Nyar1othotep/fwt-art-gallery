@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ThemeContext } from "@/features/theme";
 import { Modal } from "@/shared/ui/Modal";
 
-import { LoginForm } from "../LoginForm";
+import { Login } from "../Login";
 
 import styles from "./LoginModal.module.scss";
 
@@ -40,7 +40,7 @@ const LoginModal: React.FC = () => {
           src="/images/login-background.jpg"
           alt="auth backgorund"
         />
-        <LoginForm />
+        <Login />
       </div>
     </Modal>
   );
