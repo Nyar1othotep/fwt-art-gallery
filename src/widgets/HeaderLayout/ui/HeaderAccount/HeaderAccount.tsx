@@ -10,8 +10,12 @@ import styles from "./HeaderAccount.module.scss";
 
 const cx = cn.bind(styles);
 
-const HeaderAccount: React.FC<HTMLAttributes<HTMLDivElement>> = memo(
-  ({ className, ...props }) => {
+interface IHeaderAccount extends HTMLAttributes<HTMLDivElement> {
+  onClose: () => void;
+}
+
+const HeaderAccount: React.FC<IHeaderAccount> = memo(
+  ({ className, onClose, ...props }) => {
     const { isAuth } = useContext(AuthContext);
     const { theme } = useContext(ThemeContext);
     const location = useLocation();
@@ -24,7 +28,12 @@ const HeaderAccount: React.FC<HTMLAttributes<HTMLDivElement>> = memo(
           </Link>
         ) : (
           <>
-            <Link theme={theme} to="/login" state={{ from: location }}>
+            <Link
+              onClick={onClose}
+              theme={theme}
+              to="/login"
+              state={{ from: location }}
+            >
               Log in
             </Link>
             <Link theme={theme} to="/">

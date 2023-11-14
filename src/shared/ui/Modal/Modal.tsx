@@ -1,10 +1,10 @@
 import cn from "classnames/bind";
 import React, { HTMLAttributes } from "react";
 
-import { TModalVarian } from "@/shared/model/types";
+import { TModalVariant } from "@/shared/model/types";
 
 import { ReactComponent as Icon } from "../../assets/close_icon.svg";
-import { TransitionWrapper } from "../TransitionWrapper";
+import { TransitionWrapper } from "../Wrappers/TransitionWrapper";
 
 import styles from "./Modal.module.scss";
 
@@ -12,7 +12,7 @@ const cx = cn.bind(styles);
 
 interface IModal extends HTMLAttributes<HTMLDivElement> {
   theme?: string;
-  variant?: TModalVarian;
+  variant?: TModalVariant;
   isShow: boolean;
   onClose: () => void;
 }

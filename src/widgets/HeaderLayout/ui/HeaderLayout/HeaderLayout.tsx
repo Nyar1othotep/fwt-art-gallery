@@ -29,7 +29,7 @@ const HeaderLayout: React.FC = () => {
           </Link>
           {/* if (window size > 768 && page === !main) return Search */}
           <menu className={cx("header__menu")}>
-            <HeaderAccount role="navigation" />
+            <HeaderAccount onClose={handleClose} role="navigation" />
             <ToggleTheme variant="menu" />
           </menu>
           <IconBurger
@@ -42,7 +42,7 @@ const HeaderLayout: React.FC = () => {
           <Sidebar isShow={isShow} onClose={handleClose} theme={theme}>
             <div className={cx("header__sidebar-content", "sidebar-content")}>
               <ToggleTheme variant="text">{theme} mode</ToggleTheme>
-              <HeaderAccount />
+              <HeaderAccount onClose={handleClose} />
             </div>
           </Sidebar>
         </div>

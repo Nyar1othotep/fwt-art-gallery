@@ -3,22 +3,31 @@ import cn from "classnames/bind";
 import React, { HTMLAttributes, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import { isFetchBaseQueryError } from "@/shared/api";
+import { isAxiosBaseQueryError } from "@/shared/api";
+import { Button } from "@/shared/ui/Button";
+import { Input } from "@/shared/ui/Input";
 
 import { TAuthSchema, authSchema } from "../../model/authSchema";
-import { TErrorResponse } from "../../model/types";
+import { TAuthFormVariant, TErrorResponse } from "../../model/types";
 
 import styles from "./AuthForm.module.scss";
 
 const cx = cn.bind(styles);
-
 interface IAuthForm extends HTMLAttributes<HTMLFormElement> {
+  theme?: string;
   isError: boolean;
   error: TErrorResponse;
+  variant: TAuthFormVariant;
   onSubmitHandler: ({ email, password }: TAuthSchema) => void;
 }
 
-const AuthForm: React.FC<IAuthForm> = ({ isError, error, onSubmitHandler }) => {
+const AuthForm: React.FC<IAuthForm> = ({
+  theme,
+  isError,
+  error,
+  variant,
+  onSubmitHandler,
+}) => {
   const {
     register,
     handleSubmit,
@@ -27,7 +36,7 @@ const AuthForm: React.FC<IAuthForm> = ({ isError, error, onSubmitHandler }) => {
   } = useForm({ resolver: yupResolver(authSchema) });
 
   useEffect(() => {
-    if (isError && isFetchBaseQueryError(error)) {
+    if (isError && isAxiosBaseQueryError(error)) {
       setError("email", {
         type: "server",
         message: error.data.message,
@@ -37,11 +46,25 @@ const AuthForm: React.FC<IAuthForm> = ({ isError, error, onSubmitHandler }) => {
 
   return (
     <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmitHandler)}>
-      <input type="text" {...register("email")} />
-      <p>{errors.email?.message}</p>
-      <input type="password" {...register("password")} />
-      <p>{errors.password?.message}</p>
-      <input type="submit" value="send" />
+      <Input
+        type="text"
+        label="Email"
+        name="email"
+        theme={theme}
+        error={errors.email?.message}
+        register={{ ...register("email") }}
+      />
+      <Input
+        type="password"
+        label="Password"
+        name="password"
+        theme={theme}
+        error={errors.password?.message}
+        register={{ ...register("password") }}
+      />
+      <Button theme={theme}>
+        {variant === "login" ? "Log in" : "Sing up"}
+      </Button>
     </form>
   );
 };

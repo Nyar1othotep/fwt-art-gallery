@@ -1,0 +1,10 @@
+.auth-form {
+  width: 100%;
+  @include flexItemsCenter;
+  flex-direction: column;
+  gap: 32px;
+
+  @include mediaSmall {
+    gap: 40px;
+  }
+}

@@ -2,7 +2,7 @@ import cn from "classnames/bind";
 import React from "react";
 
 import { ReactComponent as Icon } from "../../assets/close_icon.svg";
-import { TransitionWrapper } from "../TransitionWrapper";
+import { TransitionWrapper } from "../Wrappers/TransitionWrapper";
 
 import styles from "./Sidebar.module.scss";
 

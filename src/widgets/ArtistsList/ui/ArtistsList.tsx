@@ -39,7 +39,7 @@ const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
     if (inView && isAuth && pageNumber <= Math.ceil(count / perPage)) {
       setPageNumber((prev) => prev + 1);
     }
-  }, [inView, pageNumber, isAuth]);
+  }, [inView, pageNumber, count, perPage, isAuth]);
 
   const artists = data ?? staticData;
   const isArtistsLoading = isLoading || isStaticLoading;

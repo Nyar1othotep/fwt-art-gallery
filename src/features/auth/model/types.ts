@@ -22,3 +22,5 @@ export type TErrorResponse =
       error: string;
     }
   | unknown;
+
+export type TAuthFormVariant = "login" | "register";

@@ -14,4 +14,6 @@ export type TImage = {
   original: string;
 };
 
-export type TModalVarian = "default" | "popup" | "edit";
+export type TModalVariant = "default" | "popup" | "edit";
+
+export type TInputWrapperVariant = "default" | "search";

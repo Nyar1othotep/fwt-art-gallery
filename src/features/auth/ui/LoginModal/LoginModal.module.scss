@@ -1,0 +1,66 @@
+.login-modal {
+  width: 100vw;
+  height: 100vh;
+  @include flexItemsCenter;
+  justify-content: center;
+
+  @include mediaLarge {
+    width: auto;
+    height: auto;
+  }
+
+  &__background {
+    display: none;
+
+    @include mediaLarge {
+      display: block;
+    }
+  }
+
+  &__content {
+    padding: 0 32px;
+    display: flex;
+    flex-direction: column;
+
+    @include mediaLarge {
+      padding: 0 86px;
+    }
+  }
+
+  &__heading,
+  &__message {
+    text-align: center;
+  }
+
+  &__heading {
+    margin: 0px 0px 40px 0px;
+    @include h3;
+
+    @include mediaSmall {
+      @include h1;
+    }
+
+    @include mediaLarge {
+      @include h2;
+    }
+  }
+
+  &__message,
+  &__message-link {
+    @include pSmallLight;
+
+    @include mediaSmall {
+      @include pBaseLight;
+    }
+  }
+
+  &__message {
+    margin: 60px 0px 0px 0px;
+    order: 1;
+
+    @include mediaSmall {
+      margin: 0px 0px 60px 0px;
+      order: 0;
+    }
+  }
+}

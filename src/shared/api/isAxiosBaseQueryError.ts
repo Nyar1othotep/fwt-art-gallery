@@ -1,4 +1,4 @@
-export function isFetchBaseQueryError(error: unknown): error is {
+export function isAxiosBaseQueryError(error: unknown): error is {
   data: {
     statusCode: number;
     message: string;

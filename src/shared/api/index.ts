@@ -1,3 +1,3 @@
 export { baseApi } from "./baseApi";
 
-export { isFetchBaseQueryError } from "./isFetchBaseQueryError";
+export { isAxiosBaseQueryError } from "./isAxiosBaseQueryError";
