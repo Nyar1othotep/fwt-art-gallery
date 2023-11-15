@@ -16,14 +16,14 @@ interface IHeaderAccount extends HTMLAttributes<HTMLDivElement> {
 
 const HeaderAccount: React.FC<IHeaderAccount> = memo(
   ({ className, onClose, ...props }) => {
-    const { isAuth } = useContext(AuthContext);
+    const { isAuth, onLogout } = useContext(AuthContext);
     const { theme } = useContext(ThemeContext);
     const location = useLocation();
 
     return (
       <div className={cx(className, "account-header")} {...props}>
         {isAuth ? (
-          <Link theme={theme} to="/">
+          <Link to="/" theme={theme} onClick={onLogout}>
             Log out
           </Link>
         ) : (
@@ -36,7 +36,7 @@ const HeaderAccount: React.FC<IHeaderAccount> = memo(
             >
               Log in
             </Link>
-            <Link to="/" theme={theme} onClick={onClose}>
+            <Link to="/register" theme={theme} onClick={onClose}>
               Sign up
             </Link>
           </>

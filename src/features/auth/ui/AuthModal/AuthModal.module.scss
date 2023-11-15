@@ -19,11 +19,15 @@
 
   &__content {
     padding: 0 32px;
-    display: flex;
+    @include flexItemsCenter;
     flex-direction: column;
 
     @include mediaLarge {
       padding: 0 86px;
+
+      &--register {
+        padding: 0 47px;
+      }
     }
   }
 

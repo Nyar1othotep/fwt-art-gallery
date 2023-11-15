@@ -3,11 +3,12 @@ import React, { HTMLAttributes, useCallback, useState } from "react";
 
 import { TAuthResponse } from "../model/types";
 
-import { setTokensToCookie } from "./tokens";
+import { removeTokensFromCookies, setTokensToCookie } from "./tokens";
 
 interface IAuthContext {
   isAuth: boolean;
   setTokens: (tokens: TAuthResponse) => void;
+  onLogout: () => void;
 }
 
 export const AuthContext = React.createContext<IAuthContext>(
@@ -22,9 +23,14 @@ const AuthProvider: React.FC<HTMLAttributes<HTMLElement>> = ({ children }) => {
     setIsAuth(true);
   }, []);
 
+  const onLogout = () => {
+    setIsAuth(false);
+    removeTokensFromCookies();
+  };
+
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <AuthContext.Provider value={{ isAuth, setTokens }}>
+    <AuthContext.Provider value={{ isAuth, setTokens, onLogout }}>
       {children}
     </AuthContext.Provider>
   );

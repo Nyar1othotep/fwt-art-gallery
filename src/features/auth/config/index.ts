@@ -3,7 +3,7 @@ export const authContent = {
     heading: "Welcome back",
     message: "If you don't have an account yet, please ",
     linkText: "sign up",
-    to: "/signup",
+    to: "/register",
   },
   register: {
     heading: "Create your profile",

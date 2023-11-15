@@ -1,5 +1,6 @@
 .auth-form {
   width: 100%;
+  max-width: 340px;
   @include flexItemsCenter;
   flex-direction: column;
   gap: 32px;

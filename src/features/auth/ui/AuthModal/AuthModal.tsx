@@ -52,7 +52,12 @@ const AuthModal: React.FC<IAuthModal> = ({
           src={`/images/${variant}-background.jpg`}
           alt="auth backgorund"
         />
-        <div className={cx("auth-modal__content")}>
+        <div
+          className={cx(
+            "auth-modal__content",
+            `auth-modal__content--${variant}`,
+          )}
+        >
           <h1 className={cx("auth-modal__heading")}>{heading}</h1>
           <div className={cx("auth-modal__message")}>
             {message}
