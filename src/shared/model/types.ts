@@ -16,4 +16,4 @@ export type TImage = {
 
 export type TModalVariant = "default" | "popup" | "edit";
 
-export type TInputWrapperVariant = "default" | "search";
+export type TTransitionWrapperVariant = "sidebar" | "modal";

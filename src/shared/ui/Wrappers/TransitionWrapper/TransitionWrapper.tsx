@@ -4,23 +4,28 @@ import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
 import { useOutsideClick } from "@/shared/lib/useOutsideClick";
+import { TTransitionWrapperVariant } from "@/shared/model/types";
 
 import styles from "./TransitionWrapper.module.scss";
 
 const cx = cn.bind(styles);
 
 interface ITransitionWrapper extends React.HTMLAttributes<HTMLDivElement> {
-  enterDoneClass?: string;
   isShow: boolean;
+  variant?: TTransitionWrapperVariant;
   onClose: () => void;
+  onExited?: () => void;
+  enterDoneClass?: string;
 }
 
 const TransitionWrapper: React.FC<ITransitionWrapper> = ({
+  isShow,
+  variant = "modal",
+  onClose,
+  onExited,
+  children,
   className,
   enterDoneClass,
-  isShow,
-  onClose,
-  children,
 }) => {
   const wrapperRef = useRef(null);
   const childrenRef = useRef(null);
@@ -39,6 +44,7 @@ const TransitionWrapper: React.FC<ITransitionWrapper> = ({
     <CSSTransition
       nodeRef={wrapperRef}
       in={isShow}
+      appear={isShow}
       timeout={{ exit: 500 }}
       classNames={{
         enterActive: cx("enter-active"),
@@ -47,10 +53,18 @@ const TransitionWrapper: React.FC<ITransitionWrapper> = ({
         exitDone: cx("exit-done"),
       }}
       unmountOnExit
+      onExited={onExited}
     >
       {() =>
         createPortal(
-          <div ref={wrapperRef} className={cx(className, "transition-wrapper")}>
+          <div
+            ref={wrapperRef}
+            className={cx(
+              className,
+              "transition-wrapper",
+              `transition-wrapper--${variant}`,
+            )}
+          >
             <div
               ref={childrenRef}
               className={cx("transition-wrapper__children")}

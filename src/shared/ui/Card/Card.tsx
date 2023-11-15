@@ -13,47 +13,40 @@ const cx = cn.bind(styles);
 
 interface ICard extends React.HTMLAttributes<HTMLDivElement> {
   to: string;
-  title: string;
   year: string;
   image: TImage;
+  title: string;
   theme?: string;
   onClick?: () => void;
 }
 
 const Card: React.FC<ICard> = memo(
-  ({ to, title, year, image, theme = "light", onClick }) => {
-    return (
-      <Link className={cx("card", `card--${theme}`)} onClick={onClick} to={to}>
-        <div className={cx("card__image-wrapper", "_ibg")}>
-          <Image className={cx("card__image")} image={image} alt={title} />
-        </div>
-        <div className={cx("card__content")}>
-          <div className={cx("card__info", "info-card", `info-card--${theme}`)}>
+  ({ to, year, image, title, theme = "light", onClick }) => (
+    <Link className={cx("card", `card--${theme}`)} onClick={onClick} to={to}>
+      <div className={cx("card__image-wrapper", "_ibg")}>
+        <Image className={cx("card__image")} image={image} alt={title} />
+      </div>
+      <div className={cx("card__content")}>
+        <div className={cx("card__info", "info-card", `info-card--${theme}`)}>
+          <div
+            className={cx("info-card__content", `info-card__content--${theme}`)}
+          >
             <div
-              className={cx(
-                "info-card__content",
-                `info-card__content--${theme}`,
-              )}
+              className={cx("info-card__title", `info-card__title--${theme}`)}
             >
-              <div
-                className={cx("info-card__title", `info-card__title--${theme}`)}
-              >
-                {title}
-              </div>
-              <div
-                className={cx("info-card__year", `info-card__year--${theme}`)}
-              >
-                {year}
-              </div>
+              {title}
+            </div>
+            <div className={cx("info-card__year", `info-card__year--${theme}`)}>
+              {year}
             </div>
           </div>
-          <div className={cx("card__button")}>
-            <Icon />
-          </div>
         </div>
-      </Link>
-    );
-  },
+        <div className={cx("card__button")}>
+          <Icon />
+        </div>
+      </div>
+    </Link>
+  ),
 );
 
 export default Card;

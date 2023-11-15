@@ -29,14 +29,14 @@ const HeaderAccount: React.FC<IHeaderAccount> = memo(
         ) : (
           <>
             <Link
-              onClick={onClose}
-              theme={theme}
               to="/login"
               state={{ from: location }}
+              theme={theme}
+              onClick={onClose}
             >
               Log in
             </Link>
-            <Link theme={theme} to="/">
+            <Link to="/" theme={theme} onClick={onClose}>
               Sign up
             </Link>
           </>

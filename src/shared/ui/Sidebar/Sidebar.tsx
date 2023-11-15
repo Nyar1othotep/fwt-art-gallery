@@ -15,25 +15,24 @@ interface ISidebar extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Sidebar: React.FC<ISidebar> = ({
-  className,
   theme = "light",
   isShow,
   onClose,
   children,
-}) => {
-  return (
-    <TransitionWrapper
-      className={className}
-      enterDoneClass={cx("sidebar__enter-done")}
-      isShow={isShow}
-      onClose={onClose}
-    >
-      <div className={cx("sidebar__wrapper", `sidebar__wrapper--${theme}`)}>
-        <Icon className={cx("sidebar__icon")} onClick={onClose} />
-        {children}
-      </div>
-    </TransitionWrapper>
-  );
-};
+  className,
+}) => (
+  <TransitionWrapper
+    isShow={isShow}
+    variant="sidebar"
+    onClose={onClose}
+    className={className}
+    enterDoneClass={cx("sidebar__enter-done")}
+  >
+    <div className={cx("sidebar__wrapper", `sidebar__wrapper--${theme}`)}>
+      <Icon className={cx("sidebar__icon")} onClick={onClose} />
+      {children}
+    </div>
+  </TransitionWrapper>
+);
 
 export default Sidebar;

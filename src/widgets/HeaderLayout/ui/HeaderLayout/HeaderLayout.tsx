@@ -24,7 +24,7 @@ const HeaderLayout: React.FC = () => {
     <header className={cx("header", `header--${theme}`)}>
       <div className={cx("header__container")}>
         <div className={cx("header__content")}>
-          <Link to="/" className={cx("header__logo")} theme={theme}>
+          <Link className={cx("header__logo")} to="/" theme={theme}>
             <IconLogo />
           </Link>
           {/* if (window size > 768 && page === !main) return Search */}
@@ -39,7 +39,7 @@ const HeaderLayout: React.FC = () => {
             )}
             onClick={handleShow}
           />
-          <Sidebar isShow={isShow} onClose={handleClose} theme={theme}>
+          <Sidebar theme={theme} isShow={isShow} onClose={handleClose}>
             <div className={cx("header__sidebar-content", "sidebar-content")}>
               <ToggleTheme variant="text">{theme} mode</ToggleTheme>
               <HeaderAccount onClose={handleClose} />

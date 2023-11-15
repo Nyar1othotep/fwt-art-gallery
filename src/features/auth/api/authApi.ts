@@ -1,10 +1,10 @@
 import { baseApi } from "@/shared/api";
 
-import { TAuthResponse, TRequestLoginBody } from "../model/types";
+import { TAuthResponse, TRequestAuthBody } from "../model/types";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    login: build.mutation<TAuthResponse, TRequestLoginBody>({
+    login: build.mutation<TAuthResponse, TRequestAuthBody>({
       query: (data) => ({
         url: "/auth/login",
         method: "POST",

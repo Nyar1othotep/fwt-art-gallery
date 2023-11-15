@@ -11,6 +11,8 @@ import { Card } from "@/shared/ui/Card";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
 import { Skeleton } from "@/shared/ui/Skeleton";
 
+import { getTotalPages } from "../lib/getTotalPages";
+
 interface IArtistsList {
   isAuth: boolean;
   filters: object;
@@ -35,11 +37,13 @@ const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
   );
   const { ref, inView } = useInView({ rootMargin: "400px", threshold: 1 });
 
+  const totalPages = getTotalPages(count, perPage);
+
   useEffect(() => {
-    if (inView && isAuth && pageNumber <= Math.ceil(count / perPage)) {
+    if (isAuth && inView && pageNumber <= totalPages) {
       setPageNumber((prev) => prev + 1);
     }
-  }, [inView, pageNumber, count, perPage, isAuth]);
+  }, [isAuth, inView, pageNumber, totalPages]);
 
   const artists = data ?? staticData;
   const isArtistsLoading = isLoading || isStaticLoading;

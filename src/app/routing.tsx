@@ -1,7 +1,7 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
-import { LoginModal } from "@/features/auth";
+import { Login } from "@/features/auth";
 import { MainPage } from "@/pages/main";
 
 import BaseLayout from "./BaseLayout";
@@ -18,7 +18,7 @@ export const routing = () =>
           children: [
             {
               path: "/login",
-              element: <LoginModal />,
+              element: <Login />,
             },
           ],
         },

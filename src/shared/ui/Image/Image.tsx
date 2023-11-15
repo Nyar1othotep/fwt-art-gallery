@@ -10,11 +10,11 @@ import styles from "./Image.module.scss";
 const cx = cn.bind(styles);
 
 interface IImage extends HTMLAttributes<HTMLPictureElement> {
-  image: TImage;
   alt: string;
+  image: TImage;
 }
 
-const Image: React.FC<IImage> = ({ className, image, alt }) => {
+const Image: React.FC<IImage> = ({ alt, image, className }) => {
   if (!image)
     return (
       <div className={cx("image__no-image")}>

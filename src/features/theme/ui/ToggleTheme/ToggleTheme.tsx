@@ -22,8 +22,8 @@ const ToggleTheme: React.FC<IToggleTheme> = ({ variant, children }) => {
   return (
     <Button
       className={cx("toggle-theme__button")}
-      variant={variant}
       theme={theme}
+      variant={variant}
       onClick={toggleTheme}
     >
       {theme === "light" ? <IconDark /> : <IconLight />}

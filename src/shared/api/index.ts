@@ -1,3 +1,3 @@
 export { baseApi } from "./baseApi";
 
-export { isAxiosBaseQueryError } from "./isAxiosBaseQueryError";
+export type { AxiosBaseQueryError } from "./types";

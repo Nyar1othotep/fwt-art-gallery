@@ -7,8 +7,6 @@ const cx = cn.bind(styles);
 
 const GridLayout: React.FC<React.HTMLAttributes<HTMLUListElement>> = ({
   children,
-}) => {
-  return <ul className={cx("grid-layout")}>{children}</ul>;
-};
+}) => <ul className={cx("grid-layout")}>{children}</ul>;
 
 export default GridLayout;

@@ -16,24 +16,22 @@ interface IInput extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input: React.FC<IInput> = ({
-  className,
+  name,
   theme,
   error,
   label,
-  name,
   register,
+  className,
   ...props
-}) => {
-  return (
-    <InputWrapper theme={theme} label={label} name={name} error={error}>
-      <input
-        id={name}
-        className={cx(className, "input", `input--${theme}`)}
-        {...register}
-        {...props}
-      />
-    </InputWrapper>
-  );
-};
+}) => (
+  <InputWrapper name={name} theme={theme} label={label} error={error}>
+    <input
+      id={name}
+      className={cx(className, "input", `input--${theme}`)}
+      {...props}
+      {...register}
+    />
+  </InputWrapper>
+);
 
 export default Input;

@@ -12,24 +12,27 @@ const cx = cn.bind(styles);
 
 interface IModal extends HTMLAttributes<HTMLDivElement> {
   theme?: string;
-  variant?: TModalVariant;
   isShow: boolean;
+  variant?: TModalVariant;
   onClose: () => void;
+  onExited?: () => void;
 }
 
 const Modal: React.FC<IModal> = ({
-  className,
   theme = "light",
-  variant = "default",
   isShow,
+  variant = "default",
   onClose,
+  onExited,
   children,
+  className,
 }) => {
   return (
     <TransitionWrapper
       enterDoneClass={cx("modal__enter-done")}
       isShow={isShow}
       onClose={onClose}
+      onExited={onExited}
     >
       <div
         className={cx(

@@ -16,16 +16,14 @@ const Link: React.FC<ILink> = ({
   theme = "light",
   children,
   onClick,
-}) => {
-  return (
-    <RouterLink
-      className={cx(className, "link", `link--${theme}`)}
-      onClick={onClick}
-      to={to}
-    >
-      {children}
-    </RouterLink>
-  );
-};
+}) => (
+  <RouterLink
+    className={cx(className, "link", `link--${theme}`)}
+    onClick={onClick}
+    to={to}
+  >
+    {children}
+  </RouterLink>
+);
 
 export default Link;

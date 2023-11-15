@@ -3,61 +3,62 @@ import cn from "classnames/bind";
 import React, { HTMLAttributes, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import { isAxiosBaseQueryError } from "@/shared/api";
+import { AxiosBaseQueryError } from "@/shared/api";
 import { Button } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
 
+import { getNameError } from "../../lib/getNameError";
 import { TAuthSchema, authSchema } from "../../model/authSchema";
-import { TAuthFormVariant, TErrorResponse } from "../../model/types";
+import { TAuthVariant } from "../../model/types";
 
 import styles from "./AuthForm.module.scss";
 
 const cx = cn.bind(styles);
-interface IAuthForm extends HTMLAttributes<HTMLFormElement> {
+
+interface IAuthForm extends HTMLAttributes<HTMLElement> {
   theme?: string;
+  error: AxiosBaseQueryError;
   isError: boolean;
-  error: TErrorResponse;
-  variant: TAuthFormVariant;
+  variant: TAuthVariant;
   onSubmitHandler: ({ email, password }: TAuthSchema) => void;
 }
 
 const AuthForm: React.FC<IAuthForm> = ({
   theme,
-  isError,
   error,
+  isError,
   variant,
   onSubmitHandler,
 }) => {
   const {
     register,
-    handleSubmit,
     setError,
     formState: { errors },
+    handleSubmit,
   } = useForm({ resolver: yupResolver(authSchema) });
 
   useEffect(() => {
-    if (isError && isAxiosBaseQueryError(error)) {
-      setError("email", {
-        type: "server",
+    if (isError && "data" in error) {
+      setError(getNameError(error), {
         message: error.data.message,
       });
     }
-  }, [isError]);
+  }, [isError, error]);
 
   return (
     <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmitHandler)}>
       <Input
         type="text"
-        label="Email"
         name="email"
+        label="Email"
         theme={theme}
         error={errors.email?.message}
         register={{ ...register("email") }}
       />
       <Input
         type="password"
-        label="Password"
         name="password"
+        label="Password"
         theme={theme}
         error={errors.password?.message}
         register={{ ...register("password") }}

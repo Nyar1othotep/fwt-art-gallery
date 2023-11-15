@@ -9,18 +9,10 @@ export type TAuthResponse = {
   refreshToken: string;
 };
 
-export type TRequestLoginBody = {
+export type TRequestAuthBody = {
   username: string;
   password: string;
   fingerprint: string;
 };
 
-export type TErrorResponse =
-  | {
-      statusCode: number;
-      message: string;
-      error: string;
-    }
-  | unknown;
-
-export type TAuthFormVariant = "login" | "register";
+export type TAuthVariant = "login" | "register";
