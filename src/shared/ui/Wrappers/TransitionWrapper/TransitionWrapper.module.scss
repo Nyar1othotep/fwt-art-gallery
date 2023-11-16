@@ -19,6 +19,11 @@
     position: relative;
     margin: auto;
     pointer-events: auto;
+
+    &--auth-modal {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 

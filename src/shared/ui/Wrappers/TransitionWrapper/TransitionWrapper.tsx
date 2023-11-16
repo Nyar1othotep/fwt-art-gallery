@@ -20,7 +20,7 @@ interface ITransitionWrapper extends React.HTMLAttributes<HTMLDivElement> {
 
 const TransitionWrapper: React.FC<ITransitionWrapper> = ({
   isShow,
-  variant = "modal",
+  variant = "default",
   onClose,
   onExited,
   children,
@@ -67,7 +67,10 @@ const TransitionWrapper: React.FC<ITransitionWrapper> = ({
           >
             <div
               ref={childrenRef}
-              className={cx("transition-wrapper__children")}
+              className={cx(
+                "transition-wrapper__children",
+                `transition-wrapper__children--${variant}`,
+              )}
             >
               {children}
             </div>

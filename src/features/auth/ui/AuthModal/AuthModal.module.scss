@@ -3,6 +3,7 @@
   height: 100vh;
   @include flexItemsCenter;
   justify-content: center;
+  overflow: auto;
 
   @include mediaLarge {
     width: auto;
@@ -18,15 +19,15 @@
   }
 
   &__content {
-    padding: 0 32px;
+    padding: 20px 32px;
     @include flexItemsCenter;
     flex-direction: column;
 
     @include mediaLarge {
-      padding: 0 86px;
+      padding: 20px 86px;
 
       &--register {
-        padding: 0 47px;
+        padding: 20px 47px;
       }
     }
   }

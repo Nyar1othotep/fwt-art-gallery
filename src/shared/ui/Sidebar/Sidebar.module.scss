@@ -8,6 +8,7 @@
     background: var(--primary-white);
     transition: right 500ms ease-in-out;
     color: var(--primary-dark-gray);
+    overflow: auto;
 
     &--dark {
       background: var(--primary-black);
