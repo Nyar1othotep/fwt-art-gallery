@@ -1,12 +1,10 @@
-import Cookies from "js-cookie";
-
 import { baseApi } from "@/shared/api";
 
-import { TArtistsResponse, TDataDto } from "../model/types";
+import { TArtistsResponse, TStaticArtistsResponse } from "../model/types";
 
 export const artistsApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getStaticArtists: build.query<TDataDto, void>({
+    getStaticArtists: build.query<TStaticArtistsResponse, void>({
       query: () => ({
         url: "/artists/static",
         method: "get",
@@ -17,9 +15,6 @@ export const artistsApi = baseApi.injectEndpoints({
         url: "/artists",
         method: "get",
         params: filters,
-        headers: {
-          Authorization: `Bearer ${Cookies.get("accessToken")}`,
-        },
       }),
       serializeQueryArgs: ({ endpointName }) => endpointName,
       merge: (currentCache, newItems) => {

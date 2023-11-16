@@ -1,13 +1,12 @@
 import React, { useCallback, useContext, useEffect } from "react";
 
 import { ThemeContext } from "@/features/theme";
-import { AxiosBaseQueryError } from "@/shared/api";
+import { AxiosBaseQueryError, TRequestAuthBody } from "@/shared/api";
+import { useFingerprint } from "@/shared/lib/fingerprint";
 
 import { useRegisterMutation } from "../../api/authApi";
 import { AuthContext } from "../../lib/AuthProvider";
-import { useFingerprint } from "../../lib/fingerprint";
 import { TAuthSchema } from "../../model/authSchema";
-import { TRequestAuthBody } from "../../model/types";
 import { AuthForm } from "../AuthForm";
 import { AuthModal } from "../AuthModal";
 

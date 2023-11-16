@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 
-import { TAuthResponse } from "../../model/types";
+import { TAuthResponse } from "../../api";
 
 import { getTokensExpires } from "./getTokensExpires";
 

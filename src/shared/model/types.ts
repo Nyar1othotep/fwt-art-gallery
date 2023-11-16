@@ -17,3 +17,9 @@ export type TImage = {
 export type TModalVariant = "default" | "popup" | "edit";
 
 export type TTransitionWrapperVariant = "sidebar" | "modal";
+
+export type TToken = {
+  username: string;
+  iat: number;
+  exp: number;
+};

@@ -21,6 +21,8 @@ interface IArtistsList {
 const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
   const { theme } = useContext(ThemeContext);
   const [pageNumber, setPageNumber] = useState(1);
+  // На будущую (возможную) ошибку: rtk кеширует статик запрос
+  // и при логауте берет кеш и не перерендеривает элементы
   const { data: staticData, isLoading: isStaticLoading } =
     useGetStaticArtistsQuery(undefined, { skip: isAuth });
   const {
@@ -40,8 +42,11 @@ const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
   const totalPages = getTotalPages(count, perPage);
 
   useEffect(() => {
-    if (isAuth && inView && pageNumber <= totalPages) {
+    if (isAuth && inView && pageNumber < totalPages) {
       setPageNumber((prev) => prev + 1);
+    }
+    if (!isAuth) {
+      setPageNumber(1);
     }
   }, [isAuth, inView, pageNumber, totalPages]);
 

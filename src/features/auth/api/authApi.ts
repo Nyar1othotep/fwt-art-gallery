@@ -1,6 +1,4 @@
-import { baseApi } from "@/shared/api";
-
-import { TAuthResponse, TRequestAuthBody } from "../model/types";
+import { baseApi, TAuthResponse, TRequestAuthBody } from "@/shared/api";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({

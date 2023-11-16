@@ -1,6 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 
-import { TAuthResponse, TToken } from "../../model/types";
+import { TAuthResponse } from "../../api";
+import { TToken } from "../../model/types";
 
 export const getTokensExpires = (tokens: TAuthResponse) => {
   const { exp: expAccess } = jwtDecode<TToken>(tokens.accessToken);

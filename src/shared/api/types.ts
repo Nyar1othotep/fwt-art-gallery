@@ -10,3 +10,19 @@ export type AxiosBaseQueryError =
       };
     }
   | SerializedError;
+
+export type TAuthResponse = {
+  accessToken: string;
+  refreshToken: string;
+};
+
+export type TRequestAuthBody = {
+  username: string;
+  password: string;
+  fingerprint: string;
+};
+
+export type TRequestRefreshBody = {
+  refreshToken: string;
+  fingerprint: string;
+};

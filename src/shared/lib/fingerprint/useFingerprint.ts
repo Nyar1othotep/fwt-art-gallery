@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-import { getFingerpring } from "./getFingerprint";
+import { getFingerprint } from "./getFingerprint";
 
 export const useFingerprint = () => {
   const [fingerprint, setFingerprint] = useState("");
 
   useEffect(() => {
-    getFingerpring().then((result) => setFingerprint(result));
+    getFingerprint().then((result) => setFingerprint(result));
   }, []);
 
   return fingerprint;

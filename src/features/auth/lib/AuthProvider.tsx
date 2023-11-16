@@ -1,32 +1,35 @@
-import Cookies from "js-cookie";
-import React, { HTMLAttributes, useCallback, useState } from "react";
+import React, { PropsWithChildren, useCallback, useState } from "react";
 
-import { TAuthResponse } from "../model/types";
+import { TAuthResponse } from "@/shared/api";
+import {
+  removeTokensFromCookies,
+  setTokensToCookie,
+} from "@/shared/lib/tokens";
 
-import { removeTokensFromCookies, setTokensToCookie } from "./tokens";
+import { getIsAuth } from "./getIsAuth";
 
 interface IAuthContext {
   isAuth: boolean;
-  setTokens: (tokens: TAuthResponse) => void;
   onLogout: () => void;
+  setTokens: (tokens: TAuthResponse) => void;
 }
 
 export const AuthContext = React.createContext<IAuthContext>(
   {} as IAuthContext,
 );
 
-const AuthProvider: React.FC<HTMLAttributes<HTMLElement>> = ({ children }) => {
-  const [isAuth, setIsAuth] = useState(!!Cookies.get("refreshToken"));
+const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
+  const [isAuth, setIsAuth] = useState(getIsAuth);
 
   const setTokens = useCallback((tokens: TAuthResponse) => {
     setTokensToCookie(tokens);
     setIsAuth(true);
   }, []);
 
-  const onLogout = () => {
-    setIsAuth(false);
+  const onLogout = useCallback(() => {
     removeTokensFromCookies();
-  };
+    setIsAuth(false);
+  }, []);
 
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values

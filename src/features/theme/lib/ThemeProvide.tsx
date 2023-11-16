@@ -1,4 +1,9 @@
-import React, { HTMLAttributes, useCallback, useEffect, useState } from "react";
+import React, {
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
 import { TTheme } from "../model/types";
 
@@ -13,7 +18,7 @@ export const ThemeContext = React.createContext<IThemeContext>(
   {} as IThemeContext,
 );
 
-const ThemeProvider: React.FC<HTMLAttributes<HTMLElement>> = ({ children }) => {
+const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [theme, setTheme] = useState(getTheme);
 
   useEffect(() => {

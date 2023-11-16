@@ -8,7 +8,7 @@ type TMainPainting = {
   artist: string;
 };
 
-export type TDataDto = {
+export type TStaticArtistsResponse = {
   genres: string[];
   _id: string;
   name: string;
@@ -18,13 +18,13 @@ export type TDataDto = {
   mainPainting: TMainPainting;
 };
 
-export type TMetaDto = {
+export type TMeta = {
   count: number;
   perPage: number;
   pageNumber: number;
 };
 
 export type TArtistsResponse = {
-  data: TDataDto[];
-  meta: TMetaDto;
+  data: TStaticArtistsResponse[];
+  meta: TMeta;
 };
