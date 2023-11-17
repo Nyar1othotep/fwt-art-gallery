@@ -48,7 +48,7 @@ const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
     if (!isAuth) {
       setPageNumber(1);
     }
-  }, [isAuth, inView, pageNumber, totalPages]);
+  }, [inView, totalPages]);
 
   const artists = data ?? staticData;
   const isArtistsLoading = isLoading || isStaticLoading;

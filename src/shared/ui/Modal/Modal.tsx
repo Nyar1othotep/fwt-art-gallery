@@ -26,27 +26,20 @@ const Modal: React.FC<IModal> = ({
   onExited,
   children,
   className,
-}) => {
-  return (
-    <TransitionWrapper
-      enterDoneClass={cx("modal__enter-done")}
-      isShow={isShow}
-      onClose={onClose}
-      onExited={onExited}
+}) => (
+  <TransitionWrapper
+    enterDoneClass={cx("modal__enter-done")}
+    isShow={isShow}
+    onClose={onClose}
+    onExited={onExited}
+  >
+    <div
+      className={cx(className, "modal", `modal--${theme}`, `modal--${variant}`)}
     >
-      <div
-        className={cx(
-          className,
-          "modal",
-          `modal--${theme}`,
-          `modal--${variant}`,
-        )}
-      >
-        <Icon className={cx("modal__icon")} onClick={onClose} />
-        {children}
-      </div>
-    </TransitionWrapper>
-  );
-};
+      <Icon className={cx("modal__icon")} onClick={onClose} />
+      {children}
+    </div>
+  </TransitionWrapper>
+);
 
 export default Modal;

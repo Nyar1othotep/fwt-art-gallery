@@ -1,5 +1,5 @@
 import cn from "classnames/bind";
-import React, { HTMLAttributes } from "react";
+import React, { HTMLAttributes, memo } from "react";
 
 import styles from "./Skeleton.module.scss";
 
@@ -9,7 +9,7 @@ interface ISkeleton extends HTMLAttributes<HTMLDivElement> {
   theme?: string;
 }
 
-const Skeleton: React.FC<ISkeleton> = ({ theme = "light" }) => (
+const Skeleton: React.FC<ISkeleton> = memo(({ theme = "light" }) => (
   <div className={cx("skeleton", `skeleton--${theme}`)}>
     <div className={cx("skeleton__content")}>
       <div className={cx("skeleton__info", "info-card", `info-card--${theme}`)}>
@@ -18,6 +18,6 @@ const Skeleton: React.FC<ISkeleton> = ({ theme = "light" }) => (
       </div>
     </div>
   </div>
-);
+));
 
 export default Skeleton;

@@ -5,15 +5,24 @@ import { Login, Register } from "@/features/auth";
 import { MainPage } from "@/pages/main";
 
 import BaseLayout from "./BaseLayout";
+import AuthGuard from "./guard/AuthGuard";
 
 const authChildrens = [
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <AuthGuard>
+        <Login />
+      </AuthGuard>
+    ),
   },
   {
     path: "/register",
-    element: <Register />,
+    element: (
+      <AuthGuard>
+        <Register />
+      </AuthGuard>
+    ),
   },
 ];
 
