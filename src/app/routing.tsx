@@ -2,27 +2,19 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import { Login, Register } from "@/features/auth";
-import { MainPage } from "@/pages/main";
+import { ArtistProfile } from "@/pages/ArtistProfile";
+import { MainPage } from "@/pages/Main";
 
 import BaseLayout from "./BaseLayout";
-import AuthGuard from "./guard/AuthGuard";
 
 const authChildrens = [
   {
-    path: "/login",
-    element: (
-      <AuthGuard>
-        <Login />
-      </AuthGuard>
-    ),
+    path: "login",
+    element: <Login />,
   },
   {
-    path: "/register",
-    element: (
-      <AuthGuard>
-        <Register />
-      </AuthGuard>
-    ),
+    path: "register",
+    element: <Register />,
   },
 ];
 
@@ -35,6 +27,11 @@ export const routing = () =>
         {
           path: "/",
           element: <MainPage />,
+          children: authChildrens,
+        },
+        {
+          path: "/artist/:artistId/",
+          element: <ArtistProfile />,
           children: authChildrens,
         },
       ],

@@ -1,6 +1,10 @@
 import { baseApi } from "@/shared/api";
 
-import { TArtistsResponse, TStaticArtistsResponse } from "../model/types";
+import {
+  TArtistResponse,
+  TArtistsResponse,
+  TStaticArtistsResponse,
+} from "../model/types";
 
 export const artistsApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -16,16 +20,26 @@ export const artistsApi = baseApi.injectEndpoints({
         method: "get",
         params: filters,
       }),
-      serializeQueryArgs: ({ endpointName }) => endpointName,
-      merge: (currentCache, newItems) => {
-        currentCache.data.push(...newItems.data);
-      },
-      forceRefetch({ currentArg, previousArg }) {
-        return currentArg !== previousArg;
-      },
       providesTags: ["AUTH"],
+    }),
+    getStaticArtist: build.query<TArtistResponse, string | undefined>({
+      query: (id) => ({
+        url: `/artists/static/${id}`,
+        method: "get",
+      }),
+    }),
+    getArtist: build.query<TArtistResponse, string | undefined>({
+      query: (id) => ({
+        url: `/artists/${id}`,
+        method: "get",
+      }),
     }),
   }),
 });
 
-export const { useGetStaticArtistsQuery, useGetArtistsQuery } = artistsApi;
+export const {
+  useGetStaticArtistsQuery,
+  useGetArtistsQuery,
+  useGetStaticArtistQuery,
+  useGetArtistQuery,
+} = artistsApi;

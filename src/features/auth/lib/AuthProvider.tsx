@@ -19,7 +19,7 @@ export const AuthContext = React.createContext<IAuthContext>(
 );
 
 const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [isAuth, setIsAuth] = useState(getIsAuth);
+  const [isAuth, setIsAuth] = useState(() => getIsAuth());
 
   const setTokens = useCallback((tokens: TAuthResponse) => {
     setTokensToCookie(tokens);

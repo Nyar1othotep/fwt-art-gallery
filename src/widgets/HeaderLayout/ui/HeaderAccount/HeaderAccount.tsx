@@ -23,20 +23,25 @@ const HeaderAccount: React.FC<IHeaderAccount> = memo(
     return (
       <div className={cx(className, "account-header")} {...props}>
         {isAuth ? (
-          <Link to="/" theme={theme} onClick={onLogout}>
+          <Link to={location.pathname} theme={theme} onClick={onLogout}>
             Log out
           </Link>
         ) : (
           <>
             <Link
-              to="/login"
+              to={`${location.pathname}login`}
               state={{ from: location }}
               theme={theme}
               onClick={onClose}
             >
               Log in
             </Link>
-            <Link to="/register" theme={theme} onClick={onClose}>
+            <Link
+              to={`${location.pathname}register`}
+              state={{ from: location }}
+              theme={theme}
+              onClick={onClose}
+            >
               Sign up
             </Link>
           </>

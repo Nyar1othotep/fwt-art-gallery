@@ -1,12 +1,14 @@
 import { TImage } from "@/shared/model/types";
 
-type TMainPainting = {
+type TPainting = {
   _id: string;
   name: string;
   yearOfCreation: string;
   image: TImage;
   artist: string;
 };
+
+type TMainPainting = TPainting;
 
 export type TStaticArtistsResponse = {
   genres: string[];
@@ -27,4 +29,20 @@ export type TMeta = {
 export type TArtistsResponse = {
   data: TStaticArtistsResponse[];
   meta: TMeta;
+};
+
+type TArtistGenres = {
+  _id: string;
+  name: string;
+};
+
+export type TArtistResponse = {
+  paintings: TPainting[];
+  genres: TArtistGenres[];
+  _id: string;
+  name: string;
+  description: string;
+  yearsOfLife: string;
+  avatar: TImage;
+  mainPainting: TMainPainting;
 };
