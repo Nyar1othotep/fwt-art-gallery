@@ -26,10 +26,7 @@ const ArtistProfile: React.FC = () => {
 
   return (
     <>
-      <div>
-        <div>{artistId}</div>
-        <ArtistInfo artist={artist} />
-      </div>
+      <ArtistInfo artist={artist} />
       <Outlet />
     </>
   );

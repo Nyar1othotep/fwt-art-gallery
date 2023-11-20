@@ -6,15 +6,24 @@ import { ArtistProfile } from "@/pages/ArtistProfile";
 import { MainPage } from "@/pages/Main";
 
 import BaseLayout from "./BaseLayout";
+import AuthGuard from "./guard/AuthGuard";
 
 const authChildrens = [
   {
     path: "login",
-    element: <Login />,
+    element: (
+      <AuthGuard>
+        <Login />
+      </AuthGuard>
+    ),
   },
   {
     path: "register",
-    element: <Register />,
+    element: (
+      <AuthGuard>
+        <Register />
+      </AuthGuard>
+    ),
   },
 ];
 

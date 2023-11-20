@@ -4,8 +4,7 @@ import "./shared/styles/base.scss";
 import { Provider as ReduxProvider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 
-import { routing } from "./app/routing";
-import { store } from "./app/store/store";
+import { routing, store } from "./app";
 import { AuthProvider } from "./features/auth";
 import { ThemeProvider } from "./features/theme";
 

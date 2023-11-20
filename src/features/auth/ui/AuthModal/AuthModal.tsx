@@ -1,6 +1,6 @@
 import cn from "classnames/bind";
 import React, { HTMLAttributes, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Link } from "@/shared/ui/Link";
 import { Modal } from "@/shared/ui/Modal";
@@ -24,7 +24,6 @@ const AuthModal: React.FC<IAuthModal> = ({
   isClose,
   children,
 }) => {
-  const location = useLocation();
   const navigate = useNavigate();
   const [isShow, setIsShow] = useState(true);
 
@@ -65,7 +64,6 @@ const AuthModal: React.FC<IAuthModal> = ({
               className={cx("auth-modal__message-link")}
               to={to}
               theme={theme}
-              state={{ background: location }}
             >
               {linkText}
             </Link>

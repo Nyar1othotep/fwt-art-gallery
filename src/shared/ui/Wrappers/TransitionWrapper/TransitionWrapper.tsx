@@ -35,9 +35,11 @@ const TransitionWrapper: React.FC<ITransitionWrapper> = ({
   useEffect(() => {
     if (isShow) {
       document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
     }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isShow]);
 
   return (
