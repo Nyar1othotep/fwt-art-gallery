@@ -6,6 +6,7 @@ import { ArtistsList } from "@/widgets/ArtistsList";
 
 const MainPage: React.FC = () => {
   const { isAuth } = useContext(AuthContext);
+  // TODO: Add Filters context
   const [filters] = useState({ perPage: 6 });
 
   return (

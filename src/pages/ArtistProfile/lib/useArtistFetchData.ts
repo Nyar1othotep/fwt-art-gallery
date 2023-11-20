@@ -23,8 +23,8 @@ export const useArtistsFetchData = ({ isAuth, artistId }: Props) => {
     },
   );
 
-  const artist = data ?? staticData;
-  const isArtistLoading = isLoading || isStaticLoading;
-
-  return { artist, isArtistLoading };
+  return {
+    artist: isAuth ? data : staticData,
+    isLoading: isAuth ? isLoading : isStaticLoading,
+  };
 };

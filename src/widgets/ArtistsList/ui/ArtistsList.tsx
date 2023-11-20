@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
-import { TStaticArtistsResponse } from "@/entities/artists";
 import { ThemeContext } from "@/features/theme";
 import { Card } from "@/shared/ui/Card";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
@@ -11,14 +10,18 @@ import { useArtistsFetchData } from "../lib/useArtistsFetchData";
 
 interface IArtistsList {
   isAuth: boolean;
-  filters: object;
+  filters: TFilters;
 }
+
+// TODO: Add Filters context
+type TFilters = {
+  perPage: number;
+};
 
 const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
   const { theme } = useContext(ThemeContext);
-  const [items, setItems] = useState<TStaticArtistsResponse[]>([]);
   const [pageNumber, setPageNumber] = useState(1);
-  const { artists, totalPages, isArtistsLoading } = useArtistsFetchData({
+  const { artists, totalPages, isLoading } = useArtistsFetchData({
     isAuth,
     filters,
     pageNumber,
@@ -32,11 +35,7 @@ const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
     if (!isAuth) setPageNumber(1);
   }, [isAuth, inView, totalPages]);
 
-  useEffect(() => {
-    if (artists) setItems([...items, ...artists]);
-  }, [artists]);
-
-  if (isArtistsLoading) {
+  if (isLoading) {
     return (
       <GridLayout>
         {Array.from({ length: 6 }, (_, key) => (
@@ -46,12 +45,12 @@ const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
     );
   }
 
-  if (items.length === 0) return <div>No data</div>;
+  if (artists.length === 0) return <div>No data</div>;
 
   return (
     <>
       <GridLayout>
-        {items.map(({ _id, name, yearsOfLife, mainPainting }) => {
+        {artists.map(({ _id, name, yearsOfLife, mainPainting }) => {
           return (
             <Card
               key={_id}

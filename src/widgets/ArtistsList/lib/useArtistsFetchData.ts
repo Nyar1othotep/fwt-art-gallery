@@ -9,8 +9,13 @@ import { getTotalPages } from "./getTotalPages";
 
 type Props = {
   isAuth: boolean;
-  filters: object;
+  filters: TFilters;
   pageNumber: number;
+};
+
+// TODO: Add Filters context
+type TFilters = {
+  perPage: number;
 };
 
 export const useArtistsFetchData = ({ isAuth, filters, pageNumber }: Props) => {
@@ -26,14 +31,20 @@ export const useArtistsFetchData = ({ isAuth, filters, pageNumber }: Props) => {
     isLoading,
   } = useGetArtistsQuery(
     {
-      filters: { ...filters, pageNumber },
+      filters: {
+        ...filters,
+        perPage: filters.perPage * pageNumber,
+        pageNumber: 1,
+      },
     },
     { skip: !isAuth },
   );
 
   const totalPages = getTotalPages(count, perPage);
-  const artists = data ?? staticData;
-  const isArtistsLoading = isLoading || isStaticLoading;
 
-  return { artists, totalPages, isArtistsLoading };
+  return {
+    artists: isAuth ? data : staticData,
+    totalPages,
+    isLoading: isAuth ? isLoading : isStaticLoading,
+  };
 };

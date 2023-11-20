@@ -8,7 +8,7 @@ import {
 
 export const artistsApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getStaticArtists: build.query<TStaticArtistsResponse, void>({
+    getStaticArtists: build.query<TStaticArtistsResponse[], void>({
       query: () => ({
         url: "/artists/static",
         method: "get",

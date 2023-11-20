@@ -9,7 +9,7 @@ import { useArtistsFetchData } from "../lib/useArtistFetchData";
 const ArtistProfile: React.FC = () => {
   const { artistId } = useParams();
   const { isAuth } = useContext(AuthContext);
-  const { artist, isArtistLoading } = useArtistsFetchData({
+  const { artist, isLoading } = useArtistsFetchData({
     isAuth,
     artistId,
   });
@@ -20,7 +20,7 @@ const ArtistProfile: React.FC = () => {
   // artist.paintings -> ArtworksList, который
   // использует ту же логику, что и ArtistsList (!)
 
-  if (isArtistLoading) return <div>...loading</div>;
+  if (isLoading) return <div>...loading</div>;
 
   if (Object.values(artist).length === 0) return <div>no data</div>;
 
