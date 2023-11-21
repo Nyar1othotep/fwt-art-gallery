@@ -1,0 +1,31 @@
+.artist-profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @include mediaSmall {
+    gap: 80px;
+  }
+
+  @include mediaLarge {
+    gap: 160px;
+  }
+
+  &__container {
+    @include container;
+  }
+
+  &__heading {
+    margin: 0px 0px 60px 0px;
+    @include h3;
+    color: var(--accent-red);
+
+    @include mediaSmall {
+      @include h1;
+    }
+
+    &--dark {
+      color: var(--accent-gold);
+    }
+  }
+}

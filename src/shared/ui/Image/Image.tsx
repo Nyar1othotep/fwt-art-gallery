@@ -12,14 +12,22 @@ const cx = cn.bind(styles);
 interface IImage extends HTMLAttributes<HTMLPictureElement> {
   alt: string;
   image: TImage;
+  isOriginal?: boolean;
 }
 
-const Image: React.FC<IImage> = ({ alt, image, className }) => {
+const Image: React.FC<IImage> = ({ alt, image, isOriginal, className }) => {
   if (!image)
     return (
       <div className={cx("image__no-image")}>
         <IconPhoto />
         <p>No Image uploaded</p>
+      </div>
+    );
+
+  if (isOriginal)
+    return (
+      <div className={className}>
+        <img src={API_URL + image.original} loading="lazy" alt={alt} />
       </div>
     );
 

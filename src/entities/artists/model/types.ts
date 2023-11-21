@@ -1,6 +1,6 @@
 import { TImage } from "@/shared/model/types";
 
-type TPainting = {
+export type TPainting = {
   _id: string;
   name: string;
   yearOfCreation: string;
@@ -42,6 +42,7 @@ export type TArtistResponse = {
   _id: string;
   name: string;
   description: string;
+  shortDescription?: string;
   yearsOfLife: string;
   avatar: TImage;
   mainPainting: TMainPainting;

@@ -55,8 +55,8 @@ const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
             <Card
               key={_id}
               to={`/artist/${_id}/`}
-              title={name}
               year={yearsOfLife}
+              title={name}
               image={mainPainting?.image}
               theme={theme}
             />

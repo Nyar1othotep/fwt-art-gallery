@@ -8,7 +8,6 @@ export const authApi = baseApi.injectEndpoints({
         method: "POST",
         data,
       }),
-      invalidatesTags: ["AUTH"],
     }),
     register: build.mutation<TAuthResponse, TRequestAuthBody>({
       query: (data) => ({
@@ -16,7 +15,6 @@ export const authApi = baseApi.injectEndpoints({
         method: "POST",
         data,
       }),
-      invalidatesTags: ["AUTH"],
     }),
   }),
 });

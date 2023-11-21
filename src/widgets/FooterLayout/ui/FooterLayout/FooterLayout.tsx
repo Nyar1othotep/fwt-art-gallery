@@ -17,12 +17,12 @@ const FooterLayout: React.FC = () => {
     <footer className={cx("footer", `footer--${theme}`)}>
       <div className={cx("footer__container")}>
         <div className={cx("footer__content")}>
-          <div className={cx("footer__inner-content", "inner-content-footer")}>
-            <p className={cx("inner-content-footer__descr")}>
+          <div className={cx("footer__inner-content", "inner-content")}>
+            <p className={cx("inner-content__descr")}>
               Проект реализован в рамках стажировки <br /> для
               Frontend-разработчиков от компании{" "}
               <Link
-                className={cx("inner-content-footer__link")}
+                className={cx("inner-content__link")}
                 to="https://framework.team/"
                 theme={theme}
               >
@@ -31,8 +31,8 @@ const FooterLayout: React.FC = () => {
             </p>
             <p
               className={cx(
-                "inner-content-footer__copy",
-                `inner-content-footer__copy--${theme}`,
+                "inner-content__copy",
+                `inner-content__copy--${theme}`,
               )}
             >
               Минин Максим, 2023

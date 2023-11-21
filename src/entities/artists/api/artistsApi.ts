@@ -1,5 +1,6 @@
 import { baseApi } from "@/shared/api";
 
+import { transformArtistResponse } from "../lib/transformArtistResponse";
 import {
   TArtistResponse,
   TArtistsResponse,
@@ -20,19 +21,20 @@ export const artistsApi = baseApi.injectEndpoints({
         method: "get",
         params: filters,
       }),
-      providesTags: ["AUTH"],
     }),
     getStaticArtist: build.query<TArtistResponse, string | undefined>({
       query: (id) => ({
         url: `/artists/static/${id}`,
         method: "get",
       }),
+      transformResponse: transformArtistResponse,
     }),
     getArtist: build.query<TArtistResponse, string | undefined>({
       query: (id) => ({
         url: `/artists/${id}`,
         method: "get",
       }),
+      transformResponse: transformArtistResponse,
     }),
   }),
 });

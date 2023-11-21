@@ -11,12 +11,4 @@
   @include mediaSmall {
     gap: 100px;
   }
-
-  &__main {
-    display: flex;
-  }
-
-  &__container {
-    @include container;
-  }
 }

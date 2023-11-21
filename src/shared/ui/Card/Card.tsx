@@ -12,7 +12,7 @@ import styles from "./Card.module.scss";
 const cx = cn.bind(styles);
 
 interface ICard extends React.HTMLAttributes<HTMLDivElement> {
-  to: string;
+  to?: string;
   year: string;
   image: TImage;
   title: string;
@@ -21,7 +21,7 @@ interface ICard extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Card: React.FC<ICard> = memo(
-  ({ to, year, image, title, theme = "light", onClick }) => (
+  ({ to = "#", year, image, title, theme = "light", onClick }) => (
     <Link className={cx("card", `card--${theme}`)} onClick={onClick} to={to}>
       <div className={cx("card__image-wrapper", "_ibg")}>
         <Image className={cx("card__image")} image={image} alt={title} />

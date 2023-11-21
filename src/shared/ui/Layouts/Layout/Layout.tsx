@@ -20,9 +20,7 @@ const Layout: React.FC<ILayout> = ({
   <div className={cx("base-layout", `base-layout--${theme}`)}>
     {headerSlot}
     <main className={cx("base-layout__main")}>
-      <div className={cx("base-layout__container")}>
-        <Outlet />
-      </div>
+      <Outlet />
     </main>
     {footerSlot}
   </div>

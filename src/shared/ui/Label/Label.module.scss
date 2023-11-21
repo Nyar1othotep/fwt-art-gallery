@@ -1,0 +1,16 @@
+.label {
+  max-width: max-content;
+  padding: 8px 16px;
+  @include flexItemsCenter;
+  @include pSmallMedium;
+  color: var(--primary-dark-gray);
+  gap: 8px;
+  border-radius: 30px;
+  background: rgba(18, 18, 18, 0.05);
+
+  &--dark {
+    color: var(--primary-light-gray);
+    outline: 1px solid var(--primary-white);
+    background: rgba(205, 205, 205, 0.05);
+  }
+}
