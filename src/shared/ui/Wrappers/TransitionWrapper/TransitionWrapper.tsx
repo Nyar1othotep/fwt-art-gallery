@@ -15,6 +15,7 @@ interface ITransitionWrapper extends React.HTMLAttributes<HTMLDivElement> {
   variant?: TTransitionWrapperVariant;
   onClose: () => void;
   onExited?: () => void;
+  isTransition?: boolean;
   enterDoneClass?: string;
 }
 
@@ -25,6 +26,7 @@ const TransitionWrapper: React.FC<ITransitionWrapper> = ({
   onExited,
   children,
   className,
+  isTransition = true,
   enterDoneClass,
 }) => {
   const wrapperRef = useRef(null);
@@ -47,7 +49,7 @@ const TransitionWrapper: React.FC<ITransitionWrapper> = ({
       nodeRef={wrapperRef}
       in={isShow}
       appear={isShow}
-      timeout={{ exit: 500 }}
+      timeout={{ exit: isTransition ? 500 : 0 }}
       classNames={{
         enterActive: cx("enter-active"),
         enterDone: cx(enterDoneClass, "enter-done"),

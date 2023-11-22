@@ -3,7 +3,7 @@ import { TArtistResponse } from "../model/types";
 import { truncate } from "./truncate";
 
 export const transformArtistResponse = (response: TArtistResponse) => {
-  if (response.description.length < 265) return response;
+  if (!response || response.description.length < 265) return response;
 
   const shortDescription = truncate(response.description, 265);
 

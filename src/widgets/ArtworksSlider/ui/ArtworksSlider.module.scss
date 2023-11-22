@@ -1,0 +1,153 @@
+.artworks-slider {
+  width: 100%;
+  height: 100%;
+  color: var(--primary-white);
+
+  &__container,
+  .slide__container {
+    position: relative;
+    @include container;
+  }
+
+  &__controls,
+  .slide__content {
+    position: absolute;
+    padding: 20px 0px 20px 0px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    @include mediaSmall {
+      padding: 40px 0px 60px 0px;
+    }
+
+    @include mediaMedium {
+      padding: 60px 0px 100px 0px;
+    }
+  }
+
+  &__icon-close {
+    position: relative;
+    color: var(--primary-light-gray);
+    z-index: 100;
+    float: right;
+    cursor: pointer;
+  }
+}
+
+.slide {
+  &__bg {
+    height: inherit;
+    background: var(--primary-white);
+
+    &--dark {
+      background: var(--primary-black);
+    }
+
+    img {
+      width: 100%;
+      height: inherit;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &__container {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__left,
+  &__right {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  &__left {
+    align-items: flex-start;
+  }
+
+  &__right {
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+
+  &__info-background {
+    width: 253px;
+    margin: 0px 0px 0px -20px;
+    padding: 16px 12px 23px 12px;
+    background: var(--primary-white);
+
+    &--dark {
+      background: var(--primary-black);
+    }
+
+    @include mediaSmall {
+      width: 498px;
+      margin: 0;
+      padding: 40px 20px;
+    }
+  }
+
+  &__info {
+    position: relative;
+
+    @include mediaSmall {
+      &::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: -12px;
+        width: 2px;
+        height: 100%;
+        background: var(--accent-red);
+
+        @include mediaLarge {
+          left: -20px;
+        }
+      }
+
+      &--dark::before {
+        background: var(--accent-gold);
+      }
+    }
+  }
+
+  &__year {
+    margin: 0px 0px 8px 0px;
+    @include pCaptionBold;
+    color: var(--accent-red);
+
+    &--dark {
+      color: var(--accent-gold);
+    }
+
+    @include mediaSmall {
+      @include pButton;
+    }
+  }
+
+  &__name {
+    @include h6;
+    color: var(--primary-black);
+
+    &--dark {
+      color: var(--primary-white);
+    }
+
+    @include mediaSmall {
+      @include h4;
+    }
+  }
+
+  &__count {
+    @include h5;
+
+    @include mediaSmall {
+      @include h3;
+    }
+  }
+}

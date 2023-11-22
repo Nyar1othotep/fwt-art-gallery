@@ -6,6 +6,8 @@ import { AuthContext } from "@/features/auth";
 import { ThemeContext } from "@/features/theme";
 import { ArtistInfo } from "@/widgets/ArtistInfo";
 import { ArtworksList } from "@/widgets/ArtworksList";
+import { useArtworkSlider } from "@/widgets/ArtworksSlider";
+import { ArtworksSlider } from "@/widgets/ArtworksSlider/ui";
 
 import { useArtistsFetchData } from "../lib/useArtistFetchData";
 
@@ -17,13 +19,11 @@ const ArtistProfile: React.FC = () => {
   const { artistId } = useParams();
   const { theme } = useContext(ThemeContext);
   const { isAuth } = useContext(AuthContext);
+  const { slideTo, isSlider, onOpenSlider, onCloseSlider } = useArtworkSlider();
   const { artist, isLoading } = useArtistsFetchData({
     isAuth,
     artistId,
   });
-
-  // artist.paintings -> ArtworksList, который
-  // использует ту же логику, что и ArtistsList (!)
 
   if (isLoading) return <div>...loading</div>;
 
@@ -31,7 +31,14 @@ const ArtistProfile: React.FC = () => {
 
   return (
     <div className={cx("artist-profile-page")}>
-      <ArtistInfo artist={artist} />
+      <div
+        className={cx(
+          "artist-profile-page__container",
+          "artist-profile-page__container--custom",
+        )}
+      >
+        <ArtistInfo artist={artist} />
+      </div>
       <div className={cx("artist-profile-page__container")}>
         <div
           className={cx(
@@ -41,7 +48,13 @@ const ArtistProfile: React.FC = () => {
         >
           Artworks
         </div>
-        <ArtworksList paintings={artist.paintings} />
+        <ArtworksList paintings={artist.paintings} onPainting={onOpenSlider} />
+        <ArtworksSlider
+          to={slideTo}
+          isShow={isSlider}
+          onClose={onCloseSlider}
+          paintings={artist.paintings}
+        />
       </div>
       <Outlet />
     </div>

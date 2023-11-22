@@ -3,11 +3,6 @@
     position: relative;
   }
 
-  &__container {
-    @include container;
-    padding: 0;
-  }
-
   &__avatar {
     aspect-ratio: 4/6;
     min-height: 452px;

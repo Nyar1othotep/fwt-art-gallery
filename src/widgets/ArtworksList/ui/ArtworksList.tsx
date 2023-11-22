@@ -5,28 +5,28 @@ import { ThemeContext } from "@/features/theme";
 import { Card } from "@/shared/ui/Card";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
 
-interface IArtworkList {
+interface IArtworksList {
   paintings: TPainting[];
+  onPainting: (index: number) => void;
 }
 
-const ArtworkList: React.FC<IArtworkList> = ({ paintings }) => {
+const ArtworksList: React.FC<IArtworksList> = ({ paintings, onPainting }) => {
   const { theme } = useContext(ThemeContext);
 
   return (
     <GridLayout>
-      {paintings.map(({ _id, name, image, yearOfCreation }) => {
-        return (
-          <Card
-            key={_id}
-            year={yearOfCreation}
-            title={name}
-            image={image}
-            theme={theme}
-          />
-        );
-      })}
+      {paintings.map(({ _id, name, image, yearOfCreation }, index) => (
+        <Card
+          key={_id}
+          year={yearOfCreation}
+          title={name}
+          image={image}
+          theme={theme}
+          onClick={() => onPainting(index)}
+        />
+      ))}
     </GridLayout>
   );
 };
 
-export default ArtworkList;
+export default ArtworksList;

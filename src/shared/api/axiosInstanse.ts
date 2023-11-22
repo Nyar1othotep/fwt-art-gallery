@@ -31,23 +31,32 @@ instance.interceptors.response.use(
     const refreshToken = Cookies.get("refreshToken");
 
     if (!refreshToken || isTokenExpired(refreshToken!)) {
-      throw error;
+      return error;
     }
 
     if (error.response.status === 401 && error.config) {
-      const response = await axios.post<TAuthResponse>(
-        `${API_URL}/auth/refresh`,
-        {
-          refreshToken,
-          fingerprint,
-        } as TRequestRefreshBody,
-      );
-      setTokensToCookie(response.data);
+      try {
+        const response = await axios.post<TAuthResponse>(
+          `${API_URL}/auth/refresh`,
+          {
+            refreshToken,
+            fingerprint,
+          } as TRequestRefreshBody,
+        );
+        setTokensToCookie(response.data);
 
-      return instance.request(originalRequest);
+        return await instance.request(originalRequest);
+      } catch (refreshError: any) {
+        if (
+          refreshError.response.status === 401 &&
+          refreshError.config.url.includes("refresh")
+        )
+          // Toast error
+          return refreshError;
+      }
     }
 
-    throw error;
+    return error;
   },
 );
 
