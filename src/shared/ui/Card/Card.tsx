@@ -24,7 +24,12 @@ const Card: React.FC<ICard> = memo(
   ({ to = "#", year, image, title, theme = "light", onClick }) => (
     <Link className={cx("card", `card--${theme}`)} onClick={onClick} to={to}>
       <div className={cx("card__image-wrapper", "_ibg")}>
-        <Image className={cx("card__image")} image={image} alt={title} />
+        <Image
+          className={cx("card__image")}
+          image={image}
+          theme={theme}
+          alt={title}
+        />
       </div>
       <div className={cx("card__content")}>
         <div className={cx("card__info", "info-card", `info-card--${theme}`)}>

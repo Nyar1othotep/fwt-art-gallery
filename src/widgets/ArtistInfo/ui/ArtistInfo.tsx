@@ -28,6 +28,7 @@ const ArtistInfo: React.FC<IArtistInfo> = ({ artist }) => {
         className={cx("artist-info__avatar")}
         alt={artist.name}
         image={artist.avatar}
+        theme={theme}
         isOriginal
       />
       <div className={cx("artist-info__content", "artist-content")}>

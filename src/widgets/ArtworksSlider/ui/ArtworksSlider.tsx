@@ -69,6 +69,7 @@ const ArtworksSlider: React.FC<IArtworksSlider> = ({
                   className={cx("slide__bg", `slide__bg--${theme}`)}
                   alt={name}
                   image={image}
+                  theme={theme}
                   isOriginal
                 />
                 <div className={cx("slide__content")}>

@@ -13,10 +13,17 @@ const cx = cn.bind(styles);
 interface IImage extends HTMLAttributes<HTMLPictureElement> {
   alt: string;
   image: TImage;
+  theme?: string;
   isOriginal?: boolean;
 }
 
-const Image: React.FC<IImage> = ({ alt, image, isOriginal, className }) => {
+const Image: React.FC<IImage> = ({
+  alt,
+  image,
+  theme = "light",
+  isOriginal,
+  className,
+}) => {
   const [isError, setIsError] = useState(false);
 
   const onImageError = () => setIsError(true);
@@ -34,7 +41,7 @@ const Image: React.FC<IImage> = ({ alt, image, isOriginal, className }) => {
       <>
         {isError && (
           <div className={className}>
-            <Preloader />
+            <Preloader theme={theme} />
           </div>
         )}
         {!isError && (
@@ -54,7 +61,7 @@ const Image: React.FC<IImage> = ({ alt, image, isOriginal, className }) => {
     <>
       {isError && (
         <div className={className}>
-          <Preloader />
+          <Preloader theme={theme} />
         </div>
       )}
       {!isError && (
