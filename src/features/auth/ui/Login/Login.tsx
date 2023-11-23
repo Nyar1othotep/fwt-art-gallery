@@ -1,12 +1,12 @@
 import React, { useCallback, useContext, useEffect } from "react";
 
 import { ThemeContext } from "@/features/theme";
-import { AxiosBaseQueryError, TRequestAuthBody } from "@/shared/api";
+import { IRequestAuthBody, isAxiosBaseQueryError } from "@/shared/api";
 import { useFingerprint } from "@/shared/lib/fingerprint";
 
 import { useLoginMutation } from "../../api/authApi";
 import { AuthContext } from "../../lib/AuthProvider";
-import { TAuthSchema } from "../../model/authSchema";
+import { IAuthSchema } from "../../model/authSchema";
 import { AuthForm } from "../AuthForm";
 import { AuthModal } from "../AuthModal";
 
@@ -14,10 +14,7 @@ const Login: React.FC = () => {
   const variant = "login";
   const fingerprint = useFingerprint();
   const { theme } = useContext(ThemeContext);
-  const [
-    login,
-    { isSuccess, data, isError, error = {} as AxiosBaseQueryError },
-  ] = useLoginMutation();
+  const [login, { isSuccess, data, isError, error }] = useLoginMutation();
   const { setTokens } = useContext(AuthContext);
 
   useEffect(() => {
@@ -25,19 +22,21 @@ const Login: React.FC = () => {
   }, [isSuccess]);
 
   const onSubmit = useCallback(
-    ({ email, password }: TAuthSchema) => {
-      login({ username: email, password, fingerprint } as TRequestAuthBody);
+    ({ email, password }: IAuthSchema) => {
+      login({ username: email, password, fingerprint } as IRequestAuthBody);
     },
     [fingerprint],
   );
+
+  const errorMessage = isAxiosBaseQueryError(error) ? error.data.message : "";
 
   return (
     <AuthModal theme={theme} isClose={isSuccess} variant={variant}>
       <AuthForm
         theme={theme}
-        error={error}
         isError={isError}
         variant={variant}
+        errorMessage={errorMessage}
         onSubmitHandler={onSubmit}
       />
     </AuthModal>

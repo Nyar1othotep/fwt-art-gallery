@@ -5,7 +5,7 @@ import { API_URL } from "../config";
 import { getFingerprint } from "../lib/fingerprint";
 import { isTokenExpired, setTokensToCookie } from "../lib/tokens";
 
-import { TAuthResponse, TRequestRefreshBody } from "./types";
+import { IAuthDto, IRequestRefreshBody } from "./types";
 
 const instance = axios.create({
   baseURL: API_URL,
@@ -31,18 +31,15 @@ instance.interceptors.response.use(
     const refreshToken = Cookies.get("refreshToken");
 
     if (!refreshToken || isTokenExpired(refreshToken!)) {
-      return error;
+      throw error;
     }
 
     if (error.response.status === 401 && error.config) {
       try {
-        const response = await axios.post<TAuthResponse>(
-          `${API_URL}/auth/refresh`,
-          {
-            refreshToken,
-            fingerprint,
-          } as TRequestRefreshBody,
-        );
+        const response = await axios.post<IAuthDto>(`${API_URL}/auth/refresh`, {
+          refreshToken,
+          fingerprint,
+        } as IRequestRefreshBody);
         setTokensToCookie(response.data);
 
         return await instance.request(originalRequest);
@@ -52,11 +49,11 @@ instance.interceptors.response.use(
           refreshError.config.url.includes("refresh")
         )
           // Toast error
-          return refreshError;
+          throw refreshError;
       }
     }
 
-    return error;
+    throw error;
   },
 );
 

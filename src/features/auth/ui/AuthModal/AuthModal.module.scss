@@ -10,8 +10,15 @@
     height: auto;
   }
 
+  &__background-wrapper {
+    width: 498px;
+    height: 700px;
+  }
+
   &__background {
     display: none;
+    object-fit: cover;
+    object-position: center;
 
     @include mediaLarge {
       display: block;

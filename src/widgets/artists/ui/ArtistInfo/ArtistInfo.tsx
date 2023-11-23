@@ -1,13 +1,13 @@
 import cn from "classnames/bind";
 import React, { useContext } from "react";
 
-import { TArtistResponse } from "@/entities/artists";
+import { IArtistDto } from "@/entities/artists";
 import { ThemeContext } from "@/features/theme";
 import { Button } from "@/shared/ui/Button";
 import { Image } from "@/shared/ui/Image";
 import { Label } from "@/shared/ui/Label";
 
-import { useToggleDescription } from "../lib/useToggleDescription";
+import { useToggleDescription } from "../../lib/useToggleDescription";
 
 import styles from "./ArtistInfo.module.scss";
 import { ReactComponent as Icon } from "./assets/expand_icon.svg";
@@ -15,7 +15,7 @@ import { ReactComponent as Icon } from "./assets/expand_icon.svg";
 const cx = cn.bind(styles);
 
 interface IArtistInfo {
-  artist: TArtistResponse;
+  artist: IArtistDto;
 }
 
 const ArtistInfo: React.FC<IArtistInfo> = ({ artist }) => {

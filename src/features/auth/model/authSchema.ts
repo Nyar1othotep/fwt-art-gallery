@@ -5,4 +5,4 @@ export const authSchema = yup.object().shape({
   password: yup.string().min(8).max(32).required(),
 });
 
-export type TAuthSchema = yup.InferType<typeof authSchema>;
+export interface IAuthSchema extends yup.InferType<typeof authSchema> {}

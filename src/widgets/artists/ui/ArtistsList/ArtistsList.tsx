@@ -6,7 +6,7 @@ import { Card } from "@/shared/ui/Card";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
 import { Skeleton } from "@/shared/ui/Skeleton";
 
-import { useArtistsFetchData } from "../lib/useArtistsFetchData";
+import { useArtistsFetchData } from "../../lib/useArtistsFetchData";
 
 interface IArtistsList {
   isAuth: boolean;
@@ -45,7 +45,7 @@ const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
     );
   }
 
-  if (artists.length === 0) return <div>No data</div>;
+  if (!artists) return <div>No data</div>;
 
   return (
     <>

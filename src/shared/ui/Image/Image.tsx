@@ -3,7 +3,7 @@ import React, { HTMLAttributes, useState } from "react";
 
 import { ReactComponent as IconPhoto } from "../../assets/photo_icon.svg";
 import { API_URL } from "../../config";
-import { TImage } from "../../model/types";
+import { IImage as IImageType } from "../../model/types";
 import { Preloader } from "../Preloader";
 
 import styles from "./Image.module.scss";
@@ -12,7 +12,7 @@ const cx = cn.bind(styles);
 
 interface IImage extends HTMLAttributes<HTMLPictureElement> {
   alt: string;
-  image: TImage;
+  image: IImageType;
   theme?: string;
   isOriginal?: boolean;
 }
@@ -61,7 +61,7 @@ const Image: React.FC<IImage> = ({
     <>
       {isError && (
         <div className={className}>
-          <Preloader theme={theme} />
+          <Preloader className={cx("preloader")} theme={theme} />
         </div>
       )}
       {!isError && (

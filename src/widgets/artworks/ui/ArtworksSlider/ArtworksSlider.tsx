@@ -4,7 +4,7 @@ import { Navigation, A11y } from "swiper/modules";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { SwiperOptions } from "swiper/types/swiper-options";
 
-import { TPainting } from "@/entities/artists";
+import { IPaintingDto } from "@/entities/artists";
 import { ThemeContext } from "@/features/theme";
 import { ReactComponent as IconClose } from "@/shared/assets/close_icon.svg";
 import { Button } from "@/shared/ui/Button";
@@ -25,7 +25,7 @@ interface IArtworksSlider extends TSwiper {
   to: number;
   isShow: boolean;
   onClose: () => void;
-  paintings: TPainting[];
+  paintings: IPaintingDto[];
 }
 
 const ArtworksSlider: React.FC<IArtworksSlider> = ({

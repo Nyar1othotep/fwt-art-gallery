@@ -19,7 +19,7 @@ export const ThemeContext = React.createContext<IThemeContext>(
 );
 
 const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [theme, setTheme] = useState(getTheme);
+  const [theme, setTheme] = useState(() => getTheme());
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -30,7 +30,6 @@ const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>

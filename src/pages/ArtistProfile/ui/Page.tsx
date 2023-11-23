@@ -1,13 +1,11 @@
 import cn from "classnames/bind";
 import React, { useContext } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { Navigate, Outlet, useParams } from "react-router-dom";
 
 import { AuthContext } from "@/features/auth";
 import { ThemeContext } from "@/features/theme";
-import { ArtistInfo } from "@/widgets/ArtistInfo";
-import { ArtworksList } from "@/widgets/ArtworksList";
-import { useArtworkSlider } from "@/widgets/ArtworksSlider";
-import { ArtworksSlider } from "@/widgets/ArtworksSlider/ui";
+import { ArtistInfo } from "@/widgets/artists";
+import { ArtworksLayout } from "@/widgets/artworks";
 
 import { useArtistsFetchData } from "../lib/useArtistFetchData";
 
@@ -19,7 +17,6 @@ const ArtistProfile: React.FC = () => {
   const { artistId } = useParams();
   const { theme } = useContext(ThemeContext);
   const { isAuth } = useContext(AuthContext);
-  const { slideTo, isSlider, onOpenSlider, onCloseSlider } = useArtworkSlider();
   const { artist, isLoading } = useArtistsFetchData({
     isAuth,
     artistId,
@@ -27,7 +24,8 @@ const ArtistProfile: React.FC = () => {
 
   if (isLoading) return <div>...loading</div>;
 
-  if (Object.values(artist).length === 0) return <div>no data</div>;
+  // TODO: Сделать вместо этого редирект на страницу с ошибкой
+  if (!artist) return <Navigate to="/" />;
 
   return (
     <div className={cx("artist-profile-page")}>
@@ -37,6 +35,7 @@ const ArtistProfile: React.FC = () => {
           "artist-profile-page__container--custom",
         )}
       >
+        {/* // TODO: Добавить сюда скелетон */}
         <ArtistInfo artist={artist} />
       </div>
       <div className={cx("artist-profile-page__container")}>
@@ -48,13 +47,7 @@ const ArtistProfile: React.FC = () => {
         >
           Artworks
         </div>
-        <ArtworksList paintings={artist.paintings} onPainting={onOpenSlider} />
-        <ArtworksSlider
-          to={slideTo}
-          isShow={isSlider}
-          onClose={onCloseSlider}
-          paintings={artist.paintings}
-        />
+        <ArtworksLayout artist={artist} />
       </div>
       <Outlet />
     </div>

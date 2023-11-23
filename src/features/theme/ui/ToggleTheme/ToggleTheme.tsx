@@ -1,5 +1,5 @@
 import cn from "classnames/bind";
-import React, { HTMLAttributes, useContext } from "react";
+import React, { PropsWithChildren, useContext } from "react";
 
 import { TButtonVariant } from "@/shared/model/types";
 import { Button } from "@/shared/ui/Button";
@@ -12,7 +12,7 @@ import styles from "./ToggleTheme.module.scss";
 
 const cx = cn.bind(styles);
 
-interface IToggleTheme extends HTMLAttributes<HTMLElement> {
+interface IToggleTheme extends PropsWithChildren {
   variant: TButtonVariant;
 }
 

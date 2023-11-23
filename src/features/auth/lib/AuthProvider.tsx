@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useCallback, useState } from "react";
 
-import { TAuthResponse } from "@/shared/api";
+import { IAuthDto } from "@/shared/api";
 import {
   removeTokensFromCookies,
   setTokensToCookie,
@@ -11,7 +11,7 @@ import { getIsAuth } from "./getIsAuth";
 interface IAuthContext {
   isAuth: boolean;
   onLogout: () => void;
-  setTokens: (tokens: TAuthResponse) => void;
+  setTokens: (tokens: IAuthDto) => void;
 }
 
 export const AuthContext = React.createContext<IAuthContext>(
@@ -21,7 +21,7 @@ export const AuthContext = React.createContext<IAuthContext>(
 const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [isAuth, setIsAuth] = useState(() => getIsAuth());
 
-  const setTokens = useCallback((tokens: TAuthResponse) => {
+  const setTokens = useCallback((tokens: IAuthDto) => {
     setTokensToCookie(tokens);
     setIsAuth(true);
   }, []);
@@ -32,7 +32,6 @@ const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   return (
-    // eslint-disable-next-line react/jsx-no-constructed-context-values
     <AuthContext.Provider value={{ isAuth, setTokens, onLogout }}>
       {children}
     </AuthContext.Provider>

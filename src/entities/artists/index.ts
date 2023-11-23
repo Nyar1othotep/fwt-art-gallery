@@ -6,8 +6,8 @@ export {
 } from "./api/artistsApi";
 
 export type {
-  TPainting,
-  TArtistsResponse,
-  TStaticArtistsResponse,
-  TArtistResponse,
+  IPaintingDto,
+  IArtistsDto,
+  IStaticArtistsDto,
+  IArtistDto,
 } from "./model/types";

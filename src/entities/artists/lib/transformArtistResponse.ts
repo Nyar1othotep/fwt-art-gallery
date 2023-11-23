@@ -1,8 +1,8 @@
-import { TArtistResponse } from "../model/types";
+import { IArtistDto } from "../model/types";
 
 import { truncate } from "./truncate";
 
-export const transformArtistResponse = (response: TArtistResponse) => {
+export const transformArtistResponse = (response: IArtistDto) => {
   if (!response || response.description.length < 265) return response;
 
   const shortDescription = truncate(response.description, 265);

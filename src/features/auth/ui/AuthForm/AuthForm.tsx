@@ -3,12 +3,11 @@ import cn from "classnames/bind";
 import React, { HTMLAttributes, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import { AxiosBaseQueryError } from "@/shared/api";
 import { Button } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
 
 import { getNameError } from "../../lib/getNameError";
-import { TAuthSchema, authSchema } from "../../model/authSchema";
+import { IAuthSchema, authSchema } from "../../model/authSchema";
 import { TAuthVariant } from "../../model/types";
 
 import styles from "./AuthForm.module.scss";
@@ -17,17 +16,17 @@ const cx = cn.bind(styles);
 
 interface IAuthForm extends HTMLAttributes<HTMLElement> {
   theme?: string;
-  error: AxiosBaseQueryError;
   isError: boolean;
   variant: TAuthVariant;
-  onSubmitHandler: ({ email, password }: TAuthSchema) => void;
+  errorMessage: string;
+  onSubmitHandler: ({ email, password }: IAuthSchema) => void;
 }
 
 const AuthForm: React.FC<IAuthForm> = ({
   theme,
-  error,
   isError,
   variant,
+  errorMessage,
   onSubmitHandler,
 }) => {
   const {
@@ -38,12 +37,14 @@ const AuthForm: React.FC<IAuthForm> = ({
   } = useForm({ resolver: yupResolver(authSchema) });
 
   useEffect(() => {
-    if (isError && "data" in error) {
-      setError(getNameError(error), {
-        message: error.data.message,
+    if (isError && errorMessage) {
+      const errorName = getNameError(errorMessage);
+
+      setError(errorName, {
+        message: errorMessage,
       });
     }
-  }, [isError, error]);
+  }, [isError, errorMessage]);
 
   return (
     <form className={cx("auth-form")} onSubmit={handleSubmit(onSubmitHandler)}>

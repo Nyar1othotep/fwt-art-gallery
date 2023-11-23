@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import { AuthContext } from "@/features/auth";
-import { ArtistsList } from "@/widgets/ArtistsList";
+import { ArtistsList } from "@/widgets/artists";
 
 import styles from "./Page.module.scss";
 

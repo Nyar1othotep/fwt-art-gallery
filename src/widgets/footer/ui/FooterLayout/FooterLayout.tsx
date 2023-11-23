@@ -4,7 +4,9 @@ import React, { useContext } from "react";
 import { ThemeContext } from "@/features/theme";
 import { Link } from "@/shared/ui/Link";
 
-import { FooterSocial } from "../FooterSocial";
+import { ReactComponent as IconFacebook } from "../assets/facebook_icon.svg";
+import { ReactComponent as IconInsta } from "../assets/instagram_icon.svg";
+import { ReactComponent as IconVK } from "../assets/vk_icon.svg";
 
 import styles from "./FooterLayout.module.scss";
 
@@ -38,7 +40,37 @@ const FooterLayout: React.FC = () => {
               Минин Максим, 2023
             </p>
           </div>
-          <FooterSocial className="footer__social" />
+          <div className={cx("footer__social", "social-footer")}>
+            <ul className={cx("social-footer__list")}>
+              <li>
+                <Link
+                  className={cx("social-footer__link")}
+                  to="https://www.facebook.com/"
+                  theme={theme}
+                >
+                  <IconFacebook />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className={cx("social-footer__link")}
+                  to="https://vk.com/"
+                  theme={theme}
+                >
+                  <IconVK />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className={cx("social-footer__link")}
+                  to="https://www.instagram.com/"
+                  theme={theme}
+                >
+                  <IconInsta />
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </footer>

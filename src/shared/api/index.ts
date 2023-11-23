@@ -1,8 +1,5 @@
 export { baseApi } from "./baseApi";
 
-export type {
-  AxiosBaseQueryError,
-  TAuthResponse,
-  TRequestAuthBody,
-  TRequestRefreshBody,
-} from "./types";
+export { isAxiosBaseQueryError } from "./isAxiosBaseQueryError";
+
+export type { IAuthDto, IRequestAuthBody, IRequestRefreshBody } from "./types";

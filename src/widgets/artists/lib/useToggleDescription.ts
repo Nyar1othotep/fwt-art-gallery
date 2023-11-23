@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import { TArtistResponse } from "@/entities/artists";
+import { IArtistDto } from "@/entities/artists";
 
-export const useToggleDescription = (artist: TArtistResponse) => {
+export const useToggleDescription = (artist: IArtistDto) => {
   let description = "";
   const [isShow, setIsShow] = useState(!artist.shortDescription);
 

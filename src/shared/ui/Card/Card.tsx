@@ -2,7 +2,7 @@ import cn from "classnames/bind";
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
 
-import { TImage } from "@/shared/model/types";
+import { IImage } from "@/shared/model/types";
 
 import { ReactComponent as Icon } from "../../assets/arrow_icon.svg";
 import { Image } from "../Image";
@@ -14,7 +14,7 @@ const cx = cn.bind(styles);
 interface ICard extends React.HTMLAttributes<HTMLDivElement> {
   to?: string;
   year: string;
-  image: TImage;
+  image: IImage;
   title: string;
   theme?: string;
   onClick?: () => void;

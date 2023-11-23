@@ -1,10 +1,10 @@
 import Cookies from "js-cookie";
 
-import { TAuthResponse } from "../../api";
+import { IAuthDto } from "../../api";
 
 import { getTokensExpires } from "./getTokensExpires";
 
-export const setTokensToCookie = (tokens: TAuthResponse) => {
+export const setTokensToCookie = (tokens: IAuthDto) => {
   const expires = getTokensExpires(tokens);
 
   Cookies.set("accessToken", tokens.accessToken, {

@@ -1,28 +1,24 @@
-import { SerializedError } from "@reduxjs/toolkit";
+export interface IAxiosBaseQueryError {
+  status: number;
+  data: {
+    statusCode: number;
+    message: string;
+    error: string;
+  };
+}
 
-export type AxiosBaseQueryError =
-  | {
-      status: number;
-      data: {
-        statusCode: number;
-        message: string;
-        error: string;
-      };
-    }
-  | SerializedError;
-
-export type TAuthResponse = {
+export interface IAuthDto {
   accessToken: string;
   refreshToken: string;
-};
+}
 
-export type TRequestAuthBody = {
+export interface IRequestAuthBody {
   username: string;
   password: string;
   fingerprint: string;
-};
+}
 
-export type TRequestRefreshBody = {
+export interface IRequestRefreshBody {
   refreshToken: string;
   fingerprint: string;
-};
+}

@@ -1,49 +1,49 @@
-import { TImage } from "@/shared/model/types";
+import { IImage } from "@/shared/model/types";
 
-export type TPainting = {
+export interface IPaintingDto {
   _id: string;
   name: string;
   yearOfCreation: string;
-  image: TImage;
+  image: IImage;
   artist: string;
-};
+}
 
-type TMainPainting = TPainting;
+interface IMainPainting extends IPaintingDto {}
 
-export type TStaticArtistsResponse = {
+export interface IStaticArtistsDto {
   genres: string[];
   _id: string;
   name: string;
   description: string;
   yearsOfLife: string;
   __v: number;
-  mainPainting: TMainPainting;
-};
+  mainPainting: IMainPainting;
+}
 
-export type TMeta = {
+export interface IMeta {
   count: number;
   perPage: number;
   pageNumber: number;
-};
+}
 
-export type TArtistsResponse = {
-  data: TStaticArtistsResponse[];
-  meta: TMeta;
-};
+export interface IArtistsDto {
+  data: IStaticArtistsDto[];
+  meta: IMeta;
+}
 
-type TArtistGenres = {
+interface IArtistGenres {
   _id: string;
   name: string;
-};
+}
 
-export type TArtistResponse = {
-  paintings: TPainting[];
-  genres: TArtistGenres[];
+export interface IArtistDto {
+  paintings: IPaintingDto[];
+  genres: IArtistGenres[];
   _id: string;
   name: string;
   description: string;
   shortDescription?: string;
   yearsOfLife: string;
-  avatar: TImage;
-  mainPainting: TMainPainting;
-};
+  avatar: IImage;
+  mainPainting: IMainPainting;
+}
