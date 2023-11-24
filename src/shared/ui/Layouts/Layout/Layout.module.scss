@@ -2,7 +2,6 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 80px;
   background: var(--primary-white);
 
   &--dark {
@@ -11,9 +10,5 @@
 
   &__main {
     flex: 1 1 auto;
-  }
-
-  @include mediaSmall {
-    gap: 100px;
   }
 }

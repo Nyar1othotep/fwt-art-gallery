@@ -1,9 +1,11 @@
 import cn from "classnames/bind";
 import React, { useContext } from "react";
-import { Navigate, Outlet, useParams } from "react-router-dom";
+import { Navigate, Outlet, useNavigate, useParams } from "react-router-dom";
 
 import { AuthContext } from "@/features/auth";
 import { ThemeContext } from "@/features/theme";
+import { ReactComponent as IconBack } from "@/shared/assets/arrow_icon.svg";
+import { Button } from "@/shared/ui/Button";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
 import { ArtistSkeleton } from "@/shared/ui/Skeletons/PageSkeleton";
 import { Skeleton } from "@/shared/ui/Skeletons/Skeleton";
@@ -24,6 +26,9 @@ const ArtistProfile: React.FC = () => {
     isAuth,
     artistId,
   });
+  const navigate = useNavigate();
+
+  const handleClick = () => navigate("/");
 
   const ArtistInfoSkeleton = <ArtistSkeleton theme={theme} />;
 
@@ -41,6 +46,15 @@ const ArtistProfile: React.FC = () => {
     <div className={cx("artist-profile-page")}>
       <div className={cx("artist-profile-page__container")}>
         <div className={cx("artist-profile-page__content")}>
+          <Button
+            className={cx("artist-profile-page__btn")}
+            theme={theme}
+            variant="text"
+            onClick={handleClick}
+          >
+            <IconBack className={cx("artist-profile-page__btn-icon")} />{" "}
+            <p className={cx("artist-profile-page__btn-text")}>Back</p>
+          </Button>
           <section>
             {!isLoading && artist ? (
               <ArtistInfo artist={artist} />
