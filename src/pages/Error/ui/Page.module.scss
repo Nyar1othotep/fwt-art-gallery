@@ -1,0 +1,30 @@
+.error-page {
+  &__container {
+    @include container;
+  }
+
+  &__content {
+    @include flexItemsCenter;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  &__message {
+    @include h4;
+    color: var(--primary-dark);
+    text-align: center;
+
+    @include mediaSmall {
+      @include h3;
+    }
+
+    &--dark {
+      color: var(--primary-white);
+    }
+  }
+
+  &__icon {
+    transform: rotate(180deg);
+  }
+}

@@ -11,8 +11,10 @@
   }
 
   &__background-wrapper {
-    width: 498px;
-    height: 700px;
+    @include mediaLarge {
+      width: 498px;
+      height: 700px;
+    }
   }
 
   &__background {

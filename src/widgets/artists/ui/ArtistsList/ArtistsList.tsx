@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { ThemeContext } from "@/features/theme";
 import { Card } from "@/shared/ui/Card";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
-import { Skeleton } from "@/shared/ui/Skeleton";
+import { Skeleton } from "@/shared/ui/Skeletons/Skeleton";
 
 import { useArtistsFetchData } from "../../lib/useArtistsFetchData";
 

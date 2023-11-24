@@ -1,6 +1,9 @@
 .artist-info {
+  margin: 0 -20px;
+
   @include mediaLarge {
     position: relative;
+    margin: auto;
   }
 
   &__avatar {

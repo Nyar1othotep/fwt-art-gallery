@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { Login, Register } from "@/features/auth";
 import { ArtistProfile } from "@/pages/ArtistProfile";
+import { ErrorPage } from "@/pages/Error";
 import { MainPage } from "@/pages/Main";
 
 import BaseLayout from "./BaseLayout";
@@ -31,7 +32,7 @@ export const routing = () =>
   createBrowserRouter([
     {
       element: <BaseLayout />,
-      errorElement: <div>error</div>,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: "/",
@@ -42,6 +43,10 @@ export const routing = () =>
           path: "/artist/:artistId/",
           element: <ArtistProfile />,
           children: authChildrens,
+        },
+        {
+          path: "*",
+          element: <ErrorPage />,
         },
       ],
     },

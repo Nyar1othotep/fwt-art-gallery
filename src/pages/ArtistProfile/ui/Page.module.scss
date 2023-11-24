@@ -13,9 +13,17 @@
 
   &__container {
     @include container;
+  }
 
-    &--custom {
-      padding: 0;
+  &__content > *:not(:last-child) {
+    margin: 0px 0px 20px 0px;
+
+    @include mediaSmall {
+      margin: 0px 0px 40px 0px;
+    }
+
+    @include mediaLarge {
+      margin: 0px 0px 160px 0px;
     }
   }
 

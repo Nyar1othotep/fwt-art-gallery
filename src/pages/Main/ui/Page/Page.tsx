@@ -17,7 +17,9 @@ const MainPage: React.FC = () => {
   return (
     <div className={cx("main-page")}>
       <div className={cx("main-page__container")}>
-        <ArtistsList isAuth={isAuth} filters={filters} />
+        <section>
+          <ArtistsList isAuth={isAuth} filters={filters} />
+        </section>
         <Outlet />
       </div>
     </div>

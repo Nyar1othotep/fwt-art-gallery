@@ -1,4 +1,5 @@
 .base-layout {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 80px;
@@ -6,6 +7,10 @@
 
   &--dark {
     background: var(--primary-black);
+  }
+
+  &__main {
+    flex: 1 1 auto;
   }
 
   @include mediaSmall {

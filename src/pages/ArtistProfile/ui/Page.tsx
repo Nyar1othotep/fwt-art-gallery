@@ -4,6 +4,9 @@ import { Navigate, Outlet, useParams } from "react-router-dom";
 
 import { AuthContext } from "@/features/auth";
 import { ThemeContext } from "@/features/theme";
+import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
+import { ArtistSkeleton } from "@/shared/ui/Skeletons/PageSkeleton";
+import { Skeleton } from "@/shared/ui/Skeletons/Skeleton";
 import { ArtistInfo } from "@/widgets/artists";
 import { ArtworksLayout } from "@/widgets/artworks";
 
@@ -22,32 +25,45 @@ const ArtistProfile: React.FC = () => {
     artistId,
   });
 
-  if (isLoading) return <div>...loading</div>;
+  const ArtistInfoSkeleton = <ArtistSkeleton theme={theme} />;
 
-  // TODO: Сделать вместо этого редирект на страницу с ошибкой
-  if (!artist) return <Navigate to="/" />;
+  const ArtworksSkeleton = (
+    <GridLayout>
+      {Array.from({ length: 6 }, (_, key) => (
+        <Skeleton key={key} theme={theme} />
+      ))}
+    </GridLayout>
+  );
+
+  if (!isLoading && !artist) return <Navigate to="/error" />;
 
   return (
     <div className={cx("artist-profile-page")}>
-      <div
-        className={cx(
-          "artist-profile-page__container",
-          "artist-profile-page__container--custom",
-        )}
-      >
-        {/* // TODO: Добавить сюда скелетон */}
-        <ArtistInfo artist={artist} />
-      </div>
       <div className={cx("artist-profile-page__container")}>
-        <div
-          className={cx(
-            "artist-profile-page__heading",
-            `artist-profile-page__heading--${theme}`,
-          )}
-        >
-          Artworks
+        <div className={cx("artist-profile-page__content")}>
+          <section>
+            {!isLoading && artist ? (
+              <ArtistInfo artist={artist} />
+            ) : (
+              ArtistInfoSkeleton
+            )}
+          </section>
+          <section>
+            <div
+              className={cx(
+                "artist-profile-page__heading",
+                `artist-profile-page__heading--${theme}`,
+              )}
+            >
+              Artworks
+            </div>
+            {!isLoading && artist ? (
+              <ArtworksLayout artist={artist} />
+            ) : (
+              ArtworksSkeleton
+            )}
+          </section>
         </div>
-        <ArtworksLayout artist={artist} />
       </div>
       <Outlet />
     </div>
