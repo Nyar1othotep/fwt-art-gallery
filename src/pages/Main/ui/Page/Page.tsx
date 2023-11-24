@@ -1,8 +1,9 @@
 import cn from "classnames/bind";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Outlet } from "react-router-dom";
 
 import { AuthContext } from "@/features/auth";
+import { FiltersContext } from "@/features/filters";
 import { ArtistsList } from "@/widgets/artists";
 
 import styles from "./Page.module.scss";
@@ -11,8 +12,7 @@ const cx = cn.bind(styles);
 
 const MainPage: React.FC = () => {
   const { isAuth } = useContext(AuthContext);
-  // TODO: Add Filters context
-  const [filters] = useState({ perPage: 6 });
+  const { filters } = useContext(FiltersContext);
 
   return (
     <div className={cx("main-page")}>

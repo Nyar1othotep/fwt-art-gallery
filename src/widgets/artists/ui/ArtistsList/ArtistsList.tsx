@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
+import { IFilters } from "@/features/filters";
 import { ThemeContext } from "@/features/theme";
 import { Card } from "@/shared/ui/Card";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
@@ -10,13 +11,8 @@ import { useArtistsFetchData } from "../../lib/useArtistsFetchData";
 
 interface IArtistsList {
   isAuth: boolean;
-  filters: TFilters;
+  filters: IFilters;
 }
-
-// TODO: Add Filters context
-type TFilters = {
-  perPage: number;
-};
 
 const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
   const { theme } = useContext(ThemeContext);

@@ -3,18 +3,14 @@ import {
   IArtistsDto,
   useGetArtistsQuery,
 } from "@/entities/artists";
+import { IFilters } from "@/features/filters";
 
 import { getTotalPages } from "./getTotalPages";
 
 type Props = {
   isAuth: boolean;
-  filters: TFilters;
+  filters: IFilters;
   pageNumber: number;
-};
-
-// TODO: Add Filters context
-type TFilters = {
-  perPage: number;
 };
 
 export const useArtistsFetchData = ({ isAuth, filters, pageNumber }: Props) => {
@@ -24,7 +20,7 @@ export const useArtistsFetchData = ({ isAuth, filters, pageNumber }: Props) => {
     {
       filters: {
         ...filters,
-        perPage: filters.perPage * pageNumber,
+        perPage: Number(filters.perPage) * pageNumber,
         pageNumber: 1,
       },
     },
