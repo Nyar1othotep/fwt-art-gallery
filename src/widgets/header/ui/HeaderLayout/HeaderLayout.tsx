@@ -1,10 +1,11 @@
 import cn from "classnames/bind";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { ThemeContext, ToggleTheme } from "@/features/theme";
 import { Link } from "@/shared/ui/Link";
 import { Sidebar } from "@/shared/ui/Sidebar";
 
+import { useBreakpoint } from "../../lib/useBreakpoint";
 import { ReactComponent as IconBurger } from "../assets/buger_icon.svg";
 import { ReactComponent as IconLogo } from "../assets/logo.svg";
 import { HeaderAccount } from "../HeaderAccount";
@@ -15,7 +16,12 @@ const cx = cn.bind(styles);
 
 const HeaderLayout: React.FC = () => {
   const { theme } = useContext(ThemeContext);
+  const [isLargeView] = useBreakpoint(1440);
   const [isShow, setIsShow] = useState(false);
+
+  useEffect(() => {
+    if (isLargeView) setIsShow(false);
+  }, [isLargeView]);
 
   const handleShow = () => setIsShow(true);
   const handleClose = () => setIsShow(false);

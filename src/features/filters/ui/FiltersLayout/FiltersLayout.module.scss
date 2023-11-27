@@ -1,0 +1,29 @@
+.filters-layout {
+  @include flexItemsCenter;
+  gap: 20px;
+}
+
+.sidebar-content {
+  height: 100%;
+  padding: 100px 20px 20px;
+  display: flex;
+  flex-direction: column;
+
+  @include mediaSmall {
+    padding: 183px 20px 20px;
+  }
+
+  @include mediaLarge {
+    padding: 183px 132px 40px 40px;
+  }
+
+  &__accordion {
+    flex: 1 1 auto;
+  }
+
+  &__controls {
+    margin: 20px 0px 0px 0px;
+    @include flexItemsCenter;
+    justify-content: space-between;
+  }
+}

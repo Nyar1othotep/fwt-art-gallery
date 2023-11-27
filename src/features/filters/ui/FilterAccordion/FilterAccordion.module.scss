@@ -1,0 +1,72 @@
+.filter-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  &__header {
+    @include flexItemsCenter;
+    justify-content: space-between;
+    @include h6;
+    cursor: pointer;
+
+    @include mediaSmall {
+      @include h4;
+    }
+  }
+
+  &__svg {
+    transform: scale(0.5);
+
+    @include mediaSmall {
+      transform: scale(1);
+    }
+  }
+
+  &__header {
+    margin: 0px 0px 20px 0px;
+    width: 320px;
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 12px;
+    column-gap: 60px;
+
+    @include mediaSmall {
+      column-gap: 100px;
+    }
+  }
+
+  &__text {
+    width: max-content;
+    @include pSmallLight;
+    cursor: pointer;
+
+    &--light {
+      color: var(--primary-dark-gray);
+
+      &:hover:not(&--active) {
+        color: var(--primary-black);
+      }
+
+      &--active {
+        color: var(--primary-black);
+        @include pSmallMedium;
+      }
+    }
+
+    &--dark {
+      color: var(--primary-light-gray);
+
+      &:hover:not(&--active) {
+        color: var(--primary-white);
+      }
+
+      &--active {
+        color: var(--accent-gold);
+        @include pSmallMedium;
+      }
+    }
+  }
+}

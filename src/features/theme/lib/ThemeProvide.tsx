@@ -27,7 +27,7 @@ const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   const toggleTheme = useCallback(() => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  }, []);
+  }, [setTheme]);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

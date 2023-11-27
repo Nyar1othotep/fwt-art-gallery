@@ -22,3 +22,8 @@ export interface IRequestRefreshBody {
   refreshToken: string;
   fingerprint: string;
 }
+
+export interface IGenres {
+  _id: string;
+  name: string;
+}

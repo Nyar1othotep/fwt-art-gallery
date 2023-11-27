@@ -23,7 +23,6 @@ const Sidebar: React.FC<ISidebar> = ({
 }) => (
   <TransitionWrapper
     isShow={isShow}
-    variant="sidebar"
     onClose={onClose}
     className={className}
     enterDoneClass={cx("sidebar__enter-done")}

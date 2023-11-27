@@ -1,3 +1,4 @@
+import { IGenres } from "@/shared/api";
 import { IImage } from "@/shared/model/types";
 
 export interface IPaintingDto {
@@ -31,14 +32,9 @@ export interface IArtistsDto {
   meta: IMeta;
 }
 
-interface IArtistGenres {
-  _id: string;
-  name: string;
-}
-
 export interface IArtistDto {
   paintings: IPaintingDto[];
-  genres: IArtistGenres[];
+  genres: IGenres[];
   _id: string;
   name: string;
   description: string;

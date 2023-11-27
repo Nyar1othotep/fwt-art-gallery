@@ -10,17 +10,16 @@ import { getTotalPages } from "./getTotalPages";
 type Props = {
   isAuth: boolean;
   filters: IFilters;
-  pageNumber: number;
 };
 
-export const useArtistsFetchData = ({ isAuth, filters, pageNumber }: Props) => {
+export const useArtistsFetchData = ({ isAuth, filters }: Props) => {
   const { data: staticData, isLoading: isStaticLoading } =
     useGetStaticArtistsQuery(undefined, { skip: isAuth });
   const { data = {}, isLoading } = useGetArtistsQuery(
     {
       filters: {
         ...filters,
-        perPage: Number(filters.perPage) * pageNumber,
+        perPage: +filters.perPage * +filters.pageNumber,
         pageNumber: 1,
       },
     },

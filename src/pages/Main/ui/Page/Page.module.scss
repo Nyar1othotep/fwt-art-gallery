@@ -9,4 +9,10 @@
   &__container {
     @include container;
   }
+
+  &__controls {
+    padding: 0px 0px 20px 0px;
+    @include flexItemsCenter;
+    justify-content: space-between;
+  }
 }

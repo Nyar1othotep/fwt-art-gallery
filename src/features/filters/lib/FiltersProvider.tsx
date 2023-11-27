@@ -1,18 +1,23 @@
 import React, {
   PropsWithChildren,
+  useCallback,
   useContext,
   useEffect,
-  useState,
+  useMemo,
 } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { AuthContext } from "@/features/auth";
 
 import { IFilters } from "../model/types";
 
-import { toParams } from "./toParams";
+import { removeEmpty } from "./removeEmpty";
 
-interface IFiltersContext {
-  filters: IFilters;
+interface IFiltersContext<T> {
+  filters: T;
+  setFilters: (newFilters: T) => void;
+  clearFilters: () => void;
+  removeFilters: () => void;
 }
 
 const defaultFilters = {
@@ -20,38 +25,41 @@ const defaultFilters = {
   pageNumber: "1",
 };
 
-export const FiltersContext = React.createContext({} as IFiltersContext);
+export const FiltersContext = React.createContext(
+  {} as IFiltersContext<IFilters>,
+);
 
 const FiltersProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const search = window.location.search.substring(1);
   const { isAuth } = useContext(AuthContext);
-  const [filters] = useState<IFilters>(
-    JSON.parse(
-      `{"${decodeURI(search)
-        .replace(/"/g, '\\"')
-        .replace(/&/g, '","')
-        .replace(/=/g, '":"')}"}`,
-    ),
+  const [params, setParams] = useSearchParams();
+  const filters = useMemo(
+    () => Object.fromEntries(params) as unknown as IFilters,
+    [params],
   );
 
   useEffect(() => {
-    if (isAuth && !window.location.search && window.location.pathname === "/") {
-      window.location.search = toParams(defaultFilters);
+    if (isAuth && !params.toString() && window.location.pathname === "/") {
+      setParams(defaultFilters);
     }
   });
 
-  // TODO: Covert that ↑ shit to useSearchParams
+  const setFilters = useCallback(
+    (newFilters: IFilters) => setParams(removeEmpty(newFilters)),
+    [setParams],
+  );
 
-  // const setFilters = (newFilters: IFilters) => {
-  //   setParams(newFilters);
-  // };
+  const clearFilters = useCallback(() => {
+    setParams(defaultFilters);
+  }, [setParams]);
 
-  // const clearFilters = () => {
-  //   setParams(defaultFilters);
-  // };
+  const removeFilters = useCallback(() => {
+    setParams({});
+  }, [setParams]);
 
   return (
-    <FiltersContext.Provider value={{ filters }}>
+    <FiltersContext.Provider
+      value={{ filters, setFilters, clearFilters, removeFilters }}
+    >
       {children}
     </FiltersContext.Provider>
   );

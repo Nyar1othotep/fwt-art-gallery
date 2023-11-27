@@ -9,19 +9,19 @@ const cx = cn.bind(styles);
 interface ILayout extends HTMLAttributes<HTMLDivElement> {
   theme?: string;
   headerSlot: ReactNode;
+  contentSlot?: ReactNode;
   footerSlot: ReactNode;
 }
 
 const Layout: React.FC<ILayout> = ({
   theme = "light",
   headerSlot,
+  contentSlot,
   footerSlot,
 }) => (
   <div className={cx("base-layout", `base-layout--${theme}`)}>
     {headerSlot}
-    <main className={cx("base-layout__main")}>
-      <Outlet />
-    </main>
+    <main className={cx("base-layout__main")}>{contentSlot || <Outlet />}</main>
     {footerSlot}
   </div>
 );

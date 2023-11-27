@@ -9,12 +9,6 @@
   background: rgba(3, 3, 3, 0.3);
   transition: opacity 500ms ease-in-out;
 
-  &--sidebar {
-    @include mediaLarge {
-      display: none;
-    }
-  }
-
   &--slider {
     transition: none;
   }

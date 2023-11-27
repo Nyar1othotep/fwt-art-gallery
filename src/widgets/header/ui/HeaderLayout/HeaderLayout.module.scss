@@ -51,13 +51,13 @@
 }
 
 .sidebar-content {
-  padding: 144px 0 20px 47px;
+  padding: 144px 77px 20px 47px;
   display: inline-flex;
   flex-direction: column;
   gap: 40px;
 
   @include mediaSmall {
-    padding: 200px 0 20px 94px;
+    padding: 200px 146px 20px 94px;
     gap: 60px;
   }
 }

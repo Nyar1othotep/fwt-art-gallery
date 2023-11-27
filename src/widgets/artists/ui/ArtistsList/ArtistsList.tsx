@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
-import { IFilters } from "@/features/filters";
+import { FiltersContext } from "@/features/filters";
 import { ThemeContext } from "@/features/theme";
 import { Card } from "@/shared/ui/Card";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
@@ -11,24 +11,25 @@ import { useArtistsFetchData } from "../../lib/useArtistsFetchData";
 
 interface IArtistsList {
   isAuth: boolean;
-  filters: IFilters;
 }
 
-const ArtistsList: React.FC<IArtistsList> = ({ isAuth, filters }) => {
+const ArtistsList: React.FC<IArtistsList> = ({ isAuth }) => {
   const { theme } = useContext(ThemeContext);
-  const [pageNumber, setPageNumber] = useState(1);
+  const { filters, setFilters, removeFilters } = useContext(FiltersContext);
   const { artists, totalPages, isLoading } = useArtistsFetchData({
     isAuth,
     filters,
-    pageNumber,
   });
   const { ref, inView } = useInView({ rootMargin: "400px", threshold: 1 });
 
   useEffect(() => {
-    if (isAuth && inView && pageNumber < totalPages)
-      setPageNumber((prev) => prev + 1);
+    if (isAuth && inView && +filters.pageNumber < totalPages)
+      setFilters({
+        ...filters,
+        pageNumber: String(+filters.pageNumber + 1),
+      });
 
-    if (!isAuth) setPageNumber(1);
+    if (!isAuth) removeFilters();
   }, [isAuth, inView, totalPages]);
 
   if (isLoading) {

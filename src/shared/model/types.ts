@@ -16,7 +16,7 @@ export interface IImage {
 
 export type TModalVariant = "default" | "popup" | "edit";
 
-export type TTransitionWrapperVariant = "sidebar" | "modal" | "slider";
+export type TTransitionWrapperVariant = "modal" | "slider";
 
 export interface IToken {
   username: string;

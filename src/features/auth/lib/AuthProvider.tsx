@@ -21,15 +21,18 @@ export const AuthContext = React.createContext<IAuthContext>(
 const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [isAuth, setIsAuth] = useState(() => getIsAuth());
 
-  const setTokens = useCallback((tokens: IAuthDto) => {
-    setTokensToCookie(tokens);
-    setIsAuth(true);
-  }, []);
+  const setTokens = useCallback(
+    (tokens: IAuthDto) => {
+      setTokensToCookie(tokens);
+      setIsAuth(true);
+    },
+    [setIsAuth, setTokensToCookie],
+  );
 
   const onLogout = useCallback(() => {
     removeTokensFromCookies();
     setIsAuth(false);
-  }, []);
+  }, [setIsAuth, removeTokensFromCookies]);
 
   return (
     <AuthContext.Provider value={{ isAuth, setTokens, onLogout }}>

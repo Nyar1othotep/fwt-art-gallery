@@ -7,7 +7,7 @@ import { ThemeContext } from "@/features/theme";
 import { ReactComponent as IconBack } from "@/shared/assets/arrow_icon.svg";
 import { Button } from "@/shared/ui/Button";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
-import { ArtistSkeleton } from "@/shared/ui/Skeletons/PageSkeleton";
+import { ArtistSkeleton } from "@/shared/ui/Skeletons/ArtistSkeleton";
 import { Skeleton } from "@/shared/ui/Skeletons/Skeleton";
 import { ArtistInfo } from "@/widgets/artists";
 import { ArtworksLayout } from "@/widgets/artworks";

@@ -7,6 +7,7 @@ import { ErrorPage } from "@/pages/Error";
 import { MainPage } from "@/pages/Main";
 
 import BaseLayout from "./BaseLayout";
+import ErrorLayout from "./ErrorLayout";
 import AuthGuard from "./guard/AuthGuard";
 
 const authChildrens = [
@@ -32,7 +33,7 @@ export const routing = () =>
   createBrowserRouter([
     {
       element: <BaseLayout />,
-      errorElement: <ErrorPage />,
+      errorElement: <ErrorLayout />,
       children: [
         {
           path: "/",
