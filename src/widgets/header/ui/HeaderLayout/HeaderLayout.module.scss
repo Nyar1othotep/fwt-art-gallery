@@ -26,6 +26,24 @@
   &__content {
     @include flexItemsCenter;
     justify-content: space-between;
+    gap: 20px;
+  }
+
+  &__right {
+    @include flexItemsCenter;
+    gap: 20px;
+
+    &--active {
+      width: 100%;
+    }
+  }
+
+  &__search {
+    width: 100%;
+
+    @include mediaSmall {
+      display: none;
+    }
   }
 
   &__menu {
@@ -37,14 +55,24 @@
     }
   }
 
-  &__icon-burger {
+  &__icon-burger,
+  &__icon-search {
     display: block;
+    cursor: pointer;
 
     &--dark {
       color: var(--primary-light-gray);
     }
+  }
 
+  &__icon-burger {
     @include mediaLarge {
+      display: none;
+    }
+  }
+
+  &__icon-search {
+    @include mediaSmall {
       display: none;
     }
   }

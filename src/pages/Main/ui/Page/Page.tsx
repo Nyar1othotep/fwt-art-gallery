@@ -23,7 +23,7 @@ const MainPage: React.FC = () => {
           <Button theme={theme} variant="text">
             Add artist
           </Button>
-          <FiltersLayout />
+          {isAuth && <FiltersLayout />}
         </div>
         <section>
           <ArtistsList isAuth={isAuth} />

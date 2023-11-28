@@ -1,6 +1,19 @@
 .filters-layout {
   @include flexItemsCenter;
   gap: 20px;
+
+  &__search {
+    width: 304px;
+    display: none;
+
+    @include mediaSmall {
+      display: block;
+    }
+
+    @include mediaLarge {
+      width: 344px;
+    }
+  }
 }
 
 .sidebar-content {

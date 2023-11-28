@@ -125,6 +125,12 @@
   font-weight: 700;
 }
 
+@mixin collapse {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 @mixin linearGradientText($first-color, $second-color) {
   background: linear-gradient(180deg, $first-color 0%, $second-color 100%);
   background-clip: text;

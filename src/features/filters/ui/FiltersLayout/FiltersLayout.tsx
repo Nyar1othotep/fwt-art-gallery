@@ -8,9 +8,11 @@ import { Sidebar } from "@/shared/ui/Sidebar";
 
 import { sortBy } from "../../config";
 import { FiltersContext } from "../../lib/FiltersProvider";
+import { getTotalGenres } from "../../lib/genres";
 import { useSelectedFilters } from "../../lib/useSelectedFilters";
 import { ReactComponent as IconFilter } from "../assets/filter_icon.svg";
 import { FilterAccordion } from "../FilterAccordion";
+import { FilterSearch } from "../FilterSearch";
 
 import styles from "./FiltersLayout.module.scss";
 
@@ -32,7 +34,9 @@ const FiltersLayout: React.FC = () => {
 
   return (
     <div className={cx("filters-layout")}>
-      <div className={cx("filters-layout__search")}>search</div>
+      <div className={cx("filters-layout__search")}>
+        <FilterSearch />
+      </div>
       <Button theme={theme} variant="icon" onClick={handleShow}>
         <IconFilter />
       </Button>
@@ -42,14 +46,17 @@ const FiltersLayout: React.FC = () => {
         >
           <FilterAccordion className={cx("sidebar-content__accordion")}>
             <FilterAccordion.Item>
-              <FilterAccordion.Header theme={theme} title="Genres" />
+              <FilterAccordion.Header
+                theme={theme}
+                title={`Genres${getTotalGenres(selectedFilters.genres)}`}
+              />
               <FilterAccordion.Body>
                 {genres &&
                   genres.map(({ _id, name }) => (
                     <FilterAccordion.Text
                       key={_id}
                       theme={theme}
-                      forceActive={!!filters.genres?.includes(_id)}
+                      forceActive={!!selectedFilters.genres?.includes(_id)}
                       onClick={() =>
                         handleSelect({ type: "genres", genre: _id })
                       }

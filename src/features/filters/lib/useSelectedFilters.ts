@@ -1,14 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { IFilters } from "../model/types";
+import { IFilters, ISelected } from "../model/types";
 
 import { setGenre } from "./genres";
-
-interface ISelected {
-  type?: string;
-  genre?: string;
-  orderBy?: string;
-}
 
 export const useSelectedFilters = (filters: IFilters) => {
   const [selectedFilters, setSelectedFilters] = useState<IFilters>(filters);
@@ -22,7 +16,11 @@ export const useSelectedFilters = (filters: IFilters) => {
         genres: setGenre(selectedFilters.genres!, selected.genre),
       });
     } else {
-      setSelectedFilters({ ...selectedFilters, orderBy: selected.orderBy });
+      setSelectedFilters({
+        ...selectedFilters,
+        sortBy: !selected.orderBy ? "" : "name",
+        orderBy: selected.orderBy,
+      });
     }
   };
 
