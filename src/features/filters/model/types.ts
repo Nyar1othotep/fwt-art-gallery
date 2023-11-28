@@ -7,11 +7,6 @@ export interface IFilters {
   pageNumber: string;
 }
 
-export interface ISelectedFilters {
-  genres?: string;
-  orderBy?: string;
-}
-
 export interface ISelected {
   type?: string;
   genre?: string;
