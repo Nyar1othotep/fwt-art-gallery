@@ -21,13 +21,12 @@ const FiltersLayout: React.FC = () => {
   const { filters, setFilters, clearFilters } = useContext(FiltersContext);
   const { data: genres } = useGetGenresQuery();
   const [isShow, setIsShow] = useState(false);
-  const { selectedGengres, handleSelect } = useSelectedFilters(filters);
+  const { selectedFilters, handleSelect } = useSelectedFilters(filters);
 
   const handleShow = () => setIsShow(true);
   const handleClose = () => setIsShow(false);
 
-  const handleResult = () =>
-    setFilters({ ...filters, genres: selectedGengres });
+  const handleResult = () => setFilters(selectedFilters);
 
   const handleClear = () => clearFilters();
 
@@ -43,7 +42,7 @@ const FiltersLayout: React.FC = () => {
         >
           <FilterAccordion className={cx("sidebar-content__accordion")}>
             <FilterAccordion.Item>
-              <FilterAccordion.Header title="Genres" />
+              <FilterAccordion.Header theme={theme} title="Genres" />
               <FilterAccordion.Body>
                 {genres &&
                   genres.map(({ _id, name }) => (
@@ -51,7 +50,9 @@ const FiltersLayout: React.FC = () => {
                       key={_id}
                       theme={theme}
                       forceActive={!!filters.genres?.includes(_id)}
-                      onClick={() => handleSelect(_id)}
+                      onClick={() =>
+                        handleSelect({ type: "genres", genre: _id })
+                      }
                     >
                       {name}
                     </FilterAccordion.Text>
@@ -59,19 +60,25 @@ const FiltersLayout: React.FC = () => {
               </FilterAccordion.Body>
             </FilterAccordion.Item>
             <FilterAccordion.Item>
-              <FilterAccordion.Header title="Sort by" />
+              <FilterAccordion.Header theme={theme} title="Sort by" />
               <FilterAccordion.Body>
-                {sortBy.map(({ type, name }) => (
-                  <FilterAccordion.Text
-                    key={type + name}
-                    theme={theme}
-                    // TODO: Refactor this shit to 'type'
-                    forceActive={!!filters.genres?.includes(type)}
-                    onClick={() => handleSelect(type)}
-                  >
-                    {name}
-                  </FilterAccordion.Text>
-                ))}
+                {sortBy.map(({ filter, type, name }) => {
+                  const forceActive = !selectedFilters.orderBy
+                    ? type === ""
+                    : selectedFilters.orderBy === type;
+
+                  return (
+                    <FilterAccordion.Text
+                      key={type + name}
+                      theme={theme}
+                      variant="radio"
+                      forceActive={forceActive}
+                      onClick={() => handleSelect({ [filter]: type })}
+                    >
+                      {name}
+                    </FilterAccordion.Text>
+                  );
+                })}
               </FilterAccordion.Body>
             </FilterAccordion.Item>
           </FilterAccordion>

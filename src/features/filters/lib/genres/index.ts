@@ -1,0 +1,1 @@
+export { setGenre } from "./setGenre";

@@ -28,7 +28,7 @@ const ArtistProfile: React.FC = () => {
   });
   const navigate = useNavigate();
 
-  const handleClick = () => navigate("/");
+  const handleClick = () => navigate(-1);
 
   const ArtistInfoSkeleton = <ArtistSkeleton theme={theme} />;
 

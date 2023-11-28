@@ -4,3 +4,8 @@ export interface IFilters {
   perPage: string;
   pageNumber: string;
 }
+
+export interface ISelectedFilters {
+  genres?: string;
+  orderBy?: string;
+}

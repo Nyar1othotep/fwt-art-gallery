@@ -1,28 +1,30 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { IFilters } from "../model/types";
 
-import { removeGenre } from "./removeGenre";
+import { setGenre } from "./genres";
+
+interface ISelected {
+  type?: string;
+  genre?: string;
+  orderBy?: string;
+}
 
 export const useSelectedFilters = (filters: IFilters) => {
-  const [selectedGengres, setSelectedGengres] = useState("");
+  const [selectedFilters, setSelectedFilters] = useState<IFilters>(filters);
 
-  useEffect(() => {
-    if (filters.genres) {
-      setSelectedGengres(filters.genres);
+  useEffect(() => setSelectedFilters(filters), [filters]);
+
+  const handleSelect = (selected: ISelected) => {
+    if (selected.type === "genres" && selected.genre) {
+      setSelectedFilters({
+        ...selectedFilters,
+        genres: setGenre(selectedFilters.genres!, selected.genre),
+      });
     } else {
-      setSelectedGengres("");
+      setSelectedFilters({ ...selectedFilters, orderBy: selected.orderBy });
     }
-  }, [filters.genres]);
+  };
 
-  const handleSelect = (genre: string) =>
-    setSelectedGengres((prev) => {
-      if (prev?.includes(genre)) return removeGenre(prev, genre);
-
-      if (!prev) return genre;
-
-      return `${prev},${genre}`;
-    });
-
-  return { selectedGengres, handleSelect };
+  return { selectedFilters, handleSelect };
 };

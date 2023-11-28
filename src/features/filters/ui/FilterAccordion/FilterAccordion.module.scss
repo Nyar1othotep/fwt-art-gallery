@@ -1,7 +1,12 @@
 .filter-accordion {
+  width: 280px;
   display: flex;
   flex-direction: column;
   gap: 32px;
+
+  @include mediaSmall {
+    width: 320px;
+  }
 
   &__header {
     @include flexItemsCenter;
@@ -23,23 +28,35 @@
   }
 
   &__header {
-    margin: 0px 0px 20px 0px;
-    width: 320px;
+    color: var(--primary-black);
+
+    &:hover {
+      color: var(--primary-dark-gray);
+    }
+
+    &--dark {
+      color: var(--primary-white);
+
+      &:hover {
+        color: var(--primary-light-gray);
+      }
+    }
   }
 
   &__body {
+    margin: 16px 0px 0px 0px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 12px;
     column-gap: 60px;
 
     @include mediaSmall {
+      margin: 20px 0px 0px 0px;
       column-gap: 100px;
     }
   }
 
   &__text {
-    width: max-content;
+    padding: 6px 0;
     @include pSmallLight;
     cursor: pointer;
 

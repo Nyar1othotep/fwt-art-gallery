@@ -4,6 +4,7 @@ import React, {
   ReactNode,
   useCallback,
   useContext,
+  useEffect,
   useState,
 } from "react";
 
@@ -20,35 +21,46 @@ interface IFilterAccordion {
 }
 
 interface IHeader {
+  theme?: string;
   title: string;
 }
 
 interface IText {
-  theme: string;
+  theme?: string;
+  variant?: "default" | "radio";
   onClick: () => void;
   children: ReactNode;
   forceActive: boolean;
 }
 
-interface IAccordionContext {
+interface IItemContext {
   isOpen: boolean;
   toggleOpen: () => void;
 }
 
-const AccordionContext = React.createContext<IAccordionContext>(
-  {} as IAccordionContext,
-);
+const ItemContext = React.createContext<IItemContext>({} as IItemContext);
 
-const Item = ({ children }: PropsWithChildren) => (
-  <div className={cx("filter-accordion__item")}>{children}</div>
-);
+const Item = ({ children }: PropsWithChildren) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-const Header = ({ title }: IHeader) => {
-  const { isOpen, toggleOpen } = useContext(AccordionContext);
+  const toggleOpen = useCallback(() => setIsOpen(!isOpen), [isOpen, setIsOpen]);
+
+  return (
+    <ItemContext.Provider value={{ isOpen, toggleOpen }}>
+      <div className={cx("filter-accordion__item")}>{children}</div>
+    </ItemContext.Provider>
+  );
+};
+
+const Header = ({ theme = "light", title }: IHeader) => {
+  const { isOpen, toggleOpen } = useContext(ItemContext);
 
   return (
     <div
-      className={cx("filter-accordion__header")}
+      className={cx(
+        "filter-accordion__header",
+        `filter-accordion__header--${theme}`,
+      )}
       onClick={toggleOpen}
       aria-hidden="true"
     >
@@ -63,7 +75,7 @@ const Header = ({ title }: IHeader) => {
 };
 
 const Body = ({ children }: PropsWithChildren) => {
-  const { isOpen } = useContext(AccordionContext);
+  const { isOpen } = useContext(ItemContext);
 
   if (!isOpen) return null;
 
@@ -72,15 +84,18 @@ const Body = ({ children }: PropsWithChildren) => {
 
 const Text = ({
   theme = "light",
+  variant = "default",
   onClick,
   children,
   forceActive,
   ...props
 }: IText) => {
-  const [isActive, setIsActive] = useState(forceActive);
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => setIsActive(forceActive), [forceActive]);
 
   const handleClick = () => {
-    setIsActive(!isActive);
+    if (variant !== "radio") setIsActive(!isActive);
     onClick();
   };
 
@@ -102,17 +117,9 @@ const Text = ({
   );
 };
 
-const FilterAccordion = ({ className, children }: IFilterAccordion) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleOpen = useCallback(() => setIsOpen(!isOpen), [isOpen, setIsOpen]);
-
-  return (
-    <AccordionContext.Provider value={{ isOpen, toggleOpen }}>
-      <div className={cx(className, "filter-accordion")}>{children}</div>
-    </AccordionContext.Provider>
-  );
-};
+const FilterAccordion = ({ className, children }: IFilterAccordion) => (
+  <div className={cx(className, "filter-accordion")}>{children}</div>
+);
 
 FilterAccordion.Item = Item;
 FilterAccordion.Header = Header;
