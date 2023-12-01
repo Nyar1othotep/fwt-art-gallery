@@ -1,7 +1,9 @@
 import cn from "classnames/bind";
-import React, { HTMLAttributes, useEffect, useState } from "react";
+import React, { HTMLAttributes } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { routeBack } from "@/shared/helpers/routes";
+import { useBoolean } from "@/shared/lib/useBoolean";
 import { Link } from "@/shared/ui/Link";
 import { Modal } from "@/shared/ui/Modal";
 
@@ -14,36 +16,22 @@ const cx = cn.bind(styles);
 
 interface IAuthModal extends HTMLAttributes<HTMLElement> {
   theme?: string;
-  isClose: boolean;
   variant: TAuthVariant;
 }
 
-const AuthModal: React.FC<IAuthModal> = ({
-  theme,
-  variant,
-  isClose,
-  children,
-}) => {
+const AuthModal: React.FC<IAuthModal> = ({ theme, variant, children }) => {
   const navigate = useNavigate();
-  const [isShow, setIsShow] = useState(true);
-
-  useEffect(() => {
-    if (isClose) setIsShow(false);
-  }, [isClose]);
-
-  const handleClose = () => setIsShow(false);
-
-  const handleExited = () => navigate(-1);
+  const [isModal, { off: handleModalClose }] = useBoolean(true);
 
   const { heading, message, linkText, to } = authContent[variant];
 
   return (
     <Modal
       theme={theme}
-      isShow={isShow}
+      isShow={isModal}
       variant="default"
-      onClose={handleClose}
-      onExited={handleExited}
+      onClose={handleModalClose}
+      onExited={routeBack(navigate)}
     >
       <div className={cx("auth-modal")}>
         <div className={cx("auth-modal__background-wrapper")}>

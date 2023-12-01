@@ -31,15 +31,11 @@ const HeaderAccount: React.FC<IHeaderAccount> = ({
         </Link>
       ) : (
         <>
-          <Link
-            to={`${location.pathname}login`}
-            theme={theme}
-            onClick={onClose}
-          >
+          <Link to={{ search: "login=true" }} theme={theme} onClick={onClose}>
             Log in
           </Link>
           <Link
-            to={`${location.pathname}register`}
+            to={{ search: "register=true" }}
             theme={theme}
             onClick={onClose}
           >

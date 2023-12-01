@@ -1,6 +1,8 @@
 @import "../../styles/mixins.scss";
 
 .card {
+  $parentClass: &;
+
   position: relative;
   overflow: hidden;
 
@@ -45,19 +47,21 @@
     }
   }
 
-  &--dark .card__button {
-    background: var(--accent-gold);
+  &--dark {
+    @include parent($parentClass) {
+      &__button {
+        background: var(--accent-gold);
+      }
+    }
   }
 }
 
 .info-card {
+  $parentClass: &;
+
   width: 100%;
   padding: 8px 12px 8px 12px;
   background: var(--primary-white);
-
-  &--dark {
-    background: var(--primary-black);
-  }
 
   @include mediaSmall {
     padding: 12px;
@@ -83,10 +87,6 @@
         left: -20px;
       }
     }
-
-    &--dark::before {
-      background: var(--accent-gold);
-    }
   }
 
   &__title {
@@ -94,10 +94,6 @@
     @include h6;
     text-transform: uppercase;
     color: var(--primary-black);
-
-    &--dark {
-      color: var(--primary-white);
-    }
 
     @include mediaSmall {
       @include h4;
@@ -108,12 +104,26 @@
     @include pCaptionBold;
     color: var(--accent-red);
 
-    &--dark {
-      color: var(--accent-gold);
-    }
-
     @include mediaSmall {
       @include pButton;
+    }
+  }
+
+  &--dark {
+    background: var(--primary-black);
+
+    @include parent($parentClass) {
+      &__content::before {
+        background: var(--accent-gold);
+      }
+
+      &__title {
+        color: var(--primary-white);
+      }
+
+      &__year {
+        color: var(--accent-gold);
+      }
     }
   }
 }

@@ -31,14 +31,7 @@ const FooterLayout: React.FC = () => {
                 Framework Team
               </Link>
             </p>
-            <p
-              className={cx(
-                "inner-content__copy",
-                `inner-content__copy--${theme}`,
-              )}
-            >
-              Минин Максим, 2023
-            </p>
+            <p className={cx("inner-content__copy")}>Минин Максим, 2023</p>
           </div>
           <div className={cx("footer__social", "social-footer")}>
             <ul className={cx("social-footer__list")}>

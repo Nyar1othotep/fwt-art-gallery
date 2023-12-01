@@ -1,4 +1,9 @@
-import React, { PropsWithChildren, useCallback, useState } from "react";
+import React, {
+  PropsWithChildren,
+  useCallback,
+  useMemo,
+  useState,
+} from "react";
 
 import { IAuthDto } from "@/shared/api";
 import {
@@ -34,11 +39,9 @@ const AuthProvider: React.FC<PropsWithChildren> = ({ children }) => {
     setIsAuth(false);
   }, [setIsAuth, removeTokensFromCookies]);
 
-  return (
-    <AuthContext.Provider value={{ isAuth, setTokens, onLogout }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  const value = useMemo(() => ({ isAuth, setTokens, onLogout }), [isAuth]);
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;

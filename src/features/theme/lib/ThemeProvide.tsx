@@ -2,6 +2,7 @@ import React, {
   PropsWithChildren,
   useCallback,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 
@@ -29,10 +30,10 @@ const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   }, [setTheme]);
 
+  const value = useMemo(() => ({ theme, toggleTheme }), [theme]);
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 };
 

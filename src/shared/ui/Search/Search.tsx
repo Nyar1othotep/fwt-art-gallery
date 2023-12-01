@@ -11,29 +11,27 @@ const cx = cn.bind(styles);
 
 interface ISearch extends InputHTMLAttributes<HTMLInputElement> {
   theme?: string;
+  initValue?: string;
   onSearchChange?: (value: string) => void;
 }
 
 const Search: React.FC<ISearch> = ({
   theme = "light",
+  initValue,
   className,
   onSearchChange,
   ...props
 }) => {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(initValue || "");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-    if (onSearchChange) {
-      onSearchChange(e.target.value);
-    }
+    onSearchChange?.(e.target.value);
   };
 
   const handleClear = () => {
     setValue("");
-    if (onSearchChange) {
-      onSearchChange("");
-    }
+    onSearchChange?.("");
   };
 
   return (

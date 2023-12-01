@@ -1,4 +1,6 @@
 .error-page {
+  $parentClass: &;
+
   padding: 100px 0;
 
   &__container {
@@ -20,13 +22,17 @@
     @include mediaSmall {
       @include h3;
     }
-
-    &--dark {
-      color: var(--primary-white);
-    }
   }
 
   &__icon {
     transform: rotate(180deg);
+  }
+
+  &--dark {
+    @include parent($parentClass) {
+      &__message {
+        color: var(--primary-white);
+      }
+    }
   }
 }

@@ -1,10 +1,11 @@
 import cn from "classnames/bind";
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { Navigate, Outlet, useNavigate, useParams } from "react-router-dom";
 
 import { AuthContext } from "@/features/auth";
 import { ThemeContext } from "@/features/theme";
 import { ReactComponent as IconBack } from "@/shared/assets/arrow_icon.svg";
+import { routeBack } from "@/shared/helpers/routes";
 import { Button } from "@/shared/ui/Button";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
 import { ArtistSkeleton } from "@/shared/ui/Skeletons/ArtistSkeleton";
@@ -22,59 +23,56 @@ const ArtistProfile: React.FC = () => {
   const { artistId } = useParams();
   const { theme } = useContext(ThemeContext);
   const { isAuth } = useContext(AuthContext);
-  const { artist, isLoading } = useArtistsFetchData({
+  const { artist, isArtistLoading } = useArtistsFetchData({
     isAuth,
     artistId,
   });
   const navigate = useNavigate();
 
-  const handleClick = () => navigate(-1);
-
-  const ArtistInfoSkeleton = <ArtistSkeleton theme={theme} />;
-
-  const ArtworksSkeleton = (
-    <GridLayout>
-      {Array.from({ length: 6 }, (_, key) => (
-        <Skeleton key={key} theme={theme} />
-      ))}
-    </GridLayout>
+  const artistInfoSkeleton = useMemo(
+    () => <ArtistSkeleton theme={theme} />,
+    [theme],
   );
 
-  if (!isLoading && !artist) return <Navigate to="/error" />;
+  const artworksSkeleton = useMemo(
+    () => (
+      <GridLayout>
+        {Array.from({ length: 6 }, (_, key) => (
+          <Skeleton key={key} theme={theme} />
+        ))}
+      </GridLayout>
+    ),
+    [theme],
+  );
+
+  if (!isArtistLoading && !artist) return <Navigate to="/error" />;
 
   return (
-    <div className={cx("artist-profile-page")}>
+    <div className={cx("artist-profile-page", `artist-profile-page--${theme}`)}>
       <div className={cx("artist-profile-page__container")}>
         <div className={cx("artist-profile-page__content")}>
           <Button
             className={cx("artist-profile-page__btn")}
             theme={theme}
             variant="text"
-            onClick={handleClick}
+            onClick={routeBack(navigate)}
           >
             <IconBack className={cx("artist-profile-page__btn-icon")} />{" "}
             <p className={cx("artist-profile-page__btn-text")}>Back</p>
           </Button>
           <section>
-            {!isLoading && artist ? (
+            {!isArtistLoading && artist ? (
               <ArtistInfo artist={artist} />
             ) : (
-              ArtistInfoSkeleton
+              artistInfoSkeleton
             )}
           </section>
           <section>
-            <div
-              className={cx(
-                "artist-profile-page__heading",
-                `artist-profile-page__heading--${theme}`,
-              )}
-            >
-              Artworks
-            </div>
-            {!isLoading && artist ? (
+            <div className={cx("artist-profile-page__heading")}>Artworks</div>
+            {!isArtistLoading && artist ? (
               <ArtworksLayout artist={artist} />
             ) : (
-              ArtworksSkeleton
+              artworksSkeleton
             )}
           </section>
         </div>

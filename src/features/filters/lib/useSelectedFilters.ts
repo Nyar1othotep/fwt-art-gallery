@@ -1,28 +1,27 @@
 import { useEffect, useState } from "react";
 
-import { IFilters, ISelected } from "../model/types";
+import { IFilters } from "../model/types";
 
-import { setGenre } from "./genres";
+import { toggleGenre } from "./toggleGenre";
 
 export const useSelectedFilters = (filters: IFilters) => {
-  const [selectedFilters, setSelectedFilters] = useState<IFilters>(filters);
+  const [selectedGenresArray, setSelectedGenresArray] = useState<string[]>([]);
+  const [selectedSort, setSelectedSort] = useState("");
 
-  useEffect(() => setSelectedFilters(filters), [filters]);
+  useEffect(() => {
+    setSelectedGenresArray(filters.genres?.split(",") || []);
+    setSelectedSort(filters.orderBy || "");
+  }, [filters]);
 
-  const handleSelect = (selected: ISelected) => {
-    if (selected.type === "genres" && selected.genre) {
-      setSelectedFilters({
-        ...selectedFilters,
-        genres: setGenre(selectedFilters.genres!, selected.genre),
-      });
-    } else {
-      setSelectedFilters({
-        ...selectedFilters,
-        sortBy: !selected.orderBy ? "" : "name",
-        orderBy: selected.orderBy,
-      });
-    }
+  const handleSelectGenres = (genre: string) => () =>
+    setSelectedGenresArray((prev) => toggleGenre(genre, prev));
+
+  const handleSelectSort = (sort: string) => () => setSelectedSort(sort);
+
+  return {
+    selectedGenresArray,
+    selectedSort,
+    handleSelectGenres,
+    handleSelectSort,
   };
-
-  return { selectedFilters, handleSelect };
 };

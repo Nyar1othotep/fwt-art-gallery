@@ -1,85 +1,53 @@
 import cn from "classnames/bind";
-import React, { HTMLAttributes, useState } from "react";
+import React from "react";
 
-import { ReactComponent as IconPhoto } from "../../assets/photo_icon.svg";
+import { IImageComponent } from "@/shared/model/types";
+
 import { API_URL } from "../../config";
-import { IImage as IImageType } from "../../model/types";
+import { useBoolean } from "../../lib/useBoolean";
 import { Preloader } from "../Preloader";
 
+import ErrorImage from "./ErrorImage";
 import styles from "./Image.module.scss";
 
 const cx = cn.bind(styles);
 
-interface IImage extends HTMLAttributes<HTMLPictureElement> {
-  alt: string;
-  image: IImageType;
-  theme?: string;
-  isOriginal?: boolean;
-}
-
-const Image: React.FC<IImage> = ({
+const Image: React.FC<IImageComponent> = ({
   alt,
   image,
   theme = "light",
-  isOriginal,
   className,
 }) => {
-  const [isError, setIsError] = useState(false);
+  const [isImageLoading, { off: onImageLoaded }] = useBoolean(true);
+  const [isImageError, { on: onImageError }] = useBoolean(false);
 
-  const onImageError = () => setIsError(true);
-
-  if (!image)
-    return (
-      <div className={cx("image__no-image")}>
-        <IconPhoto />
-        <p>No Image uploaded</p>
-      </div>
-    );
-
-  if (isOriginal)
-    return (
-      <>
-        {isError && (
-          <div className={className}>
-            <Preloader theme={theme} />
-          </div>
-        )}
-        {!isError && (
-          <div className={className}>
-            <img
-              src={API_URL + image.original}
-              alt={alt}
-              onError={onImageError}
-              loading="lazy"
-            />
-          </div>
-        )}
-      </>
-    );
+  if (!image) return <ErrorImage title="No image uploaded" />;
 
   return (
-    <>
-      {isError && (
-        <div className={className}>
-          <Preloader className={cx("preloader")} theme={theme} />
-        </div>
-      )}
-      {!isError && (
+    <div className={className}>
+      {!isImageError ? (
         <picture className={className}>
           <source
             type="image/webp"
             srcSet={`${API_URL + image.webp} 1x, ${API_URL + image.webp2x} 2x`}
           />
           <img
+            className={cx("image", { "image--loading": isImageLoading })}
             srcSet={`${API_URL + image.src2x} 2x`}
             src={API_URL + image.src}
             alt={alt}
+            onLoad={onImageLoaded}
             onError={onImageError}
             loading="lazy"
           />
         </picture>
+      ) : (
+        <ErrorImage title="Image load error" />
       )}
-    </>
+      {isImageLoading && !isImageError && (
+        <Preloader className={cx("preloader")} theme={theme} />
+      )}
+    </div>
   );
 };
 

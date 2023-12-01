@@ -1,3 +1,5 @@
+import { HTMLAttributes } from "react";
+
 export type TButtonVariant =
   | "default"
   | "text"
@@ -22,4 +24,10 @@ export interface IToken {
   username: string;
   iat: number;
   exp: number;
+}
+
+export interface IImageComponent extends HTMLAttributes<HTMLPictureElement> {
+  alt: string;
+  image: IImage;
+  theme?: string;
 }

@@ -1,3 +1,4 @@
+@use "sass:selector";
 @import "./breakpoints.scss";
 
 @mixin container {
@@ -131,6 +132,17 @@
   white-space: nowrap;
 }
 
+@mixin imageCenter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @mixin linearGradientText($first-color, $second-color) {
   background: linear-gradient(180deg, $first-color 0%, $second-color 100%);
   background-clip: text;
@@ -165,4 +177,10 @@
     rgba(13, 13, 13, 0) 109.66%
   );
   animation: $animation 1s ease-out infinite;
+}
+
+@mixin parent($child) {
+  @at-root #{selector.nest(&, $child)} {
+    @content;
+  }
 }

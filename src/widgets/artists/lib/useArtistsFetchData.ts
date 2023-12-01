@@ -13,13 +13,14 @@ type Props = {
 };
 
 export const useArtistsFetchData = ({ isAuth, filters }: Props) => {
+  const { perPage: filtersPerPage = 0, pageNumber = 0 } = filters;
   const { data: staticData, isLoading: isStaticLoading } =
     useGetStaticArtistsQuery(undefined, { skip: isAuth });
   const { data = {}, isLoading } = useGetArtistsQuery(
     {
       filters: {
         ...filters,
-        perPage: +filters.perPage * +filters.pageNumber,
+        perPage: Number(filtersPerPage) * Number(pageNumber),
         pageNumber: 1,
       },
     },
@@ -33,6 +34,6 @@ export const useArtistsFetchData = ({ isAuth, filters }: Props) => {
   return {
     artists: isAuth ? artistData : staticData,
     totalPages,
-    isLoading: isAuth ? isLoading : isStaticLoading,
+    isArtistsLoading: isAuth ? isLoading : isStaticLoading,
   };
 };

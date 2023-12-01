@@ -6,29 +6,29 @@
 }
 
 .circle {
+  $parentClass: &;
+
   &--one {
     @include circle(var(--primary-black), 0.8, circle-one);
-
-    &--dark {
-      stroke: var(--primary-white);
-    }
   }
   &--two {
     @include circle(var(--primary-black), 0.35, circle-two);
-    &--dark {
-      stroke: var(--primary-white);
-    }
   }
   &--three {
     @include circle(var(--primary-black), 0.35, circle-three);
-    &--dark {
-      stroke: var(--primary-white);
-    }
   }
   &--four {
     @include circle(var(--primary-black), 0.35, circle-four);
-    &--dark {
-      stroke: var(--primary-white);
+  }
+
+  &--dark {
+    @include parent($parentClass) {
+      &--one,
+      &--two,
+      &--three,
+      &--four {
+        stroke: var(--primary-white);
+      }
     }
   }
 }

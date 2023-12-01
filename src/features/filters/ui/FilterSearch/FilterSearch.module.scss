@@ -1,0 +1,25 @@
+.search-no-matches {
+  $parentClass: &;
+
+  padding: 40px 0px 0px 0px;
+  @include pBaseLight;
+  color: var(--primary-dark-gray);
+
+  &__search {
+    @include pBaseMedium;
+  }
+
+  &__text {
+    margin: 12px 0px 0px 0px;
+    @include pSmallLight;
+    color: var(--secondary-gray);
+  }
+
+  &--dark {
+    @include parent($parentClass) {
+      &__message {
+        color: var(--primary-light-gray);
+      }
+    }
+  }
+}

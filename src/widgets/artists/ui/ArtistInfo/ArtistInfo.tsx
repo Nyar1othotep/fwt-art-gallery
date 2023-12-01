@@ -4,10 +4,10 @@ import React, { useContext } from "react";
 import { IArtistDto } from "@/entities/artists";
 import { ThemeContext } from "@/features/theme";
 import { Button } from "@/shared/ui/Button";
-import { Image } from "@/shared/ui/Image";
+import { OriginalImage } from "@/shared/ui/Image";
 import { Label } from "@/shared/ui/Label";
 
-import { useToggleDescription } from "../../lib/useToggleDescription";
+import { useToggleDescription } from "../../lib/description";
 
 import styles from "./ArtistInfo.module.scss";
 import { ReactComponent as Icon } from "./assets/expand_icon.svg";
@@ -20,79 +20,59 @@ interface IArtistInfo {
 
 const ArtistInfo: React.FC<IArtistInfo> = ({ artist }) => {
   const { theme } = useContext(ThemeContext);
-  const { description, isShow, toggleShow } = useToggleDescription(artist);
+  const { isLongDescr, isMoreDescr, toggleDescription, description } =
+    useToggleDescription(artist.description);
 
   return (
     <div className={cx("artist-info")}>
-      <Image
+      <OriginalImage
         className={cx("artist-info__avatar")}
         alt={artist.name}
         image={artist.avatar}
         theme={theme}
-        isOriginal
       />
-      <div className={cx("artist-info__content", "artist-content")}>
+      <div
+        className={cx(
+          "artist-info__content",
+          "artist-content",
+          `artist-content--${theme}`,
+        )}
+      >
         <div className={cx("artist-content__top")}>
-          <div
-            className={cx("artist-content__bg", `artist-content__bg--${theme}`)}
-          >
-            <p
-              className={cx(
-                "artist-content__year",
-                `artist-content__year--${theme}`,
-              )}
-            >
-              {artist.yearsOfLife}
-            </p>
-            <p
-              className={cx(
-                "artist-content__name",
-                `artist-content__name--${theme}`,
-              )}
-            >
-              {artist.name}
-            </p>
+          <div className={cx("artist-content__bg")}>
+            <p className={cx("artist-content__year")}>{artist.yearsOfLife}</p>
+            <p className={cx("artist-content__name")}>{artist.name}</p>
           </div>
         </div>
-        <div
-          className={cx(
-            "artist-content__bottom",
-            `artist-content__bottom--${theme}`,
-          )}
-        >
+        <div className={cx("artist-content__bottom")}>
           <div
-            className={cx(
-              "artist-content__descr",
-              `artist-content__descr--${theme}`,
-              { "artist-content__descr--gradient": !isShow },
-              { [`artist-content__descr--gradient--${theme}`]: !isShow },
-            )}
+            className={cx("artist-content__descr", {
+              "artist-content__descr--gradient": !isMoreDescr,
+            })}
           >
             {description}
           </div>
-          {artist.shortDescription && (
+          {isLongDescr && (
             <Button
               className={cx("artist-content__btn")}
               theme={theme}
               variant="text"
-              onClick={toggleShow}
+              onClick={toggleDescription}
             >
-              {isShow ? "Read less" : "Read more"}
+              {isMoreDescr ? "Read less" : "Read more"}
               <Icon
                 className={cx("artist-content__btn-svg", {
-                  "artist-content__btn-svg--active": isShow,
+                  "artist-content__btn-svg--active": isMoreDescr,
                 })}
               />
             </Button>
           )}
           <div className={cx("artist-content__genres")}>
-            {artist.genres.length !== 0
-              ? artist.genres.map(({ _id, name }) => (
-                  <Label key={_id} theme={theme}>
-                    {name}
-                  </Label>
-                ))
-              : null}
+            {artist.genres?.map(({ _id, name }) => (
+              <Label key={_id} theme={theme}>
+                {name}
+              </Label>
+            ))}
           </div>
         </div>
       </div>

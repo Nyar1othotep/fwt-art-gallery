@@ -22,19 +22,16 @@ const InputWrapper: React.FC<IInputWrapper> = ({
   error,
   children,
 }) => (
-  <div className={cx(className, "input-wrapper")}>
+  <div className={cx(className, "input-wrapper", `input-wrapper--${theme}`)}>
     {name && (
-      <label
-        className={cx("input-wrapper__label", `input-wrapper__label--${theme}`)}
-        htmlFor={name}
-      >
+      <label className={cx("input-wrapper__label")} htmlFor={name}>
         {label}
       </label>
     )}
     <div
       className={cx(
         "input-wrapper__children",
-        `input-wrapper__children--${theme}`,
+
         { "input-wrapper__children--error": !!error },
       )}
     >

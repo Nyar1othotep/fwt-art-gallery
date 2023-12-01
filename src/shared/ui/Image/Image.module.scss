@@ -1,34 +1,25 @@
 @import "../../styles/mixins.scss";
 
 .image {
+  &-wrapper {
+    position: relative;
+  }
+
+  &--loading {
+    opacity: 0;
+  }
+
   &__no-image {
-    position: absolute;
-    @include flexItemsCenter;
+    @include imageCenter;
     flex-direction: column;
     gap: 12px;
-    top: 32px;
-    left: 50%;
-    transform: translateX(-50%);
     font-size: 12px;
     font-weight: 900;
     color: var(--secondary-gray);
     text-transform: uppercase;
-
-    @include mediaSmall {
-      top: 40px;
-    }
-
-    @include mediaLarge {
-      top: 60px;
-    }
   }
 }
 
 .preloader {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include imageCenter;
 }

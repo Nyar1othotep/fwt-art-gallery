@@ -25,6 +25,7 @@ const Button: React.FC<IButton> = ({
       `button--${variant}`,
       `button--${variant}--${theme}`,
     )}
+    type="submit"
     {...props}
   />
 );

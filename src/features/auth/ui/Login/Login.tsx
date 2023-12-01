@@ -10,8 +10,9 @@ import { IAuthSchema } from "../../model/authSchema";
 import { AuthForm } from "../AuthForm";
 import { AuthModal } from "../AuthModal";
 
+const variant = "login";
+
 const Login: React.FC = () => {
-  const variant = "login";
   const fingerprint = useFingerprint();
   const { theme } = useContext(ThemeContext);
   const [login, { isSuccess, data, isError, error }] = useLoginMutation();
@@ -31,7 +32,7 @@ const Login: React.FC = () => {
   const errorMessage = isAxiosBaseQueryError(error) ? error.data.message : "";
 
   return (
-    <AuthModal theme={theme} isClose={isSuccess} variant={variant}>
+    <AuthModal theme={theme} variant={variant}>
       <AuthForm
         theme={theme}
         isError={isError}

@@ -1,4 +1,6 @@
 .artist-profile-page {
+  $parentClass: &;
+
   padding: 12px 0px 80px 0px;
   display: flex;
   flex-direction: column;
@@ -72,9 +74,13 @@
     @include mediaSmall {
       @include h1;
     }
+  }
 
-    &--dark {
-      color: var(--accent-gold);
+  &--dark {
+    @include parent($parentClass) {
+      &__heading {
+        color: var(--accent-gold);
+      }
     }
   }
 }

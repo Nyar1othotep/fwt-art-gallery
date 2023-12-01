@@ -1,4 +1,6 @@
 .filter-accordion {
+  $parentClass: &;
+
   width: 280px;
   display: flex;
   flex-direction: column;
@@ -33,14 +35,6 @@
     &:hover {
       color: var(--primary-dark-gray);
     }
-
-    &--dark {
-      color: var(--primary-white);
-
-      &:hover {
-        color: var(--primary-light-gray);
-      }
-    }
   }
 
   &__body {
@@ -59,30 +53,46 @@
     padding: 6px 0;
     @include pSmallLight;
     cursor: pointer;
+  }
 
-    &--light {
-      color: var(--primary-dark-gray);
+  &--dark {
+    @include parent($parentClass) {
+      &__header {
+        color: var(--primary-white);
 
-      &:hover:not(&--active) {
-        color: var(--primary-black);
+        &:hover {
+          color: var(--primary-light-gray);
+        }
       }
 
-      &--active {
-        color: var(--primary-black);
-        @include pSmallMedium;
+      &__text {
+        color: var(--primary-light-gray);
+
+        &:hover:not(&--active) {
+          color: var(--primary-white);
+        }
+
+        &--active {
+          color: var(--accent-gold);
+          @include pSmallMedium;
+        }
       }
     }
+  }
 
-    &--dark {
-      color: var(--primary-light-gray);
+  &--light {
+    @include parent($parentClass) {
+      &__text {
+        color: var(--primary-dark-gray);
 
-      &:hover:not(&--active) {
-        color: var(--primary-white);
-      }
+        &:hover:not(&--active) {
+          color: var(--primary-black);
+        }
 
-      &--active {
-        color: var(--accent-gold);
-        @include pSmallMedium;
+        &--active {
+          color: var(--primary-black);
+          @include pSmallMedium;
+        }
       }
     }
   }

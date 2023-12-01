@@ -1,4 +1,6 @@
 .input-wrapper {
+  $parentClass: &;
+
   position: relative;
   width: 100%;
   display: flex;
@@ -12,10 +14,6 @@
     margin: 0px 0px 8px 0px;
     @include pInput;
     color: var(--primary-black);
-
-    &--dark {
-      color: var(--primary-white);
-    }
   }
 
   &__children {
@@ -32,21 +30,8 @@
       outline: 1px solid var(--primary-dark-gray) !important;
     }
 
-    &--dark {
-      outline: none;
-      background: var(--secondary-black);
-
-      &:hover:not(.input-wrapper__children--error) {
-        outline: 1px solid var(--primary-dark-gray);
-      }
-
-      &:focus-within {
-        outline: 1px solid var(--primary-light-gray) !important;
-      }
-    }
-
     &--error {
-      outline: 1px solid var(--accent-error);
+      outline: 1px solid var(--accent-error) !important;
     }
   }
 
@@ -58,5 +43,26 @@
     @include pSmallLight;
     color: var(--accent-error);
     gap: 4px;
+  }
+
+  &--dark {
+    @include parent($parentClass) {
+      &__label {
+        color: var(--primary-white);
+      }
+
+      &__children {
+        outline: none;
+        background: var(--secondary-black);
+
+        &:hover:not(.input-wrapper__children--error) {
+          outline: 1px solid var(--primary-dark-gray);
+        }
+
+        &:focus-within {
+          outline: 1px solid var(--primary-light-gray) !important;
+        }
+      }
+    }
   }
 }

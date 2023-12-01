@@ -32,13 +32,11 @@
 }
 
 .info-card {
+  $parentClass: &;
+
   width: 100%;
   padding: 8px 88px 8px 12px;
   background: var(--primary-white);
-
-  &--dark {
-    background: var(--primary-black);
-  }
 
   @include mediaSmall {
     padding: 12px 98px 12px 12px;
@@ -52,10 +50,6 @@
   &__year {
     width: 100%;
     background: #eeeded;
-
-    &--dark {
-      background: #0d0d0d;
-    }
   }
 
   &__title {
@@ -81,6 +75,17 @@
 
     @include mediaLarge {
       height: 15px;
+    }
+  }
+
+  &--dark {
+    background: var(--primary-black);
+
+    @include parent($parentClass) {
+      &__title,
+      &__year {
+        background: #0d0d0d;
+      }
     }
   }
 }

@@ -4,12 +4,12 @@ export const useArtworkSlider = () => {
   const [slideTo, setSlideTo] = useState(0);
   const [isSlider, setIsSlider] = useState(false);
 
-  const onOpenSlider = (slide: number) => {
+  const handleSliderOpen = (slide: number) => {
     setSlideTo(slide);
     setIsSlider(true);
   };
 
-  const onCloseSlider = () => setIsSlider(false);
+  const handleSliderClose = () => setIsSlider(false);
 
-  return { slideTo, isSlider, onOpenSlider, onCloseSlider };
+  return { slideTo, isSlider, handleSliderOpen, handleSliderClose };
 };

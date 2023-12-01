@@ -10,20 +10,8 @@ interface ILink extends LinkProps {
   theme?: string;
 }
 
-const Link: React.FC<ILink> = ({
-  className,
-  to,
-  theme = "light",
-  children,
-  onClick,
-}) => (
-  <RouterLink
-    className={cx(className, "link", `link--${theme}`)}
-    onClick={onClick}
-    to={to}
-  >
-    {children}
-  </RouterLink>
+const Link: React.FC<ILink> = ({ className, theme = "light", ...props }) => (
+  <RouterLink className={cx(className, "link", `link--${theme}`)} {...props} />
 );
 
 export default Link;

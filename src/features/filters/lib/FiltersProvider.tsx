@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useMemo,
 } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 import { AuthContext } from "@/features/auth";
 
@@ -21,6 +21,8 @@ interface IFiltersContext<T> {
 }
 
 const defaultFilters = {
+  sortBy: "name",
+  orderBy: "recently",
   perPage: "6",
   pageNumber: "1",
 };
@@ -31,6 +33,7 @@ export const FiltersContext = React.createContext(
 
 const FiltersProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const { isAuth } = useContext(AuthContext);
+  const { pathname } = useLocation();
   const [params, setParams] = useSearchParams();
   const filters = useMemo(
     () => Object.fromEntries(params) as unknown as IFilters,
@@ -38,10 +41,10 @@ const FiltersProvider: React.FC<PropsWithChildren> = ({ children }) => {
   );
 
   useEffect(() => {
-    if (isAuth && !params.toString() && window.location.pathname === "/") {
+    if (isAuth && !params.toString() && pathname === "/") {
       setParams(defaultFilters);
     }
-  });
+  }, [isAuth, params, pathname]);
 
   const setFilters = useCallback(
     (newFilters: IFilters) => setParams(removeEmpty(newFilters)),
@@ -56,12 +59,13 @@ const FiltersProvider: React.FC<PropsWithChildren> = ({ children }) => {
     setParams({});
   }, [setParams]);
 
+  const value = useMemo(
+    () => ({ filters, setFilters, clearFilters, removeFilters }),
+    [filters],
+  );
+
   return (
-    <FiltersContext.Provider
-      value={{ filters, setFilters, clearFilters, removeFilters }}
-    >
-      {children}
-    </FiltersContext.Provider>
+    <FiltersContext.Provider value={value}>{children}</FiltersContext.Provider>
   );
 };
 

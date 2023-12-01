@@ -11,16 +11,19 @@ interface IArtworksLayout {
 }
 
 const ArtworksLayout: React.FC<IArtworksLayout> = ({ artist }) => {
-  const { slideTo, isSlider, onOpenSlider, onCloseSlider } = useArtworkSlider();
+  const { slideTo, isSlider, handleSliderOpen, handleSliderClose } =
+    useArtworkSlider();
 
   return (
     <>
-      {/* // TODO: Добавить сюда скелетон */}
-      <ArtworksList paintings={artist.paintings} onPainting={onOpenSlider} />
+      <ArtworksList
+        paintings={artist.paintings}
+        onPainting={handleSliderOpen}
+      />
       <ArtworksSlider
         to={slideTo}
         isShow={isSlider}
-        onClose={onCloseSlider}
+        onClose={handleSliderClose}
         paintings={artist.paintings}
       />
     </>

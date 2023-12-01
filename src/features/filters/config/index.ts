@@ -1,17 +1,14 @@
 export const sortBy = [
   {
-    filter: "orderBy",
-    type: "",
+    filter: "recently",
     name: "Recently added",
   },
   {
-    filter: "orderBy",
-    type: "asc",
+    filter: "asc",
     name: "A-Z",
   },
   {
-    filter: "orderBy",
-    type: "desc",
+    filter: "desc",
     name: "Z-A",
   },
 ];

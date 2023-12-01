@@ -32,6 +32,8 @@
 }
 
 .artist-content {
+  $parentClass: &;
+
   position: relative;
 
   @include mediaLarge {
@@ -66,10 +68,6 @@
     padding: 20px;
     background: var(--primary-white);
 
-    &--dark {
-      background: var(--primary-black);
-    }
-
     @include mediaLarge {
       padding: 60px 80px 26px 80px;
     }
@@ -88,11 +86,8 @@
     @include mediaLarge {
       margin: 0px 0px 32px 0px;
     }
-
-    &--dark {
-      color: var(--secondary-gray);
-    }
   }
+
   &__name {
     position: relative;
     @include h3;
@@ -119,23 +114,11 @@
         left: -80px;
       }
     }
-
-    &--dark {
-      color: var(--accent-gold);
-
-      &::before {
-        background: var(--accent-gold);
-      }
-    }
   }
 
   &__bottom {
     padding: 20px;
     background: var(--primary-white);
-
-    &--dark {
-      background: var(--primary-black);
-    }
 
     @include mediaSmall {
       padding: 40px 20px;
@@ -154,10 +137,6 @@
         height: 2px;
         background: var(--primary-dark-gray);
       }
-
-      &--dark::before {
-        background: var(--primary-light-gray);
-      }
     }
   }
 
@@ -173,17 +152,6 @@
         var(--primary-dark-gray),
         rgba(87, 87, 87, 0.4)
       );
-
-      &--dark {
-        @include linearGradientText(
-          var(--primary-light-gray),
-          rgba(222, 222, 222, 0.4)
-        );
-      }
-    }
-
-    &--dark {
-      color: var(--primary-light-gray);
     }
   }
 
@@ -201,5 +169,44 @@
     flex-wrap: wrap;
     row-gap: 12px;
     column-gap: 20px;
+  }
+
+  &--dark {
+    @include parent($parentClass) {
+      &__bg {
+        background: var(--primary-black);
+      }
+
+      &__year {
+        color: var(--secondary-gray);
+      }
+
+      &__name {
+        color: var(--accent-gold);
+
+        &::before {
+          background: var(--accent-gold);
+        }
+      }
+
+      &__bottom {
+        background: var(--primary-black);
+
+        &::before {
+          background: var(--primary-light-gray);
+        }
+      }
+
+      &__descr {
+        color: var(--primary-light-gray);
+
+        &--gradient {
+          @include linearGradientText(
+            var(--primary-light-gray),
+            rgba(222, 222, 222, 0.4)
+          );
+        }
+      }
+    }
   }
 }

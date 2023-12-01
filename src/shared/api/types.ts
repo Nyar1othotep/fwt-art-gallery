@@ -1,10 +1,14 @@
+import { AxiosRequestConfig } from "axios";
+
+interface IErrorData {
+  statusCode: number;
+  message: string;
+  error: string;
+}
+
 export interface IAxiosBaseQueryError {
   status: number;
-  data: {
-    statusCode: number;
-    message: string;
-    error: string;
-  };
+  data: IErrorData;
 }
 
 export interface IAuthDto {
@@ -26,4 +30,10 @@ export interface IRequestRefreshBody {
 export interface IGenres {
   _id: string;
   name: string;
+}
+
+export interface IRetryQueueItem {
+  resolve: (value?: any) => void;
+  reject: (error?: any) => void;
+  config: AxiosRequestConfig;
 }

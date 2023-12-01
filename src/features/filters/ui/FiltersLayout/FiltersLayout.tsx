@@ -1,14 +1,14 @@
 import cn from "classnames/bind";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 import { useGetGenresQuery } from "@/entities/genres";
 import { ThemeContext } from "@/features/theme";
+import { useBoolean } from "@/shared/lib/useBoolean";
 import { Button } from "@/shared/ui/Button";
 import { Sidebar } from "@/shared/ui/Sidebar";
 
 import { sortBy } from "../../config";
 import { FiltersContext } from "../../lib/FiltersProvider";
-import { getTotalGenres } from "../../lib/genres";
 import { useSelectedFilters } from "../../lib/useSelectedFilters";
 import { ReactComponent as IconFilter } from "../assets/filter_icon.svg";
 import { FilterAccordion } from "../FilterAccordion";
@@ -22,13 +22,22 @@ const FiltersLayout: React.FC = () => {
   const { theme } = useContext(ThemeContext);
   const { filters, setFilters, clearFilters } = useContext(FiltersContext);
   const { data: genres } = useGetGenresQuery();
-  const [isShow, setIsShow] = useState(false);
-  const { selectedFilters, handleSelect } = useSelectedFilters(filters);
+  const {
+    selectedGenresArray,
+    selectedSort,
+    handleSelectGenres,
+    handleSelectSort,
+  } = useSelectedFilters(filters);
+  const selectedGenres = selectedGenresArray.toString();
+  const [isSidebar, { on: handleSidebarOpen, off: handleSidebarClose }] =
+    useBoolean(false);
 
-  const handleShow = () => setIsShow(true);
-  const handleClose = () => setIsShow(false);
-
-  const handleResult = () => setFilters(selectedFilters);
+  const handleResult = () =>
+    setFilters({
+      ...filters,
+      genres: selectedGenres,
+      orderBy: selectedSort,
+    });
 
   const handleClear = () => clearFilters();
 
@@ -37,55 +46,48 @@ const FiltersLayout: React.FC = () => {
       <div className={cx("filters-layout__search")}>
         <FilterSearch />
       </div>
-      <Button theme={theme} variant="icon" onClick={handleShow}>
+      <Button theme={theme} variant="icon" onClick={handleSidebarOpen}>
         <IconFilter />
       </Button>
-      <Sidebar theme={theme} isShow={isShow} onClose={handleClose}>
+      <Sidebar theme={theme} isShow={isSidebar} onClose={handleSidebarClose}>
         <div
           className={cx("filters-layout__sidebar-content", "sidebar-content")}
         >
-          <FilterAccordion className={cx("sidebar-content__accordion")}>
-            <FilterAccordion.Item>
-              <FilterAccordion.Header
-                theme={theme}
-                title={`Genres${getTotalGenres(selectedFilters.genres)}`}
-              />
-              <FilterAccordion.Body>
-                {genres &&
-                  genres.map(({ _id, name }) => (
+          <FilterAccordion
+            className={cx("sidebar-content__accordion")}
+            theme={theme}
+          >
+            {genres && (
+              <FilterAccordion.Item>
+                <FilterAccordion.Header
+                  title={`Genres(${selectedGenresArray.length})`}
+                />
+                <FilterAccordion.Body>
+                  {genres?.map(({ _id, name }) => (
                     <FilterAccordion.Text
                       key={_id}
-                      theme={theme}
-                      forceActive={!!selectedFilters.genres?.includes(_id)}
-                      onClick={() =>
-                        handleSelect({ type: "genres", genre: _id })
-                      }
+                      forceActive={!!selectedGenres.includes(_id)}
+                      onClick={handleSelectGenres(_id)}
                     >
                       {name}
                     </FilterAccordion.Text>
                   ))}
-              </FilterAccordion.Body>
-            </FilterAccordion.Item>
+                </FilterAccordion.Body>
+              </FilterAccordion.Item>
+            )}
             <FilterAccordion.Item>
-              <FilterAccordion.Header theme={theme} title="Sort by" />
+              <FilterAccordion.Header title="Sort by" />
               <FilterAccordion.Body>
-                {sortBy.map(({ filter, type, name }) => {
-                  const forceActive = !selectedFilters.orderBy
-                    ? type === ""
-                    : selectedFilters.orderBy === type;
-
-                  return (
-                    <FilterAccordion.Text
-                      key={type + name}
-                      theme={theme}
-                      variant="radio"
-                      forceActive={forceActive}
-                      onClick={() => handleSelect({ [filter]: type })}
-                    >
-                      {name}
-                    </FilterAccordion.Text>
-                  );
-                })}
+                {sortBy.map(({ filter, name }) => (
+                  <FilterAccordion.Text
+                    key={filter + name}
+                    variant="radio"
+                    forceActive={selectedSort === filter}
+                    onClick={handleSelectSort(filter)}
+                  >
+                    {name}
+                  </FilterAccordion.Text>
+                ))}
               </FilterAccordion.Body>
             </FilterAccordion.Item>
           </FilterAccordion>

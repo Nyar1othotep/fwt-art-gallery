@@ -16,6 +16,6 @@ export const useArtistsFetchData = ({ isAuth, artistId }: IProps) => {
 
   return {
     artist: isAuth ? data : staticData,
-    isLoading: isAuth ? isLoading : isStaticLoading,
+    isArtistLoading: isAuth ? isLoading : isStaticLoading,
   };
 };

@@ -1,6 +1,5 @@
 import { baseApi } from "@/shared/api";
 
-import { transformArtistResponse } from "../lib/transformArtistResponse";
 import { IArtistDto, IArtistsDto, IStaticArtistsDto } from "../model/types";
 
 export const artistsApi = baseApi.injectEndpoints({
@@ -23,14 +22,12 @@ export const artistsApi = baseApi.injectEndpoints({
         url: `/artists/static/${id}`,
         method: "get",
       }),
-      transformResponse: transformArtistResponse,
     }),
     getArtist: build.query<IArtistDto, string | undefined>({
       query: (id) => ({
         url: `/artists/${id}`,
         method: "get",
       }),
-      transformResponse: transformArtistResponse,
     }),
   }),
 });

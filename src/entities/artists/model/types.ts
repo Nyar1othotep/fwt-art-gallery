@@ -6,7 +6,7 @@ export interface IPaintingDto {
   name: string;
   yearOfCreation: string;
   image: IImage;
-  artist: string;
+  artist?: string;
 }
 
 interface IMainPainting extends IPaintingDto {}

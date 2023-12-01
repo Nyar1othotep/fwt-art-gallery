@@ -25,7 +25,6 @@
   "ignorePatterns": ["build/"],
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
     "@typescript-eslint/no-unused-vars": "error",
     "no-unused-vars": "warn",
     "import/prefer-default-export": "off",
@@ -62,7 +61,13 @@
     ],
     "import/extensions": 0,
     "react/jsx-filename-extension": [1, { "extensions": ["tsx"] }],
-    "react/function-component-definition": 0,
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
     "react/jsx-props-no-spreading": 0,
     "react/require-default-props": 0,
     "import/no-extraneous-dependencies": 0,
@@ -70,9 +75,6 @@
       "error",
       { "blankLine": "always", "prev": "*", "next": "return" },
       { "blankLine": "always", "prev": "*", "next": "export" }
-    ],
-    "react/prop-types": 0,
-    "react/button-has-type": 0,
-    "react/jsx-no-constructed-context-values": 0
+    ]
   }
 }

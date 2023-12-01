@@ -10,8 +10,9 @@ import { IAuthSchema } from "../../model/authSchema";
 import { AuthForm } from "../AuthForm";
 import { AuthModal } from "../AuthModal";
 
+const variant = "register";
+
 const Register: React.FC = () => {
-  const variant = "register";
   const fingerprint = useFingerprint();
   const { theme } = useContext(ThemeContext);
   const [register, { isSuccess, data, isError, error }] = useRegisterMutation();
@@ -31,7 +32,7 @@ const Register: React.FC = () => {
   const errorMessage = isAxiosBaseQueryError(error) ? error.data.message : "";
 
   return (
-    <AuthModal theme={theme} isClose={isSuccess} variant={variant}>
+    <AuthModal theme={theme} variant={variant}>
       <AuthForm
         theme={theme}
         isError={isError}

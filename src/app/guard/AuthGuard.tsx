@@ -11,9 +11,7 @@ const AuthGuard: React.FC<IAuthGuard> = ({ children }) => {
   const { isAuth } = useContext(AuthContext);
   const location = useLocation();
 
-  const to = location.pathname.replace(/\/(login|register)$/i, "");
-
-  if (isAuth) return <Navigate to={`${to}/`} />;
+  if (isAuth) return <Navigate to={location.pathname} />;
 
   return children;
 };

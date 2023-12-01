@@ -12,31 +12,16 @@ interface IPreloader extends HTMLAttributes<HTMLDivElement> {
 const Preloader: React.FC<IPreloader> = ({ theme = "light", className }) => (
   <div className={cx(className, "preloader")}>
     <svg
+      className={cx(`circle--${theme}`)}
       xmlns="http://www.w3.org/2000/svg"
       width="60px"
       height="60px"
       viewBox="0 0 60 60"
     >
-      <ellipse
-        className={cx("circle--one", `circle--one--${theme}`)}
-        rx="30"
-        ry="30"
-      />
-      <ellipse
-        className={cx("circle--two", `circle--tw--${theme}`)}
-        rx="30"
-        ry="30"
-      />
-      <ellipse
-        className={cx("circle--three", `circle--three--${theme}`)}
-        rx="30"
-        ry="30"
-      />
-      <ellipse
-        className={cx("circle--four", `circle--four--${theme}`)}
-        rx="30"
-        ry="30"
-      />
+      <ellipse className={cx("circle--one")} rx="30" ry="30" />
+      <ellipse className={cx("circle--two")} rx="30" ry="30" />
+      <ellipse className={cx("circle--three")} rx="30" ry="30" />
+      <ellipse className={cx("circle--four")} rx="30" ry="30" />
     </svg>
   </div>
 );
