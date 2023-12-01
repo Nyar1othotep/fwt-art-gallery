@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
-import { FiltersContext, SearchNoMatches } from "@/features/filters";
+import { FiltersContext, FilterNoMatches } from "@/features/filters";
 import { ThemeContext } from "@/features/theme";
 import { Card } from "@/shared/ui/Card";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
@@ -9,13 +9,15 @@ import { Skeleton } from "@/shared/ui/Skeletons/Skeleton";
 import { useArtistsFetchData } from "../../lib/useArtistsFetchData";
 import { useObserver } from "../../lib/useObserver";
 
+import InfiniteScroll from "./InfiniteScroll";
+
 interface IArtistsList {
   isAuth: boolean;
 }
 
 const ArtistsList: React.FC<IArtistsList> = ({ isAuth }) => {
   const { theme } = useContext(ThemeContext);
-  const { filters, setFilters, removeFilters } = useContext(FiltersContext);
+  const { filters } = useContext(FiltersContext);
   const { artists, totalPages, isArtistsLoading } = useArtistsFetchData({
     isAuth,
     filters,
@@ -24,17 +26,6 @@ const ArtistsList: React.FC<IArtistsList> = ({ isAuth }) => {
     rootMargin: "400px",
     threshold: 1,
   });
-  const { pageNumber: filtersPageNumber } = filters;
-
-  useEffect(() => {
-    if (isAuth && inView && Number(filtersPageNumber) < totalPages)
-      setFilters({
-        ...filters,
-        pageNumber: String(Number(filtersPageNumber) + 1),
-      });
-
-    if (!isAuth) removeFilters();
-  }, [isAuth, inView, totalPages]);
 
   if (isArtistsLoading) {
     return (
@@ -46,10 +37,10 @@ const ArtistsList: React.FC<IArtistsList> = ({ isAuth }) => {
     );
   }
 
-  if (!artists || artists.length === 0) return <SearchNoMatches />;
+  if (!artists || artists.length === 0) return <FilterNoMatches />;
 
   return (
-    <>
+    <InfiniteScroll isLoadMore={inView} totalPages={totalPages}>
       <GridLayout>
         {artists.map(({ _id, name, yearsOfLife, mainPainting }) => (
           <Card
@@ -63,7 +54,7 @@ const ArtistsList: React.FC<IArtistsList> = ({ isAuth }) => {
         ))}
       </GridLayout>
       <div ref={observerRef} />
-    </>
+    </InfiniteScroll>
   );
 };
 

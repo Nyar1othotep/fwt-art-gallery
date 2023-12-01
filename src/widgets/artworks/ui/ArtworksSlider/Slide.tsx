@@ -27,9 +27,11 @@ export const Slide: React.FC<ISlide> = ({
   const { image, name, yearOfCreation } = painting;
 
   return (
-    <SwiperSlide className={cx("artworks-slider__slide", "slide")}>
+    <SwiperSlide
+      className={cx("artworks-slider__slide", "slide", `slide--${theme}`)}
+    >
       <OriginalImage
-        className={cx("slide__bg", `slide__bg--${theme}`)}
+        className={cx("slide__bg")}
         alt={name}
         image={image}
         theme={theme}
@@ -40,19 +42,10 @@ export const Slide: React.FC<ISlide> = ({
             <Button theme="dark" variant="text">
               <IconPic /> Remove the cover
             </Button>
-            <div
-              className={cx(
-                "slide__info-background",
-                `slide__info-background--${theme}`,
-              )}
-            >
-              <div className={cx("slide__info", `slide__info--${theme}`)}>
-                <div className={cx("slide__year", `slide__year--${theme}`)}>
-                  {yearOfCreation}
-                </div>
-                <div className={cx("slide__name", `slide__name--${theme}`)}>
-                  {name}
-                </div>
+            <div className={cx("slide__info-background")}>
+              <div className={cx("slide__info")}>
+                <div className={cx("slide__year")}>{yearOfCreation}</div>
+                <div className={cx("slide__name")}>{name}</div>
               </div>
             </div>
           </div>

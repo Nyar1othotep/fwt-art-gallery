@@ -1,10 +1,10 @@
 import cn from "classnames/bind";
 import React, { ReactNode } from "react";
 
-import { Body } from "./AccordionBody";
-import { Header } from "./AccordionHeader";
-import { Item } from "./AccordionItem";
-import { Text } from "./AccordionText";
+import Body from "./AccordionBody";
+import Header from "./AccordionHeader";
+import Item from "./AccordionItem";
+import Text from "./AccordionText";
 import styles from "./FilterAccordion.module.scss";
 
 const cx = cn.bind(styles);

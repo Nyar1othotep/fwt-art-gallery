@@ -37,13 +37,11 @@
 }
 
 .slide {
+  $parentClass: &;
+
   &__bg {
     height: inherit;
     background: var(--primary-white);
-
-    &--dark {
-      background: var(--primary-black);
-    }
 
     img {
       width: 100%;
@@ -81,10 +79,6 @@
     padding: 16px 12px 23px 12px;
     background: var(--primary-white);
 
-    &--dark {
-      background: var(--primary-black);
-    }
-
     @include mediaSmall {
       width: 498px;
       margin: 0;
@@ -109,10 +103,6 @@
           left: -20px;
         }
       }
-
-      &--dark::before {
-        background: var(--accent-gold);
-      }
     }
   }
 
@@ -120,10 +110,6 @@
     margin: 0px 0px 8px 0px;
     @include pCaptionBold;
     color: var(--accent-red);
-
-    &--dark {
-      color: var(--accent-gold);
-    }
 
     @include mediaSmall {
       @include pButton;
@@ -133,10 +119,6 @@
   &__name {
     @include h6;
     color: var(--primary-black);
-
-    &--dark {
-      color: var(--primary-white);
-    }
 
     @include mediaSmall {
       @include h4;
@@ -148,6 +130,30 @@
 
     @include mediaSmall {
       @include h3;
+    }
+  }
+
+  &--dark {
+    @include parent($parentClass) {
+      &__bg {
+        background: var(--primary-black);
+      }
+
+      &__info-background {
+        background: var(--primary-black);
+      }
+
+      &__info::before {
+        background: var(--accent-gold);
+      }
+
+      &__year {
+        color: var(--accent-gold);
+      }
+
+      &__name {
+        color: var(--primary-white);
+      }
     }
   }
 }

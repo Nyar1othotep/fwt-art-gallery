@@ -19,7 +19,7 @@ export const ItemContext = React.createContext<IItemContext>(
   {} as IItemContext,
 );
 
-export const Item = ({ children }: PropsWithChildren) => {
+const Item = ({ children }: PropsWithChildren) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = useCallback(() => setIsOpen(!isOpen), [isOpen, setIsOpen]);
@@ -32,3 +32,5 @@ export const Item = ({ children }: PropsWithChildren) => {
     </ItemContext.Provider>
   );
 };
+
+export default Item;

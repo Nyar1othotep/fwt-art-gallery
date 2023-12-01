@@ -13,7 +13,7 @@ interface IHeader {
   title: string;
 }
 
-export const Header = ({ title }: IHeader) => {
+const Header = ({ title }: IHeader) => {
   const { isOpen, toggleOpen } = useContext(ItemContext);
 
   return (
@@ -31,3 +31,5 @@ export const Header = ({ title }: IHeader) => {
     </div>
   );
 };
+
+export default Header;

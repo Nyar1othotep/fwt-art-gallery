@@ -1,15 +1,16 @@
 import { useState } from "react";
 
+import { useBoolean } from "@/shared/lib/useBoolean";
+
 export const useArtworkSlider = () => {
   const [slideTo, setSlideTo] = useState(0);
-  const [isSlider, setIsSlider] = useState(false);
+  const [isSlider, { on: onSliderOpen, off: handleSliderClose }] =
+    useBoolean(false);
 
   const handleSliderOpen = (slide: number) => {
     setSlideTo(slide);
-    setIsSlider(true);
+    onSliderOpen();
   };
-
-  const handleSliderClose = () => setIsSlider(false);
 
   return { slideTo, isSlider, handleSliderOpen, handleSliderClose };
 };

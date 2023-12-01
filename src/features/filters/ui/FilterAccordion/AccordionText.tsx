@@ -14,7 +14,7 @@ interface IText {
   forceActive?: boolean;
 }
 
-export const Text = ({
+const Text = ({
   variant = "default",
   onClick,
   children,
@@ -44,3 +44,5 @@ export const Text = ({
     </li>
   );
 };
+
+export default Text;

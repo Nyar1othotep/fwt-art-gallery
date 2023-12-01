@@ -6,10 +6,12 @@ import styles from "./FilterAccordion.module.scss";
 
 const cx = cn.bind(styles);
 
-export const Body = ({ children }: PropsWithChildren) => {
+const Body = ({ children }: PropsWithChildren) => {
   const { isOpen } = useContext(ItemContext);
 
   return isOpen ? (
     <ul className={cx("filter-accordion__body")}>{children}</ul>
   ) : null;
 };
+
+export default Body;

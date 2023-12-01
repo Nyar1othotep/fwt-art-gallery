@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 
 import { ThemeContext } from "@/features/theme";
 
-import styles from "./FilterSearch.module.scss";
+import styles from "./FilterNoMatches.module.scss";
 
 const cx = cn.bind(styles);
 
