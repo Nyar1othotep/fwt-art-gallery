@@ -8,7 +8,7 @@ import styles from "./FilterNoMatches.module.scss";
 
 const cx = cn.bind(styles);
 
-const SearchNoMatches: React.FC = () => {
+const FilterNoMatches: React.FC = () => {
   const { theme } = useContext(ThemeContext);
   const [params] = useSearchParams();
   const search = useMemo(() => params.get("name"), [params]);
@@ -28,4 +28,4 @@ const SearchNoMatches: React.FC = () => {
   );
 };
 
-export default SearchNoMatches;
+export default FilterNoMatches;
