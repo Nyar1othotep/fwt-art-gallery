@@ -9,7 +9,7 @@ import { ReactComponent as IconClose } from "@/shared/assets/close_icon.svg";
 import { TransitionWrapper } from "@/shared/ui/Wrappers/TransitionWrapper";
 
 import styles from "./ArtworksSlider.module.scss";
-import { Slide } from "./Slide";
+import Slide from "./Slide";
 
 import "swiper/scss";
 import "swiper/scss/navigation";

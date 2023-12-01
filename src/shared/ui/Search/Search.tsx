@@ -22,7 +22,7 @@ const Search: React.FC<ISearch> = ({
   onSearchChange,
   ...props
 }) => {
-  const [value, setValue] = useState(initValue || "");
+  const [value, setValue] = useState(initValue);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);

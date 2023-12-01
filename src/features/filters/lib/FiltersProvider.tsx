@@ -9,6 +9,7 @@ import { useLocation, useSearchParams } from "react-router-dom";
 
 import { AuthContext } from "@/features/auth";
 
+import { defaultFilters } from "../config";
 import { IFilters } from "../model/types";
 
 import { removeEmpty } from "./removeEmpty";
@@ -19,13 +20,6 @@ interface IFiltersContext<T> {
   clearFilters: () => void;
   removeFilters: () => void;
 }
-
-const defaultFilters = {
-  sortBy: "name",
-  orderBy: "recently",
-  perPage: "6",
-  pageNumber: "1",
-};
 
 export const FiltersContext = React.createContext(
   {} as IFiltersContext<IFilters>,

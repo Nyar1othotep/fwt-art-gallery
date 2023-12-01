@@ -18,11 +18,7 @@ interface ISlide {
   totalPaintings: number;
 }
 
-export const Slide: React.FC<ISlide> = ({
-  index,
-  painting,
-  totalPaintings,
-}) => {
+const Slide: React.FC<ISlide> = ({ index, painting, totalPaintings }) => {
   const { theme } = useContext(ThemeContext);
   const { image, name, yearOfCreation } = painting;
 
@@ -61,3 +57,5 @@ export const Slide: React.FC<ISlide> = ({
 };
 
 Slide.displayName = "SwiperSlide";
+
+export default Slide;

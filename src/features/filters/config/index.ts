@@ -12,3 +12,10 @@ export const sortBy = [
     name: "Z-A",
   },
 ];
+
+export const defaultFilters = {
+  sortBy: "name",
+  orderBy: "recently",
+  perPage: "6",
+  pageNumber: "1",
+};

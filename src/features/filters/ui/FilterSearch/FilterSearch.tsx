@@ -10,7 +10,8 @@ import { useDebounce } from "../../lib/useDebounce";
 const FilterSearch: React.FC = () => {
   const { theme } = useContext(ThemeContext);
   const { filters, setFilters } = useContext(FiltersContext);
-  const [text, setText] = useState("");
+  const initSearchValue = filters?.name || "";
+  const [text, setText] = useState(initSearchValue);
   const debouncedValue = useDebounce(text);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const FilterSearch: React.FC = () => {
   return (
     <Search
       theme={theme}
-      initValue={filters?.name}
+      initValue={initSearchValue}
       placeholder="Search"
       onSearchChange={handleSearch}
     />
