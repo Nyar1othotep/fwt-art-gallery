@@ -1,0 +1,29 @@
+.modal {
+  background: var(--primary-white);
+  color: var(--primary-dark-gray);
+  transform: scale(0);
+  transition: transform 500ms ease-in-out;
+
+  &--dark {
+    background: var(--primary-black);
+    color: var(--primary-light-gray);
+  }
+
+  &__icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+
+    @include mediaSmall {
+      top: 32px;
+      right: 32px;
+    }
+  }
+
+  &__enter-done {
+    .modal {
+      transform: scale(1);
+    }
+  }
+}

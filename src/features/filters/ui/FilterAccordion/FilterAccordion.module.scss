@@ -1,0 +1,99 @@
+.filter-accordion {
+  $parentClass: &;
+
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @include mediaSmall {
+    width: 320px;
+  }
+
+  &__header {
+    @include flexItemsCenter;
+    justify-content: space-between;
+    @include h6;
+    cursor: pointer;
+
+    @include mediaSmall {
+      @include h4;
+    }
+  }
+
+  &__svg {
+    transform: scale(0.5);
+
+    @include mediaSmall {
+      transform: scale(1);
+    }
+  }
+
+  &__header {
+    color: var(--primary-black);
+
+    &:hover {
+      color: var(--primary-dark-gray);
+    }
+  }
+
+  &__body {
+    margin: 16px 0px 0px 0px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 60px;
+
+    @include mediaSmall {
+      margin: 20px 0px 0px 0px;
+      column-gap: 100px;
+    }
+  }
+
+  &__text {
+    padding: 6px 0;
+    @include pSmallLight;
+    cursor: pointer;
+  }
+
+  &--dark {
+    @include parent($parentClass) {
+      &__header {
+        color: var(--primary-white);
+
+        &:hover {
+          color: var(--primary-light-gray);
+        }
+      }
+
+      &__text {
+        color: var(--primary-light-gray);
+
+        &:hover:not(&--active) {
+          color: var(--primary-white);
+        }
+
+        &--active {
+          color: var(--accent-gold);
+          @include pSmallMedium;
+        }
+      }
+    }
+  }
+
+  &--light {
+    @include parent($parentClass) {
+      &__text {
+        color: var(--primary-dark-gray);
+
+        &:hover:not(&--active) {
+          color: var(--primary-black);
+        }
+
+        &--active {
+          color: var(--primary-black);
+          @include pSmallMedium;
+        }
+      }
+    }
+  }
+}
