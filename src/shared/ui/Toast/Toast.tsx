@@ -21,7 +21,11 @@ const Toast: React.FC<IToast> = ({
   onClose,
 }) => {
   useEffect(() => {
-    setTimeout(() => onClose(), duration);
+    const timer = setTimeout(() => onClose(), duration);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
