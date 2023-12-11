@@ -1,0 +1,49 @@
+.checkbox {
+  $parentClass: &;
+
+  @include pBaseLight;
+
+  &__wrapper {
+    @include flexItemsCenter;
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  &__input {
+    &-wrapper {
+      position: relative;
+    }
+
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    outline: none;
+    background: var(--primary-white);
+    cursor: pointer;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: var(--primary-dark-gray);
+  }
+
+  &__label {
+    @include collapse;
+  }
+
+  &--dark {
+    @include parent($parentClass) {
+      &__input {
+        background: var(--primary-dark);
+      }
+
+      &__icon {
+        color: var(--primary-light-gray);
+      }
+    }
+  }
+}

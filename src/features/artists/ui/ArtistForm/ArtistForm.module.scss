@@ -1,0 +1,26 @@
+.artist-form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @include mediaSmall {
+    flex-direction: row;
+    gap: 60px;
+  }
+
+  &__avatar {
+    width: 200px;
+    height: 200px;
+  }
+  &__content {
+    width: 100%;
+    max-width: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include mediaSmall {
+      gap: 40px;
+    }
+  }
+}

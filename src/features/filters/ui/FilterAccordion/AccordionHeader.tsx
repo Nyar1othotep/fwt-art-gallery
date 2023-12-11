@@ -1,8 +1,9 @@
 import cn from "classnames/bind";
 import React, { useContext } from "react";
 
+import { ReactComponent as IconPlus } from "@/shared/assets/plus_icon.svg";
+
 import { ReactComponent as IconMinus } from "../assets/minus_icon.svg";
-import { ReactComponent as IconPlus } from "../assets/plus_icon.svg";
 
 import { ItemContext } from "./AccordionItem";
 import styles from "./FilterAccordion.module.scss";
