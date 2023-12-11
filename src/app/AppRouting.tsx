@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { Login, Register, useAuthModal } from "@/features/auth";
+import { ToastContainer } from "@/features/toast";
 import { ArtistProfile } from "@/pages/ArtistProfile";
 import { ErrorPage } from "@/pages/Error";
 import { MainPage } from "@/pages/Main";
@@ -32,6 +33,7 @@ const App = () => {
           <Register />
         </AuthGuard>
       )}
+      <ToastContainer />
     </>
   );
 };

@@ -54,7 +54,6 @@ instance.interceptors.response.use(
           return await instance(originalRequest);
         } catch (refreshError: any) {
           if (isRefreshError(refreshError)) {
-            // TODO: Toast error
             throw refreshError;
           }
         } finally {

@@ -1,4 +1,6 @@
 .header {
+  $parentClass: &;
+
   position: sticky;
   @include flexItemsCenter;
   min-height: 64px;
@@ -6,10 +8,6 @@
   left: 0;
   background: var(--primary-white);
   z-index: 50;
-
-  &--dark {
-    background: var(--primary-black);
-  }
 
   @include mediaSmall {
     min-height: 88px;
@@ -59,6 +57,7 @@
   &__icon-search {
     display: block;
     cursor: pointer;
+    color: var(--primary-dark-gray);
   }
 
   &__icon-burger {
@@ -70,6 +69,17 @@
   &__icon-search {
     @include mediaSmall {
       display: none;
+    }
+  }
+
+  &--dark {
+    background: var(--primary-black);
+
+    @include parent($parentClass) {
+      &__icon-burger,
+      &__icon-search {
+        color: var(--primary-light-gray);
+      }
     }
   }
 }
