@@ -6,6 +6,7 @@ import { AuthContext } from "@/features/auth";
 import { FiltersLayout } from "@/features/filters";
 import { ThemeContext } from "@/features/theme";
 import { Button } from "@/shared/ui/Button";
+import { Toast } from "@/shared/ui/Toast";
 import { ArtistsList } from "@/widgets/artists";
 
 import styles from "./Page.module.scss";
@@ -25,6 +26,7 @@ const MainPage: React.FC = () => {
           </Button>
           {isAuth && <FiltersLayout />}
         </div>
+        <Toast theme={theme}>Add your error message here.</Toast>
         <section>
           <ArtistsList isAuth={isAuth} />
         </section>
