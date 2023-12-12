@@ -13,12 +13,16 @@
   }
 
   &__heading {
+    position: relative;
+    min-height: 46px;
     padding: 6px 16px;
-    @include flexItemsCenter;
-    justify-content: space-between;
     border-radius: 4px;
-
+    @include collapse;
     outline: 1px solid var(--primary-light-gray);
+
+    & > *:not(:last-child) {
+      margin: 0px 12px 0px 0px;
+    }
 
     &:hover {
       outline: 1px solid var(--secondary-gray);
@@ -26,23 +30,21 @@
   }
 
   &__icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    right: 16px;
     color: var(--secondary-gray);
-
-    &--active {
-      transform: rotate(180deg);
-    }
   }
 
   &__content {
+    max-height: 240px;
+    display: none;
     padding: 12px 0;
-  }
-
-  &__option {
-    padding: 8px 15px;
-
-    &:hover {
-      background: rgba(18, 18, 18, 0.05);
-    }
+    border-radius: 0 0 4px 4px;
+    overflow: auto;
+    outline: 1px solid var(--primary-light-gray);
   }
 
   &--dark {
@@ -56,9 +58,12 @@
         background: var(--secondary-black);
       }
 
-      &__heading {
+      &__heading,
+      &__content {
         outline: none;
+      }
 
+      &__heading {
         &:hover {
           outline: 1px solid var(--primary-dark-gray);
         }
@@ -68,6 +73,20 @@
         &:hover {
           background: rgba(205, 205, 205, 0.05);
         }
+      }
+    }
+  }
+
+  &--active {
+    @include parent($parentClass) {
+      &__icon {
+        transform: rotate(180deg);
+      }
+      &__heading {
+        border-radius: 4px 4px 0 0;
+      }
+      &__content {
+        display: block;
       }
     }
   }

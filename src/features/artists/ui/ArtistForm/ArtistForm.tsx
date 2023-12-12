@@ -3,41 +3,49 @@ import cn from "classnames/bind";
 import React, { HTMLAttributes } from "react";
 import { useForm } from "react-hook-form";
 
+import { useGetGenresQuery } from "@/entities/genres";
 import { Button } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
-import { MultiSelect } from "@/shared/ui/MultiSelect";
 import { TextArea } from "@/shared/ui/TextArea";
 
 import { IartistSchema, artistSchema } from "../../model/artistSchema";
 
+import ArtistAvatar from "./ArtistAvatar";
 import styles from "./ArtistForm.module.scss";
+import FormMultiSelect from "./FormMultiSelect";
 
 const cx = cn.bind(styles);
 
 interface IArtistForm extends HTMLAttributes<HTMLElement> {
   theme?: string;
+  defaultValues?: IartistSchema;
   onSubmitHandler: ({
     name,
-    yearsOfLife,
-    description,
     genres,
     avatar,
+    yearsOfLife,
+    description,
   }: IartistSchema) => void;
 }
-
-const ArtistForm: React.FC<IArtistForm> = ({ theme, onSubmitHandler }) => {
+const ArtistForm: React.FC<IArtistForm> = ({
+  theme,
+  defaultValues,
+  onSubmitHandler,
+}) => {
   const {
+    control,
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm({ resolver: yupResolver(artistSchema) });
+  } = useForm({ resolver: yupResolver(artistSchema), defaultValues });
+  const { data: genres } = useGetGenresQuery();
 
   return (
     <form
-      className={cx("artist-form")}
+      className={cx("artist-form", `artist-form--${theme}`)}
       onSubmit={handleSubmit(onSubmitHandler)}
     >
-      <div className={cx("artist-form__avatar")}>avatar</div>
+      <ArtistAvatar theme={theme} />
       <div className={cx("artist-form__content")}>
         <Input
           type="text"
@@ -62,7 +70,14 @@ const ArtistForm: React.FC<IArtistForm> = ({ theme, onSubmitHandler }) => {
           error={errors.description?.message}
           register={{ ...register("description") }}
         />
-        <MultiSelect theme={theme} label="Genres*" />
+        {genres && (
+          <FormMultiSelect
+            name="genres"
+            theme={theme}
+            genres={genres}
+            control={control}
+          />
+        )}
         <Button theme={theme}>Save</Button>
       </div>
     </form>

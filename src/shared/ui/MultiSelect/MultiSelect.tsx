@@ -1,11 +1,9 @@
 import cn from "classnames/bind";
-import React, { HTMLAttributes } from "react";
-
-import { useBoolean } from "@/shared/lib/useBoolean";
+import React, { HTMLAttributes, useRef } from "react";
 
 import { ReactComponent as IconArrow } from "../../assets/expand_icon.svg";
-import { Checkbox } from "../Checkbox";
-import { Label } from "../Label";
+import { useBoolean } from "../../lib/useBoolean";
+import { useOutsideClick } from "../../lib/useOutsideClick";
 
 import styles from "./MultiSelect.module.scss";
 
@@ -13,37 +11,40 @@ const cx = cn.bind(styles);
 
 interface IMultiSelect extends HTMLAttributes<HTMLElement> {
   theme?: string;
-  label?: string;
+  label: string;
+  selected?: React.ReactNode;
 }
 
 const MultiSelect: React.FC<IMultiSelect> = ({
   theme,
   label,
-  //   children,
-  //   className,
+  selected,
+  children,
+  className,
 }) => {
-  const [isSelect, { toggle: toggleSelect }] = useBoolean(false);
+  const wrapperRef = useRef(null);
+  const [isSelect, { off: onIsSelectClose, toggle: toggleSelect }] =
+    useBoolean(false);
+
+  useOutsideClick(wrapperRef, onIsSelectClose);
 
   return (
-    <div className={cx("multiselect", `multiselect--${theme}`)}>
+    <div
+      ref={wrapperRef}
+      className={cx(className, "multiselect", `multiselect--${theme}`, {
+        "multiselect--active": isSelect,
+      })}
+    >
       <div className={cx("multiselect__label")}>{label}</div>
       <div
         className={cx("multiselect__heading")}
         onClick={toggleSelect}
         aria-hidden
       >
-        <Label theme={theme}>Romanticism</Label>
-        <IconArrow
-          className={cx("multiselect__icon", {
-            "multiselect__icon--active": isSelect,
-          })}
-        />
+        {selected}
+        <IconArrow className={cx("multiselect__icon")} />
       </div>
-      <div className={cx("multiselect__content")}>
-        <Checkbox className={cx("multiselect__option")} theme={theme}>
-          Romanticism
-        </Checkbox>
-      </div>
+      <div className={cx("multiselect__content")}>{children}</div>
     </div>
   );
 };

@@ -19,7 +19,7 @@
     width: 24px;
     height: 24px;
     border-radius: 4px;
-    outline: none;
+    outline: 1px solid var(--primary-light-gray);
     background: var(--primary-white);
     cursor: pointer;
   }
@@ -38,7 +38,8 @@
   &--dark {
     @include parent($parentClass) {
       &__input {
-        background: var(--primary-dark);
+        background: var(--primary-black);
+        outline: none;
       }
 
       &__icon {
