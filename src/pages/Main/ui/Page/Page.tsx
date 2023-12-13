@@ -17,10 +17,12 @@ const MainPage: React.FC = () => {
   return (
     <div className={cx("main-page")}>
       <div className={cx("main-page__container")}>
-        <div className={cx("main-page__controls")}>
-          <AddArtist />
-          {isAuth && <FiltersLayout />}
-        </div>
+        {isAuth && (
+          <div className={cx("main-page__controls")}>
+            <AddArtist />
+            <FiltersLayout />
+          </div>
+        )}
         <section>
           <ArtistsList isAuth={isAuth} />
         </section>

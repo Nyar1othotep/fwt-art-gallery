@@ -26,10 +26,9 @@ export const useArtistsFetchData = ({ isAuth, filters }: Props) => {
     },
     { skip: !isAuth },
   );
-  const { data: artistData, meta: { count = 0, perPage = 0 } = {} } =
-    data as IArtistsDto;
+  const { data: artistData, meta: { count = 0 } = {} } = data as IArtistsDto;
 
-  const totalPages = getTotalPages(count, perPage);
+  const totalPages = getTotalPages(count, Number(filtersPerPage));
 
   return {
     artists: isAuth ? artistData : staticData,

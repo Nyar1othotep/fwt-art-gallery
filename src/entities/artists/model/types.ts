@@ -1,3 +1,5 @@
+import { GenericFormData } from "axios";
+
 import { IGenres } from "@/shared/api";
 import { IImage } from "@/shared/model/types";
 
@@ -17,7 +19,6 @@ export interface IStaticArtistsDto {
   name: string;
   description: string;
   yearsOfLife: string;
-  __v: number;
   mainPainting: IMainPainting;
 }
 
@@ -38,8 +39,12 @@ export interface IArtistDto {
   _id: string;
   name: string;
   description: string;
-  shortDescription?: string;
   yearsOfLife: string;
   avatar: IImage;
   mainPainting: IMainPainting;
+}
+
+export interface IArtistEditBody {
+  id: string;
+  data: GenericFormData;
 }

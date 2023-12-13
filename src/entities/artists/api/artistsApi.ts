@@ -1,6 +1,13 @@
+import { GenericFormData } from "axios";
+
 import { baseApi } from "@/shared/api";
 
-import { IArtistDto, IArtistsDto, IStaticArtistsDto } from "../model/types";
+import {
+  IArtistDto,
+  IArtistEditBody,
+  IArtistsDto,
+  IStaticArtistsDto,
+} from "../model/types";
 
 export const artistsApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -16,6 +23,7 @@ export const artistsApi = baseApi.injectEndpoints({
         method: "get",
         params: filters,
       }),
+      providesTags: ["Artist"],
     }),
     getStaticArtist: build.query<IArtistDto, string | undefined>({
       query: (id) => ({
@@ -28,6 +36,23 @@ export const artistsApi = baseApi.injectEndpoints({
         url: `/artists/${id}`,
         method: "get",
       }),
+      providesTags: ["Artist"],
+    }),
+    createArtist: build.mutation<IArtistDto, GenericFormData>({
+      query: (data) => ({
+        url: "/artists",
+        method: "POST",
+        data,
+      }),
+      invalidatesTags: ["Artist"],
+    }),
+    editArtist: build.mutation<IArtistDto, IArtistEditBody>({
+      query: ({ id, data }) => ({
+        method: "PUT",
+        url: `/artists/${id}`,
+        data,
+      }),
+      invalidatesTags: ["Artist"],
     }),
   }),
 });
@@ -37,4 +62,6 @@ export const {
   useGetArtistsQuery,
   useGetStaticArtistQuery,
   useGetArtistQuery,
+  useCreateArtistMutation,
+  useEditArtistMutation,
 } = artistsApi;

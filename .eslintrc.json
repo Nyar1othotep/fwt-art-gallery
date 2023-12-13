@@ -75,6 +75,7 @@
       "error",
       { "blankLine": "always", "prev": "*", "next": "return" },
       { "blankLine": "always", "prev": "*", "next": "export" }
-    ]
+    ],
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }]
   }
 }

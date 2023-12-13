@@ -10,11 +10,13 @@ const cx = cn.bind(styles);
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
   theme?: string;
   variant?: TButtonVariant;
+  isButton?: boolean;
 }
 
 const Button: React.FC<IButton> = ({
   theme = "light",
   variant = "default",
+  isButton,
   className,
   ...props
 }) => (
@@ -25,7 +27,7 @@ const Button: React.FC<IButton> = ({
       `button--${variant}`,
       `button--${variant}--${theme}`,
     )}
-    type="submit"
+    type={isButton ? "button" : "submit"}
     {...props}
   />
 );

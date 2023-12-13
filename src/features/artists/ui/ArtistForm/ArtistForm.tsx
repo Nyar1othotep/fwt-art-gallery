@@ -12,7 +12,7 @@ import { IartistSchema, artistSchema } from "../../model/artistSchema";
 
 import ArtistAvatar from "./ArtistAvatar";
 import styles from "./ArtistForm.module.scss";
-import FormMultiSelect from "./FormMultiSelect";
+import ArtistMultiSelect from "./ArtistMultiSelect";
 
 const cx = cn.bind(styles);
 
@@ -45,7 +45,7 @@ const ArtistForm: React.FC<IArtistForm> = ({
       className={cx("artist-form", `artist-form--${theme}`)}
       onSubmit={handleSubmit(onSubmitHandler)}
     >
-      <ArtistAvatar theme={theme} />
+      <ArtistAvatar name="avatar" theme={theme} control={control} />
       <div className={cx("artist-form__content")}>
         <Input
           type="text"
@@ -71,14 +71,16 @@ const ArtistForm: React.FC<IArtistForm> = ({
           register={{ ...register("description") }}
         />
         {genres && (
-          <FormMultiSelect
+          <ArtistMultiSelect
             name="genres"
             theme={theme}
             genres={genres}
             control={control}
           />
         )}
-        <Button theme={theme}>Save</Button>
+        <Button className={cx("artist-form__btn")} theme={theme}>
+          Save
+        </Button>
       </div>
     </form>
   );

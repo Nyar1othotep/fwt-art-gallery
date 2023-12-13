@@ -2,6 +2,7 @@ import cn from "classnames/bind";
 import React, { useContext, useMemo } from "react";
 import { Navigate, Outlet, useNavigate, useParams } from "react-router-dom";
 
+import { EditArtist } from "@/features/artists";
 import { AuthContext } from "@/features/auth";
 import { ThemeContext } from "@/features/theme";
 import { ReactComponent as IconBack } from "@/shared/assets/arrow_icon.svg";
@@ -28,6 +29,7 @@ const ArtistProfile: React.FC = () => {
     artistId,
   });
   const navigate = useNavigate();
+  const isLoading = !(!isArtistLoading && artist);
 
   const artistInfoSkeleton = useMemo(
     () => <ArtistSkeleton theme={theme} />,
@@ -51,29 +53,28 @@ const ArtistProfile: React.FC = () => {
     <div className={cx("artist-profile-page", `artist-profile-page--${theme}`)}>
       <div className={cx("artist-profile-page__container")}>
         <div className={cx("artist-profile-page__content")}>
-          <Button
-            className={cx("artist-profile-page__btn")}
-            theme={theme}
-            variant="text"
-            onClick={routeBack(navigate)}
-          >
-            <IconBack className={cx("artist-profile-page__btn-icon")} />{" "}
-            <p className={cx("artist-profile-page__btn-text")}>Back</p>
-          </Button>
-          <section>
-            {!isArtistLoading && artist ? (
-              <ArtistInfo artist={artist} />
-            ) : (
-              artistInfoSkeleton
+          <div className={cx("artist-profile-page__controls")}>
+            <Button
+              className={cx("artist-profile-page__btn")}
+              theme={theme}
+              variant="text"
+              onClick={routeBack(navigate)}
+            >
+              <IconBack className={cx("artist-profile-page__btn-icon")} />{" "}
+              <p className={cx("artist-profile-page__btn-text")}>Back</p>
+            </Button>
+            {isAuth && artist && (
+              <div className={cx("artist-profile-page__controls--auth")}>
+                <EditArtist artist={artist} />
+              </div>
             )}
+          </div>
+          <section>
+            {isLoading ? artistInfoSkeleton : <ArtistInfo artist={artist} />}
           </section>
           <section>
             <div className={cx("artist-profile-page__heading")}>Artworks</div>
-            {!isArtistLoading && artist ? (
-              <ArtworksLayout artist={artist} />
-            ) : (
-              artworksSkeleton
-            )}
+            {isLoading ? artworksSkeleton : <ArtworksLayout artist={artist} />}
           </section>
         </div>
       </div>

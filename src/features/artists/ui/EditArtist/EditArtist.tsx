@@ -2,55 +2,80 @@ import { toFormData } from "axios";
 import cn from "classnames/bind";
 import React, { useCallback, useContext, useEffect } from "react";
 
-import { useCreateArtistMutation } from "@/entities/artists";
+import { IArtistDto, useEditArtistMutation } from "@/entities/artists";
 import { ThemeContext } from "@/features/theme";
-import { ReactComponent as IconPlus } from "@/shared/assets/plus_icon.svg";
 import { useBoolean } from "@/shared/lib/useBoolean";
 import { Button } from "@/shared/ui/Button";
 import { Modal } from "@/shared/ui/Modal";
 
 import { arrayToIds } from "../../lib/arrayToIds";
+import { isDefaultAvatar } from "../../lib/isDefaultAvatar";
 import { IartistSchema } from "../../model/artistSchema";
 import { ArtistForm } from "../ArtistForm";
+import { ReactComponent as IconEdit } from "../assets/edit_icon.svg";
 
-import styles from "./AddArtist.module.scss";
+import styles from "./EditArtist.module.scss";
 
 const cx = cn.bind(styles);
 
-const AddArtist: React.FC = () => {
+interface IEditArtist {
+  artist: IArtistDto;
+}
+
+const EditArtist: React.FC<IEditArtist> = ({
+  artist: {
+    _id: id,
+    name,
+    genres,
+    avatar: { webp },
+    yearsOfLife,
+    description,
+  },
+}) => {
   const { theme } = useContext(ThemeContext);
   const [isModal, { on: handleModalOpen, off: handleModalClose }] =
     useBoolean(false);
-  const [createArtist, { isSuccess }] = useCreateArtistMutation();
+  const [editArtist, { isSuccess }] = useEditArtistMutation();
 
   useEffect(() => {
     if (isSuccess) handleModalClose();
   }, [isSuccess]);
 
   const onSubmit = useCallback((newArtist: IartistSchema) => {
-    const fromData = toFormData({
+    const data = toFormData({
       ...newArtist,
+      avatar: isDefaultAvatar(newArtist.avatar, webp),
       genres: arrayToIds(newArtist.genres),
     });
-    createArtist(fromData);
+    editArtist({ id, data });
   }, []);
 
   return (
     <>
-      <Button theme={theme} variant="text" onClick={handleModalOpen}>
-        <IconPlus /> Add artist
+      <Button theme={theme} variant="icon" onClick={handleModalOpen}>
+        <IconEdit />
       </Button>
       <Modal
         theme={theme}
         isShow={isModal}
         variant="default"
-        className={cx("add-artist__modal")}
+        className={cx("edit-artist__modal")}
         onClose={handleModalClose}
       >
-        <ArtistForm theme={theme} onSubmitHandler={onSubmit} />
+        <ArtistForm
+          theme={theme}
+          defaultValues={{
+            name,
+            description,
+            yearsOfLife,
+            avatar: webp,
+            genres,
+          }}
+          onSubmitHandler={onSubmit}
+        />
       </Modal>
     </>
   );
 };
 
-export default AddArtist;
+export default EditArtist;

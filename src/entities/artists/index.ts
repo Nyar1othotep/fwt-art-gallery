@@ -3,6 +3,8 @@ export {
   useGetArtistsQuery,
   useGetStaticArtistQuery,
   useGetArtistQuery,
+  useCreateArtistMutation,
+  useEditArtistMutation,
 } from "./api/artistsApi";
 
 export type {

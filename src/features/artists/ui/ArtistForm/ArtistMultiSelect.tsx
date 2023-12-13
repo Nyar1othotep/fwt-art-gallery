@@ -9,20 +9,19 @@ import { MultiSelect } from "@/shared/ui/MultiSelect";
 
 import { toggleOption } from "../../lib/toggleOption";
 import { IartistSchema } from "../../model/artistSchema";
-import { IOption } from "../../model/types";
 
 import styles from "./ArtistForm.module.scss";
 
 const cx = cn.bind(styles);
 
-interface IFormMultiSelect {
+interface IArtistMultiSelect {
   name: string;
   theme?: string;
   genres: IGenres[];
   control: Control<IartistSchema & FieldValues>;
 }
 
-const FormMultiSelect: React.FC<IFormMultiSelect> = ({
+const ArtistMultiSelect: React.FC<IArtistMultiSelect> = ({
   name: controlName,
   theme,
   genres,
@@ -31,9 +30,9 @@ const FormMultiSelect: React.FC<IFormMultiSelect> = ({
   const {
     field: { onChange, value },
   } = useController({ name: controlName, control });
-  const options: IOption[] = value || [];
+  const options: IGenres[] = value || [];
 
-  const handleOption = (option: IOption) => (event: React.SyntheticEvent) => {
+  const handleOption = (option: IGenres) => (event: React.SyntheticEvent) => {
     event.stopPropagation();
     onChange(toggleOption(option, options));
   };
@@ -42,8 +41,8 @@ const FormMultiSelect: React.FC<IFormMultiSelect> = ({
     <MultiSelect
       theme={theme}
       label="Genres*"
-      selected={options.map(({ id, name }) => (
-        <Label key={id} theme={theme} onCancel={handleOption({ id, name })}>
+      selected={options.map(({ _id, name }) => (
+        <Label key={_id} theme={theme} onCancel={handleOption({ _id, name })}>
           {name}
         </Label>
       ))}
@@ -55,7 +54,7 @@ const FormMultiSelect: React.FC<IFormMultiSelect> = ({
           id={_id}
           theme={theme}
           forceChecked={!!options.find((e) => e.name === name)}
-          onCheck={handleOption({ id: _id, name })}
+          onCheck={handleOption({ _id, name })}
         >
           {name}
         </Checkbox>
@@ -64,4 +63,4 @@ const FormMultiSelect: React.FC<IFormMultiSelect> = ({
   );
 };
 
-export default FormMultiSelect;
+export default ArtistMultiSelect;

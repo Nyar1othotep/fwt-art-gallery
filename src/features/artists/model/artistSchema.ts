@@ -9,7 +9,7 @@ export const artistSchema = yup.object().shape({
     .min(1)
     .of(
       yup.object().shape({
-        id: yup.string().required(),
+        _id: yup.string().required(),
         name: yup.string().required(),
       }),
     )
