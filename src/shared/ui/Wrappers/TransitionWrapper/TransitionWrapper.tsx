@@ -3,7 +3,6 @@ import React, { useRef } from "react";
 import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
-import { useOutsideClick } from "../../../lib/useOutsideClick";
 import { useToggleScroll } from "../../../lib/useToggleScroll";
 import { TTransitionWrapperVariant } from "../../../model/types";
 
@@ -33,10 +32,9 @@ const TransitionWrapper: React.FC<ITransitionWrapper> = ({
   enterDoneClass,
 }) => {
   const wrapperRef = useRef(null);
-  const bgRef = useRef(null);
+  const chindrenRef = useRef(null);
   const debounce = isTransition ? 500 : 0;
 
-  useOutsideClick(bgRef, onClose);
   useToggleScroll(isShow, debounce + 20);
 
   return (
@@ -64,8 +62,13 @@ const TransitionWrapper: React.FC<ITransitionWrapper> = ({
               `transition-wrapper--${variant}`,
             )}
           >
-            <div ref={bgRef} className={cx("transition-wrapper__bg")} />
             <div
+              className={cx("transition-wrapper__bg")}
+              onClick={onClose}
+              aria-hidden
+            />
+            <div
+              ref={chindrenRef}
               className={cx(
                 childrenClass,
                 "transition-wrapper__children",

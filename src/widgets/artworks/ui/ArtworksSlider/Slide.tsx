@@ -54,8 +54,16 @@ const Slide: React.FC<ISlide> = ({
               </div>
               {isAuth && (
                 <div className={cx("slide__controls")}>
-                  <EditArtwork id={artist._id} painting={painting} />
-                  <DeleteArtwork id={artist._id} painting={painting} />
+                  <EditArtwork
+                    id={artist._id}
+                    variant="button"
+                    painting={painting}
+                  />
+                  <DeleteArtwork
+                    id={artist._id}
+                    variant="button"
+                    painting={painting}
+                  />
                 </div>
               )}
             </div>

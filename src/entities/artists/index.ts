@@ -9,6 +9,7 @@ export {
   useCreateArtworkMutation,
   useEditArtworkMutation,
   useDeleteArtworkMutation,
+  useEditArtistMainPaintingMutation,
 } from "./api/artistsApi";
 
 export type {

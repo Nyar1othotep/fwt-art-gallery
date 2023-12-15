@@ -2,7 +2,7 @@ import cn from "classnames/bind";
 import React, { useContext } from "react";
 
 import { IArtistDto } from "@/entities/artists";
-import { AddArtwork } from "@/features/artworks";
+import { AddArtwork, ArtworkSettings } from "@/features/artworks";
 import { AuthContext } from "@/features/auth";
 import { ThemeContext } from "@/features/theme";
 import { Card } from "@/shared/ui/Card";
@@ -30,16 +30,23 @@ const ArtworksList: React.FC<IArtworksList> = ({
       {isArtworksEmpty && isAuth ? (
         <AddArtwork artist={artist} />
       ) : (
-        artist.paintings.map(({ _id, name, image, yearOfCreation }, index) => (
-          <Card
-            key={_id}
-            year={yearOfCreation}
-            title={name}
-            image={image}
-            theme={theme}
-            onClick={() => onPainting(index)}
-          />
-        ))
+        artist.paintings.map((painting, index) => {
+          const { _id: id, name, image, yearOfCreation } = painting;
+
+          return (
+            <Card
+              key={id}
+              year={yearOfCreation}
+              title={name}
+              image={image}
+              theme={theme}
+              actionSlot={
+                <ArtworkSettings artist={artist} painting={painting} />
+              }
+              onClick={() => onPainting(index)}
+            />
+          );
+        })
       )}
     </GridLayout>
   );

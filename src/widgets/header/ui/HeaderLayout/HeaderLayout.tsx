@@ -33,7 +33,7 @@ const HeaderLayout: React.FC = () => {
     if (isSmallView) handleSearchClose();
   }, [isLargeView, isSmallView]);
 
-  useOutsideClick(searchRef, () => handleSearchClose());
+  useOutsideClick(searchRef, handleSearchClose);
 
   return (
     <header className={cx("header", `header--${theme}`)}>

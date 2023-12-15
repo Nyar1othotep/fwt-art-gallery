@@ -12,7 +12,7 @@ import { ErrorImage } from "@/shared/ui/Image";
 import { Modal } from "@/shared/ui/Modal";
 
 import { IartworkSchema } from "../../model/artworkSchema";
-import { TAddArtworkVariant } from "../../model/types";
+import { TArtworkVariant } from "../../model/types";
 import { ArtworkForm } from "../ArtworkForm";
 
 import styles from "./AddArtwork.module.scss";
@@ -21,7 +21,7 @@ const cx = cn.bind(styles);
 
 interface IAddArtwork {
   artist: IArtistDto;
-  variant?: TAddArtworkVariant;
+  variant?: TArtworkVariant;
 }
 
 const AddArtwork: React.FC<IAddArtwork> = ({
@@ -62,7 +62,12 @@ const AddArtwork: React.FC<IAddArtwork> = ({
           </Button>
         </div>
       )}
-      <Modal theme={theme} isShow={isModal} onClose={handleModalClose}>
+      <Modal
+        className={cx("add-artwork__modal")}
+        theme={theme}
+        isShow={isModal}
+        onClose={handleModalClose}
+      >
         <ArtworkForm theme={theme} onSubmitHandler={onSubmit} />
       </Modal>
     </div>

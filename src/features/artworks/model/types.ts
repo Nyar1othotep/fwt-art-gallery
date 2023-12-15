@@ -1,1 +1,1 @@
-export type TAddArtworkVariant = "default" | "button";
+export type TArtworkVariant = "default" | "button";

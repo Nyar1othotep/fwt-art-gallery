@@ -1,5 +1,7 @@
 .artwork-form {
   &__content {
+    @include flexItemsCenter;
+    flex-direction: column;
     padding: 80px 30px;
 
     @include mediaSmall {
@@ -8,6 +10,7 @@
   }
 
   &__inputs {
+    width: 100%;
     margin: 0px 0px 40px 0px;
     @include flexItemsCenter;
     justify-content: space-between;
@@ -30,7 +33,7 @@
   }
 
   &__btn {
-    margin: 40px auto 0px auto;
+    margin-top: 40px;
 
     @include mediaSmall {
       margin-top: 60px;

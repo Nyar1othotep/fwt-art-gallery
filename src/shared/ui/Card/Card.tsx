@@ -18,6 +18,7 @@ interface ICard extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   theme?: string;
   onClick?: () => void;
+  actionSlot?: React.ReactNode;
 }
 
 const Card: React.FC<ICard> = ({
@@ -27,28 +28,32 @@ const Card: React.FC<ICard> = ({
   title,
   theme = "light",
   onClick,
+  actionSlot,
 }) => (
-  <Link className={cx("card", `card--${theme}`)} onClick={onClick} to={to}>
-    <div className={cx("card__image-wrapper", "image-box")}>
-      <Image
-        className={cx("card__image")}
-        image={image}
-        theme={theme}
-        alt={title}
-      />
-    </div>
-    <div className={cx("card__content")}>
-      <div className={cx("card__info", "info-card", `info-card--${theme}`)}>
-        <div className={cx("info-card__content")}>
-          <div className={cx("info-card__title")}>{title}</div>
-          <div className={cx("info-card__year")}>{year}</div>
+  <div className={cx("card", `card--${theme}`)}>
+    {actionSlot && <div className={cx("card__action-slot")}>{actionSlot}</div>}
+    <Link onClick={onClick} to={to}>
+      <div className={cx("card__image-wrapper", "image-box")}>
+        <Image
+          className={cx("card__image")}
+          image={image}
+          theme={theme}
+          alt={title}
+        />
+      </div>
+      <div className={cx("card__content")}>
+        <div className={cx("card__info", "info-card", `info-card--${theme}`)}>
+          <div className={cx("info-card__content")}>
+            <div className={cx("info-card__title")}>{title}</div>
+            <div className={cx("info-card__year")}>{year}</div>
+          </div>
+        </div>
+        <div className={cx("card__button")}>
+          <Icon />
         </div>
       </div>
-      <div className={cx("card__button")}>
-        <Icon />
-      </div>
-    </div>
-  </Link>
+    </Link>
+  </div>
 );
 
 export default memo(Card);

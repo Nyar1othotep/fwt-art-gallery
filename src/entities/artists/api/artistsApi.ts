@@ -86,6 +86,14 @@ export const artistsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Artist"],
     }),
+    editArtistMainPainting: build.mutation<null, IRequestArtworkBody>({
+      query: ({ id, artworkId }) => ({
+        method: "PATCH",
+        url: `/artists/${id}/main-painting`,
+        data: { mainPainting: artworkId },
+      }),
+      invalidatesTags: ["Artists", "Artist"],
+    }),
   }),
 });
 
@@ -100,4 +108,5 @@ export const {
   useCreateArtworkMutation,
   useEditArtworkMutation,
   useDeleteArtworkMutation,
+  useEditArtistMainPaintingMutation,
 } = artistsApi;

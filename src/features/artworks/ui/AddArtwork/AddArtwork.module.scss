@@ -20,6 +20,14 @@
     background: var(--accent-red);
   }
 
+  &__modal {
+    width: 100%;
+
+    @include mediaSmall {
+      width: auto;
+    }
+  }
+
   &--dark {
     @include parent($parentClass) {
       &__picture {

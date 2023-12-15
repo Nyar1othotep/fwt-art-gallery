@@ -10,15 +10,20 @@ import { ReactComponent as IconDelete } from "@/shared/assets/delete_icon.svg";
 import { useBoolean } from "@/shared/lib/useBoolean";
 import { Button } from "@/shared/ui/Button";
 
+import { TArtworkVariant } from "../../model/types";
+
 interface IDeleteArtwork {
   id: string;
+  variant?: TArtworkVariant;
   painting: IPaintingDto;
 }
 
 const DeleteArtwork: React.FC<IDeleteArtwork> = ({
   id,
+  variant = "default",
   painting: { _id: artworkId },
 }) => {
+  const isButtonVariant = variant === "button";
   const { theme } = useContext(ThemeContext);
   const [isModal, { on: handleModalOpen, off: handleModalClose }] =
     useBoolean(false);
@@ -30,9 +35,15 @@ const DeleteArtwork: React.FC<IDeleteArtwork> = ({
 
   return (
     <>
-      <Button theme={theme} variant="icon" onClick={handleModalOpen}>
-        <IconDelete />
-      </Button>
+      {isButtonVariant ? (
+        <Button theme={theme} variant="icon" onClick={handleModalOpen}>
+          <IconDelete />
+        </Button>
+      ) : (
+        <div onClick={handleModalOpen} aria-hidden>
+          Delete
+        </div>
+      )}
       <DeleteModal
         theme={theme}
         isShow={isModal}

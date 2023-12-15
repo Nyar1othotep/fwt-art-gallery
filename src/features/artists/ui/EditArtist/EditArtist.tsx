@@ -42,15 +42,18 @@ const EditArtist: React.FC<IEditArtist> = ({
     if (isSuccess) handleModalClose();
   }, [isSuccess]);
 
-  const onSubmit = useCallback((newArtist: IartistSchema) => {
-    const newData = removeEmpty({
-      ...newArtist,
-      avatar: isDefaultImage(newArtist.avatar, webp),
-      genres: arrayToIds(newArtist.genres),
-    });
-    const data = toFormData(newData);
-    editArtist({ id, data });
-  }, []);
+  const onSubmit = useCallback(
+    (newArtist: IartistSchema) => {
+      const newData = removeEmpty({
+        ...newArtist,
+        avatar: isDefaultImage(newArtist.avatar, webp),
+        genres: arrayToIds(newArtist.genres),
+      });
+      const data = toFormData(newData);
+      editArtist({ id, data });
+    },
+    [webp],
+  );
 
   return (
     <div className={cx("edit-artist")}>

@@ -3,6 +3,7 @@ import React, { HTMLAttributes, useRef } from "react";
 
 import { ReactComponent as IconArrow } from "../../assets/expand_icon.svg";
 import { useBoolean } from "../../lib/useBoolean";
+import { useOutsideClick } from "../../lib/useOutsideClick";
 
 import styles from "./MultiSelect.module.scss";
 
@@ -22,7 +23,10 @@ const MultiSelect: React.FC<IMultiSelect> = ({
   className,
 }) => {
   const wrapperRef = useRef(null);
-  const [isSelect, { toggle: toggleSelect }] = useBoolean(false);
+  const [isSelect, { off: handleSelectClose, toggle: toggleSelect }] =
+    useBoolean(false);
+
+  useOutsideClick(wrapperRef, handleSelectClose);
 
   return (
     <div
