@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { SwiperSlide } from "swiper/react";
 
 import { IArtistDto, IPaintingDto } from "@/entities/artists";
-import { EditArtist, DeleteArtist } from "@/features/artists";
+import { DeleteArtwork, EditArtwork } from "@/features/artworks";
 import { AuthContext } from "@/features/auth";
 import { ThemeContext } from "@/features/theme";
 import { Button } from "@/shared/ui/Button";
@@ -54,8 +54,8 @@ const Slide: React.FC<ISlide> = ({
               </div>
               {isAuth && (
                 <div className={cx("slide__controls")}>
-                  <EditArtist artist={artist} />
-                  <DeleteArtist id={artist._id} />
+                  <EditArtwork id={artist._id} painting={painting} />
+                  <DeleteArtwork id={artist._id} painting={painting} />
                 </div>
               )}
             </div>

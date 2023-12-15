@@ -8,6 +8,7 @@ import {
   IArtistsDto,
   IPaintingDto,
   IStaticArtistsDto,
+  IRequestArtworkBody,
 } from "../model/types";
 
 export const artistsApi = baseApi.injectEndpoints({
@@ -70,6 +71,21 @@ export const artistsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Artist"],
     }),
+    editArtwork: build.mutation<IPaintingDto, IRequestArtworkBody>({
+      query: ({ id, artworkId, data }) => ({
+        url: `/artists/${id}/paintings/${artworkId}`,
+        method: "PUT",
+        data,
+      }),
+      invalidatesTags: ["Artist"],
+    }),
+    deleteArtwork: build.mutation<null, IRequestArtworkBody>({
+      query: ({ id, artworkId }) => ({
+        url: `/artists/${id}/paintings/${artworkId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Artist"],
+    }),
   }),
 });
 
@@ -82,4 +98,6 @@ export const {
   useEditArtistMutation,
   useDeleteArtistMutation,
   useCreateArtworkMutation,
+  useEditArtworkMutation,
+  useDeleteArtworkMutation,
 } = artistsApi;

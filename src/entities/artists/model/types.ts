@@ -48,3 +48,11 @@ export interface IRequestArtistBody {
   id: string;
   data: GenericFormData;
 }
+
+export interface IRequestArtworkBody {
+  id: string;
+  artworkId: string;
+  data?: GenericFormData;
+}
+
+export type TModalVariant = "artist" | "artwork";

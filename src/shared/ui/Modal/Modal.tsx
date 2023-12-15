@@ -1,8 +1,7 @@
 import cn from "classnames/bind";
-import React, { HTMLAttributes, useEffect } from "react";
+import React, { HTMLAttributes } from "react";
 
 import { ReactComponent as Icon } from "../../assets/close_icon.svg";
-import { useBoolean } from "../../lib/useBoolean";
 import { TModalVariant } from "../../model/types";
 import { TransitionWrapper } from "../Wrappers/TransitionWrapper";
 
@@ -26,40 +25,21 @@ const Modal: React.FC<IModal> = ({
   onExited,
   children,
   className,
-}) => {
-  const [isModal, { on: handleModalOpen, off: handleModalClose }] =
-    useBoolean(isShow);
-
-  useEffect(() => {
-    if (isShow) handleModalOpen();
-  }, [isShow]);
-
-  const handleExited = () => {
-    onExited?.();
-    handleModalClose();
-  };
-
-  return isModal ? (
-    <TransitionWrapper
-      isShow={isShow}
-      onClose={onClose}
-      onExited={handleExited}
-      childrenClass={className}
-      enterDoneClass={cx("modal__enter-done")}
+}) => (
+  <TransitionWrapper
+    isShow={isShow}
+    onClose={onClose}
+    onExited={onExited}
+    childrenClass={className}
+    enterDoneClass={cx("modal__enter-done")}
+  >
+    <div
+      className={cx(className, "modal", `modal--${theme}`, `modal--${variant}`)}
     >
-      <div
-        className={cx(
-          className,
-          "modal",
-          `modal--${theme}`,
-          `modal--${variant}`,
-        )}
-      >
-        <Icon className={cx("modal__icon")} onClick={onClose} />
-        {children}
-      </div>
-    </TransitionWrapper>
-  ) : null;
-};
+      <Icon className={cx("modal__icon")} onClick={onClose} />
+      {children}
+    </div>
+  </TransitionWrapper>
+);
 
 export default Modal;

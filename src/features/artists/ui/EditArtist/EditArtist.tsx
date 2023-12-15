@@ -4,6 +4,7 @@ import React, { useCallback, useContext, useEffect } from "react";
 
 import { IArtistDto, useEditArtistMutation } from "@/entities/artists";
 import { ThemeContext } from "@/features/theme";
+import { ReactComponent as IconEdit } from "@/shared/assets/edit_icon.svg";
 import { isDefaultImage } from "@/shared/lib/isDefaultImage";
 import { removeEmpty } from "@/shared/lib/removeEmpty";
 import { useBoolean } from "@/shared/lib/useBoolean";
@@ -13,7 +14,6 @@ import { Modal } from "@/shared/ui/Modal";
 import { arrayToIds } from "../../lib/arrayToIds";
 import { IartistSchema } from "../../model/artistSchema";
 import { ArtistForm } from "../ArtistForm";
-import { ReactComponent as IconEdit } from "../assets/edit_icon.svg";
 
 import styles from "./EditArtist.module.scss";
 
@@ -48,14 +48,12 @@ const EditArtist: React.FC<IEditArtist> = ({
       avatar: isDefaultImage(newArtist.avatar, webp),
       genres: arrayToIds(newArtist.genres),
     });
-
     const data = toFormData(newData);
-
     editArtist({ id, data });
   }, []);
 
   return (
-    <>
+    <div className={cx("edit-artist")}>
       <Button theme={theme} variant="icon" onClick={handleModalOpen}>
         <IconEdit />
       </Button>
@@ -79,7 +77,7 @@ const EditArtist: React.FC<IEditArtist> = ({
           />
         </div>
       </Modal>
-    </>
+    </div>
   );
 };
 

@@ -1,10 +1,11 @@
 import cn from "classnames/bind";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
 
-import { useOutsideClick } from "@/shared/lib/useOutsideClick";
-import { TTransitionWrapperVariant } from "@/shared/model/types";
+import { useOutsideClick } from "../../../lib/useOutsideClick";
+import { useToggleScroll } from "../../../lib/useToggleScroll";
+import { TTransitionWrapperVariant } from "../../../model/types";
 
 import styles from "./TransitionWrapper.module.scss";
 
@@ -33,25 +34,17 @@ const TransitionWrapper: React.FC<ITransitionWrapper> = ({
 }) => {
   const wrapperRef = useRef(null);
   const bgRef = useRef(null);
+  const debounce = isTransition ? 500 : 0;
 
   useOutsideClick(bgRef, onClose);
-
-  useEffect(() => {
-    if (isShow) {
-      document.body.style.overflow = "hidden";
-    }
-
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isShow]);
+  useToggleScroll(isShow, debounce + 20);
 
   return (
     <CSSTransition
       nodeRef={wrapperRef}
       in={isShow}
       appear={isShow}
-      timeout={{ exit: isTransition ? 500 : 0 }}
+      timeout={{ exit: debounce }}
       classNames={{
         enterActive: cx("enter-active"),
         enterDone: cx(enterDoneClass, "enter-done"),

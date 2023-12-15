@@ -40,9 +40,7 @@ const AddArtwork: React.FC<IAddArtwork> = ({
 
   const onSubmit = useCallback((newArtwork: IartworkSchema) => {
     const newData = removeEmpty(newArtwork);
-
     const data = toFormData(newData);
-
     createArtwork({ id, data });
   }, []);
 
@@ -64,15 +62,8 @@ const AddArtwork: React.FC<IAddArtwork> = ({
           </Button>
         </div>
       )}
-      <Modal
-        theme={theme}
-        isShow={isModal}
-        className={cx("add-artwork__modal")}
-        onClose={handleModalClose}
-      >
-        <div className={cx("add-artwork__content")}>
-          <ArtworkForm theme={theme} onSubmitHandler={onSubmit} />
-        </div>
+      <Modal theme={theme} isShow={isModal} onClose={handleModalClose}>
+        <ArtworkForm theme={theme} onSubmitHandler={onSubmit} />
       </Modal>
     </div>
   );

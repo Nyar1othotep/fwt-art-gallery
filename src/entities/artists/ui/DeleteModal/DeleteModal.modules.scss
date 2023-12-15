@@ -1,6 +1,4 @@
-.delete-artist {
-  $parentClass: &;
-
+.delete-modal {
   &__modal {
     width: 100%;
     margin: auto 0 0 0;
@@ -56,10 +54,5 @@
   &__text {
     @include pSmallLight;
     color: var(--secondary-gray);
-  }
-
-  &--dark {
-    @include parent($parentClass) {
-    }
   }
 }

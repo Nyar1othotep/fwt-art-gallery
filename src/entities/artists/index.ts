@@ -7,6 +7,8 @@ export {
   useEditArtistMutation,
   useDeleteArtistMutation,
   useCreateArtworkMutation,
+  useEditArtworkMutation,
+  useDeleteArtworkMutation,
 } from "./api/artistsApi";
 
 export type {
@@ -15,3 +17,5 @@ export type {
   IStaticArtistsDto,
   IArtistDto,
 } from "./model/types";
+
+export { DeleteModal } from "./ui/DeleteModal";
