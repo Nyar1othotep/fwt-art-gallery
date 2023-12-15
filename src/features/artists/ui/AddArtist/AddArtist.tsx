@@ -36,20 +36,21 @@ const AddArtist: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <div className={cx("add-artist", `add-artist--${theme}`)}>
       <Button theme={theme} variant="text" onClick={handleModalOpen}>
         <IconPlus /> Add artist
       </Button>
       <Modal
         theme={theme}
         isShow={isModal}
-        variant="default"
         className={cx("add-artist__modal")}
         onClose={handleModalClose}
       >
-        <ArtistForm theme={theme} onSubmitHandler={onSubmit} />
+        <div className={cx("add-artist__content")}>
+          <ArtistForm theme={theme} onSubmitHandler={onSubmit} />
+        </div>
       </Modal>
-    </>
+    </div>
   );
 };
 

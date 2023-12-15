@@ -21,7 +21,12 @@ const OriginalImage: React.FC<IImageComponent> = ({
   const [isImageLoading, { off: onImageLoaded }] = useBoolean(true);
   const [isImageError, { on: onImageError }] = useBoolean(false);
 
-  if (!image) return <ErrorImage title="No image uploaded" />;
+  if (!image)
+    return (
+      <div className={cx(className, "image-wrapper")}>
+        <ErrorImage theme={theme} title="No image uploaded" />
+      </div>
+    );
 
   return (
     <div className={cx(className, "image-wrapper")}>
@@ -35,7 +40,7 @@ const OriginalImage: React.FC<IImageComponent> = ({
           loading="lazy"
         />
       ) : (
-        <ErrorImage title="Image load error" />
+        <ErrorImage theme={theme} title="Image load error" />
       )}
       {isImageLoading && !isImageError && (
         <Preloader className={cx("preloader")} theme={theme} />

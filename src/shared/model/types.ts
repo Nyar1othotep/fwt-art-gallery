@@ -16,7 +16,7 @@ export interface IImage {
   original: string;
 }
 
-export type TModalVariant = "default" | "popup" | "edit";
+export type TModalVariant = "default" | "popup";
 
 export type TTransitionWrapperVariant = "modal" | "slider";
 
@@ -31,3 +31,5 @@ export interface IImageComponent extends HTMLAttributes<HTMLPictureElement> {
   image: IImage;
   theme?: string;
 }
+
+export type TDropZoneVariant = "avatar" | "artwork";

@@ -8,11 +8,10 @@ import React, {
 import { useLocation, useSearchParams } from "react-router-dom";
 
 import { AuthContext } from "@/features/auth";
+import { removeEmpty } from "@/shared/lib/removeEmpty";
 
 import { defaultFilters } from "../config";
 import { IFilters } from "../model/types";
-
-import { removeEmpty } from "./removeEmpty";
 
 interface IFiltersContext<T> {
   filters: T;

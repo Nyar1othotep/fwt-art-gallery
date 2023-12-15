@@ -5,6 +5,8 @@ export {
   useGetArtistQuery,
   useCreateArtistMutation,
   useEditArtistMutation,
+  useDeleteArtistMutation,
+  useCreateArtworkMutation,
 } from "./api/artistsApi";
 
 export type {

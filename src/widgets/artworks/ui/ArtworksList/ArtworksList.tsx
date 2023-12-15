@@ -1,30 +1,46 @@
+import cn from "classnames/bind";
 import React, { useContext } from "react";
 
-import { IPaintingDto } from "@/entities/artists";
+import { IArtistDto } from "@/entities/artists";
+import { AddArtwork } from "@/features/artworks";
+import { AuthContext } from "@/features/auth";
 import { ThemeContext } from "@/features/theme";
 import { Card } from "@/shared/ui/Card";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";
 
+import styles from "./ArtworksList.module.scss";
+
+const cx = cn.bind(styles);
 interface IArtworksList {
-  paintings: IPaintingDto[];
+  artist: IArtistDto;
   onPainting: (index: number) => void;
+  isArtworksEmpty?: boolean;
 }
 
-const ArtworksList: React.FC<IArtworksList> = ({ paintings, onPainting }) => {
+const ArtworksList: React.FC<IArtworksList> = ({
+  artist,
+  onPainting,
+  isArtworksEmpty,
+}) => {
+  const { isAuth } = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
 
   return (
-    <GridLayout>
-      {paintings.map(({ _id, name, image, yearOfCreation }, index) => (
-        <Card
-          key={_id}
-          year={yearOfCreation}
-          title={name}
-          image={image}
-          theme={theme}
-          onClick={() => onPainting(index)}
-        />
-      ))}
+    <GridLayout className={cx("artworks-list")}>
+      {isArtworksEmpty && isAuth ? (
+        <AddArtwork artist={artist} />
+      ) : (
+        artist.paintings.map(({ _id, name, image, yearOfCreation }, index) => (
+          <Card
+            key={_id}
+            year={yearOfCreation}
+            title={name}
+            image={image}
+            theme={theme}
+            onClick={() => onPainting(index)}
+          />
+        ))
+      )}
     </GridLayout>
   );
 };

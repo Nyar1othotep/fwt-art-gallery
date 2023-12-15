@@ -1,6 +1,13 @@
 .add-artist {
   &__modal {
-    width: 100vw;
+    width: 100%;
+
+    @include mediaLarge {
+      width: auto;
+    }
+  }
+
+  &__content {
     position: relative;
     padding: 80px 30px;
 
@@ -9,7 +16,6 @@
     }
 
     @include mediaLarge {
-      width: auto;
       padding: 80px 100px;
     }
   }

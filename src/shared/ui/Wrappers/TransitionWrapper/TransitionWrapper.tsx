@@ -16,6 +16,7 @@ interface ITransitionWrapper extends React.HTMLAttributes<HTMLDivElement> {
   onClose: () => void;
   onExited?: () => void;
   isTransition?: boolean;
+  childrenClass?: string;
   enterDoneClass?: string;
 }
 
@@ -27,12 +28,13 @@ const TransitionWrapper: React.FC<ITransitionWrapper> = ({
   children,
   className,
   isTransition = true,
+  childrenClass,
   enterDoneClass,
 }) => {
   const wrapperRef = useRef(null);
-  const childrenRef = useRef(null);
+  const bgRef = useRef(null);
 
-  useOutsideClick(childrenRef, onClose);
+  useOutsideClick(bgRef, onClose);
 
   useEffect(() => {
     if (isShow) {
@@ -69,9 +71,10 @@ const TransitionWrapper: React.FC<ITransitionWrapper> = ({
               `transition-wrapper--${variant}`,
             )}
           >
+            <div ref={bgRef} className={cx("transition-wrapper__bg")} />
             <div
-              ref={childrenRef}
               className={cx(
+                childrenClass,
                 "transition-wrapper__children",
                 `transition-wrapper__children--${variant}`,
               )}

@@ -117,15 +117,16 @@
   }
 
   &__bottom {
+    position: relative;
     padding: 20px;
     background: var(--primary-white);
+    z-index: 2;
 
     @include mediaSmall {
       padding: 40px 20px;
     }
 
     @include mediaLarge {
-      position: relative;
       padding: 26px 80px 60px 80px;
 
       &::before {

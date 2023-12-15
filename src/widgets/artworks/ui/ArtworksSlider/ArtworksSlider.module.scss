@@ -74,8 +74,9 @@
   }
 
   &__info-background {
+    position: relative;
     width: 253px;
-    margin: 0px 0px 0px -20px;
+    margin: 0px 0px 60px -20px;
     padding: 16px 12px 23px 12px;
     background: var(--primary-white);
 
@@ -103,6 +104,23 @@
           left: -20px;
         }
       }
+    }
+  }
+
+  &__controls {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    @include flexItemsCenter;
+    gap: 20px;
+    transform: translateY(200%);
+
+    @include mediaSmall {
+      top: 20px;
+      right: 20px;
+      bottom: auto;
+      left: auto;
+      transform: none;
     }
   }
 

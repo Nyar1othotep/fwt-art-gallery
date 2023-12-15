@@ -5,8 +5,10 @@ import styles from "./GridLayout.module.scss";
 
 const cx = cn.bind(styles);
 
-const GridLayout: React.FC<React.HTMLAttributes<HTMLUListElement>> = ({
-  children,
-}) => <ul className={cx("grid-layout")}>{children}</ul>;
+interface IGridLayout extends React.HTMLAttributes<HTMLUListElement> {}
+
+const GridLayout: React.FC<IGridLayout> = ({ children, className }) => (
+  <ul className={cx(className, "grid-layout")}>{children}</ul>
+);
 
 export default GridLayout;

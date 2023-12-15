@@ -4,8 +4,9 @@ import { baseApi } from "@/shared/api";
 
 import {
   IArtistDto,
-  IArtistEditBody,
+  IRequestArtistBody,
   IArtistsDto,
+  IPaintingDto,
   IStaticArtistsDto,
 } from "../model/types";
 
@@ -23,7 +24,7 @@ export const artistsApi = baseApi.injectEndpoints({
         method: "get",
         params: filters,
       }),
-      providesTags: ["Artist"],
+      providesTags: ["Artists"],
     }),
     getStaticArtist: build.query<IArtistDto, string | undefined>({
       query: (id) => ({
@@ -44,12 +45,27 @@ export const artistsApi = baseApi.injectEndpoints({
         method: "POST",
         data,
       }),
-      invalidatesTags: ["Artist"],
+      invalidatesTags: ["Artists"],
     }),
-    editArtist: build.mutation<IArtistDto, IArtistEditBody>({
+    editArtist: build.mutation<IArtistDto, IRequestArtistBody>({
       query: ({ id, data }) => ({
         method: "PUT",
         url: `/artists/${id}`,
+        data,
+      }),
+      invalidatesTags: ["Artist"],
+    }),
+    deleteArtist: build.mutation<null, string | undefined>({
+      query: (id) => ({
+        method: "DELETE",
+        url: `/artists/${id}`,
+      }),
+      invalidatesTags: ["Artists"],
+    }),
+    createArtwork: build.mutation<IPaintingDto, IRequestArtistBody>({
+      query: ({ id, data }) => ({
+        url: `/artists/${id}/paintings`,
+        method: "POST",
         data,
       }),
       invalidatesTags: ["Artist"],
@@ -64,4 +80,6 @@ export const {
   useGetArtistQuery,
   useCreateArtistMutation,
   useEditArtistMutation,
+  useDeleteArtistMutation,
+  useCreateArtworkMutation,
 } = artistsApi;

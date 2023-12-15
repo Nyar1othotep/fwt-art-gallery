@@ -2,7 +2,7 @@ import cn from "classnames/bind";
 import React, { useContext, useMemo } from "react";
 import { Navigate, Outlet, useNavigate, useParams } from "react-router-dom";
 
-import { EditArtist } from "@/features/artists";
+import { DeleteArtist, EditArtist } from "@/features/artists";
 import { AuthContext } from "@/features/auth";
 import { ThemeContext } from "@/features/theme";
 import { ReactComponent as IconBack } from "@/shared/assets/arrow_icon.svg";
@@ -66,6 +66,7 @@ const ArtistProfile: React.FC = () => {
             {isAuth && artist && (
               <div className={cx("artist-profile-page__controls--auth")}>
                 <EditArtist artist={artist} />
+                <DeleteArtist id={artist._id} />
               </div>
             )}
           </div>

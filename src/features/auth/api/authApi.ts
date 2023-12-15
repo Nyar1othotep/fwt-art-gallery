@@ -8,6 +8,7 @@ export const authApi = baseApi.injectEndpoints({
         method: "POST",
         data,
       }),
+      invalidatesTags: ["Artists", "Artist"],
     }),
     register: build.mutation<IAuthDto, IRequestAuthBody>({
       query: (data) => ({
@@ -15,6 +16,7 @@ export const authApi = baseApi.injectEndpoints({
         method: "POST",
         data,
       }),
+      invalidatesTags: ["Artists", "Artist"],
     }),
   }),
 });

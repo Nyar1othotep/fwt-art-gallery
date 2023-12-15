@@ -6,11 +6,18 @@
   pointer-events: auto;
   overflow: auto;
   opacity: 0;
-  background: rgba(3, 3, 3, 0.3);
+
   transition: opacity 500ms ease-in-out;
 
   &--slider {
     transition: none;
+  }
+
+  &__bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(3, 3, 3, 0.3);
   }
 
   &__children {
@@ -18,7 +25,6 @@
     margin: auto;
     pointer-events: auto;
 
-    &--auth-modal,
     &--slider {
       width: 100%;
       height: 100%;

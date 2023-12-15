@@ -2,7 +2,9 @@ import cn from "classnames/bind";
 import React, { useContext } from "react";
 import { SwiperSlide } from "swiper/react";
 
-import { IPaintingDto } from "@/entities/artists";
+import { IArtistDto, IPaintingDto } from "@/entities/artists";
+import { EditArtist, DeleteArtist } from "@/features/artists";
+import { AuthContext } from "@/features/auth";
 import { ThemeContext } from "@/features/theme";
 import { Button } from "@/shared/ui/Button";
 import { OriginalImage } from "@/shared/ui/Image";
@@ -14,12 +16,19 @@ const cx = cn.bind(styles);
 
 interface ISlide {
   index: number;
+  artist: IArtistDto;
   painting: IPaintingDto;
   totalPaintings: number;
 }
 
-const Slide: React.FC<ISlide> = ({ index, painting, totalPaintings }) => {
+const Slide: React.FC<ISlide> = ({
+  index,
+  artist,
+  painting,
+  totalPaintings,
+}) => {
   const { theme } = useContext(ThemeContext);
+  const { isAuth } = useContext(AuthContext);
   const { image, name, yearOfCreation } = painting;
 
   return (
@@ -43,6 +52,12 @@ const Slide: React.FC<ISlide> = ({ index, painting, totalPaintings }) => {
                 <div className={cx("slide__year")}>{yearOfCreation}</div>
                 <div className={cx("slide__name")}>{name}</div>
               </div>
+              {isAuth && (
+                <div className={cx("slide__controls")}>
+                  <EditArtist artist={artist} />
+                  <DeleteArtist id={artist._id} />
+                </div>
+              )}
             </div>
           </div>
           <div className={cx("slide__right")}>

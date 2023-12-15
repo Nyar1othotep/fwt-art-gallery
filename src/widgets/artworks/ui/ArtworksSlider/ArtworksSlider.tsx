@@ -4,7 +4,7 @@ import { Navigation, A11y } from "swiper/modules";
 import { Swiper, SwiperRef } from "swiper/react";
 import { SwiperOptions } from "swiper/types/swiper-options";
 
-import { IPaintingDto } from "@/entities/artists";
+import { IArtistDto } from "@/entities/artists";
 import { ReactComponent as IconClose } from "@/shared/assets/close_icon.svg";
 import { TransitionWrapper } from "@/shared/ui/Wrappers/TransitionWrapper";
 
@@ -21,15 +21,15 @@ type TSwiper = SwiperOptions & HTMLAttributes<HTMLElement>;
 interface IArtworksSlider extends TSwiper {
   to: number;
   isShow: boolean;
+  artist: IArtistDto;
   onClose: () => void;
-  paintings: IPaintingDto[];
 }
 
 const ArtworksSlider: React.FC<IArtworksSlider> = ({
   to,
   isShow,
+  artist,
   onClose,
-  paintings,
   className,
 }) => {
   const swiperRef = useRef<SwiperRef>(null);
@@ -55,15 +55,16 @@ const ArtworksSlider: React.FC<IArtworksSlider> = ({
           navigation
           slidesPerView={1}
         >
-          {paintings.map((painting, index) => {
+          {artist.paintings.map((painting, index) => {
             const { _id: key } = painting;
 
             return (
               <Slide
                 key={key}
                 index={index}
+                artist={artist}
                 painting={painting}
-                totalPaintings={paintings.length}
+                totalPaintings={artist.paintings.length}
               />
             );
           })}

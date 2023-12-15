@@ -1,0 +1,145 @@
+.drop-zone {
+  $parentClass: &;
+
+  height: max-content;
+
+  &__wrapper-zone {
+    position: relative;
+    @include flexItemsCenter;
+    justify-content: center;
+    text-align: center;
+    border-radius: 2px;
+    background: var(--secondary-white);
+    border: 1px dashed var(--secondary-gray);
+    overflow: hidden;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__zone {
+    @include pBaseLight;
+    color: var(--primary-dark-gray);
+  }
+
+  &__icon {
+    margin: 0px 0px 20px 0px;
+  }
+
+  &__drop-text {
+    margin: 0 auto;
+  }
+
+  &__drop-warn {
+    margin: 15px 0px 0px 0px;
+    @include pSmallLight;
+    color: var(--secondary-gray);
+  }
+
+  &__browse {
+    cursor: pointer;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__btn {
+    &-delete {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: none;
+    }
+
+    &-browse {
+      margin: 0 auto;
+    }
+  }
+
+  &--avatar {
+    @include parent($parentClass) {
+      &__wrapper-zone {
+        width: 200px;
+        height: 200px;
+        margin: 0px 0px 20px 0px;
+      }
+
+      &__zone {
+        pointer-events: none;
+      }
+
+      &__drop-text {
+        max-width: 136px;
+      }
+
+      &__drop-warn {
+        display: none;
+      }
+    }
+  }
+
+  &--artwork {
+    @include parent($parentClass) {
+      &__wrapper-zone {
+        width: 280px;
+        height: 190px;
+      }
+
+      @include mediaSmall {
+        &__wrapper-zone {
+          width: 500px;
+          height: 330px;
+        }
+      }
+    }
+  }
+
+  &--dark {
+    @include parent($parentClass) {
+      &__wrapper-zone {
+        border-radius: 10px;
+        border: 1px dashed var(--primary-dark-gray);
+        background: var(--primary-black);
+      }
+
+      &__zone {
+        color: var(--primary-light-gray);
+      }
+
+      &__drop-warn {
+        color: var(--primary-dark-gray);
+      }
+    }
+  }
+
+  &--active--avatar,
+  &--active--artwork {
+    @include parent($parentClass) {
+      &__wrapper-zone {
+        background: var(--secondary-black);
+      }
+
+      &__drop-warn {
+        display: block;
+        color: var(--primary-dark-gray);
+      }
+    }
+  }
+
+  &--active--avatar {
+    @include parent($parentClass) {
+      &__wrapper-zone {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+      }
+    }
+  }
+}

@@ -27,13 +27,13 @@ const AuthModal: React.FC<IAuthModal> = ({ theme, variant, children }) => {
 
   return (
     <Modal
+      className={cx("auth-modal")}
       theme={theme}
       isShow={isModal}
-      variant="default"
       onClose={handleModalClose}
       onExited={routeBack(navigate)}
     >
-      <div className={cx("auth-modal")}>
+      <div className={cx("auth-modal__inner")}>
         <div className={cx("auth-modal__background-wrapper")}>
           <img
             className={cx("auth-modal__background")}

@@ -1,4 +1,6 @@
 .modal {
+  $parentClass: &;
+
   background: var(--primary-white);
   color: var(--primary-dark-gray);
   transform: scale(0);
@@ -9,11 +11,24 @@
     color: var(--primary-light-gray);
   }
 
+  &--popup {
+    @include parent($parentClass) {
+      &__icon {
+        display: none;
+
+        @include mediaSmall {
+          display: block;
+        }
+      }
+    }
+  }
+
   &__icon {
     position: absolute;
     top: 20px;
     right: 20px;
     cursor: pointer;
+    z-index: 100;
 
     @include mediaSmall {
       top: 32px;

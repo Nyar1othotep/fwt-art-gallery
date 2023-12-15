@@ -10,7 +10,7 @@ import { TextArea } from "@/shared/ui/TextArea";
 
 import { IartistSchema, artistSchema } from "../../model/artistSchema";
 
-import ArtistAvatar from "./ArtistAvatar";
+import ArtistDropZone from "./ArtistDropZone";
 import styles from "./ArtistForm.module.scss";
 import ArtistMultiSelect from "./ArtistMultiSelect";
 
@@ -45,7 +45,7 @@ const ArtistForm: React.FC<IArtistForm> = ({
       className={cx("artist-form", `artist-form--${theme}`)}
       onSubmit={handleSubmit(onSubmitHandler)}
     >
-      <ArtistAvatar name="avatar" theme={theme} control={control} />
+      <ArtistDropZone name="avatar" theme={theme} control={control} />
       <div className={cx("artist-form__content")}>
         <Input
           type="text"

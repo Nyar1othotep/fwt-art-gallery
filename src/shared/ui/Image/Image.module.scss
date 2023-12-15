@@ -17,6 +17,10 @@
     font-weight: 900;
     color: var(--secondary-gray);
     text-transform: uppercase;
+
+    &--dark {
+      background: var(--secondary-black);
+    }
   }
 }
 

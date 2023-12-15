@@ -44,7 +44,7 @@ export interface IArtistDto {
   mainPainting: IMainPainting;
 }
 
-export interface IArtistEditBody {
+export interface IRequestArtistBody {
   id: string;
   data: GenericFormData;
 }

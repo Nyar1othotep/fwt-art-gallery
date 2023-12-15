@@ -4,12 +4,13 @@ import React, { useCallback, useContext, useEffect } from "react";
 
 import { IArtistDto, useEditArtistMutation } from "@/entities/artists";
 import { ThemeContext } from "@/features/theme";
+import { isDefaultImage } from "@/shared/lib/isDefaultImage";
+import { removeEmpty } from "@/shared/lib/removeEmpty";
 import { useBoolean } from "@/shared/lib/useBoolean";
 import { Button } from "@/shared/ui/Button";
 import { Modal } from "@/shared/ui/Modal";
 
 import { arrayToIds } from "../../lib/arrayToIds";
-import { isDefaultAvatar } from "../../lib/isDefaultAvatar";
 import { IartistSchema } from "../../model/artistSchema";
 import { ArtistForm } from "../ArtistForm";
 import { ReactComponent as IconEdit } from "../assets/edit_icon.svg";
@@ -27,7 +28,7 @@ const EditArtist: React.FC<IEditArtist> = ({
     _id: id,
     name,
     genres,
-    avatar: { webp },
+    avatar: { webp } = {},
     yearsOfLife,
     description,
   },
@@ -42,11 +43,14 @@ const EditArtist: React.FC<IEditArtist> = ({
   }, [isSuccess]);
 
   const onSubmit = useCallback((newArtist: IartistSchema) => {
-    const data = toFormData({
+    const newData = removeEmpty({
       ...newArtist,
-      avatar: isDefaultAvatar(newArtist.avatar, webp),
+      avatar: isDefaultImage(newArtist.avatar, webp),
       genres: arrayToIds(newArtist.genres),
     });
+
+    const data = toFormData(newData);
+
     editArtist({ id, data });
   }, []);
 
@@ -58,21 +62,22 @@ const EditArtist: React.FC<IEditArtist> = ({
       <Modal
         theme={theme}
         isShow={isModal}
-        variant="default"
         className={cx("edit-artist__modal")}
         onClose={handleModalClose}
       >
-        <ArtistForm
-          theme={theme}
-          defaultValues={{
-            name,
-            description,
-            yearsOfLife,
-            avatar: webp,
-            genres,
-          }}
-          onSubmitHandler={onSubmit}
-        />
+        <div className={cx("edit-artist__content")}>
+          <ArtistForm
+            theme={theme}
+            defaultValues={{
+              name,
+              description,
+              yearsOfLife,
+              avatar: webp,
+              genres,
+            }}
+            onSubmitHandler={onSubmit}
+          />
+        </div>
       </Modal>
     </>
   );
