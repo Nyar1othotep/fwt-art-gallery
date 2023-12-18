@@ -1,0 +1,29 @@
+.header-search {
+  $parentClass: &;
+
+  &__search {
+    width: 100%;
+
+    @include mediaSmall {
+      display: none;
+    }
+  }
+
+  &__icon {
+    display: block;
+    cursor: pointer;
+    color: var(--primary-dark-gray);
+
+    @include mediaSmall {
+      display: none;
+    }
+  }
+
+  &--dark {
+    @include parent($parentClass) {
+      &__icon {
+        color: var(--primary-light-gray);
+      }
+    }
+  }
+}

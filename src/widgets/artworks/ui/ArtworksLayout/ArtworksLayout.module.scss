@@ -1,6 +1,42 @@
 .artworks-layout {
+  $parentClass: &;
+
   &__btn {
     display: flex;
     justify-content: flex-end;
+  }
+
+  &__text {
+    position: relative;
+    padding: 105px 0px 0px 0px;
+    @include h4;
+    color: var(--primary-dark-gray);
+    text-align: center;
+
+    @include mediaSmall {
+      padding: 130px 0px 0px 0px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 2px;
+      left: 50%;
+      background: var(--accent-red);
+      transform: translate(-50%, -20px);
+    }
+  }
+
+  &--dark {
+    @include parent($parentClass) {
+      &__text {
+        color: var(--primary-light-gray);
+
+        &::before {
+          background: var(--accent-gold);
+        }
+      }
+    }
   }
 }

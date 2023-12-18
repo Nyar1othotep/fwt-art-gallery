@@ -101,10 +101,17 @@
 
   &--back-to-top {
     padding: 18px;
+    border: 1px solid var(--primary-light-gray);
     border-radius: 50%;
+    background: var(--primary-white);
 
-    &--dark:hover {
-      background: #242222;
+    &--dark {
+      border: none;
+      background: var(--primary-black);
+
+      &:hover {
+        background: #242222;
+      }
     }
   }
 

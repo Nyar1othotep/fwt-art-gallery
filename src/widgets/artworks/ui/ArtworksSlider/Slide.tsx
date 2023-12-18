@@ -3,14 +3,16 @@ import React, { useContext } from "react";
 import { SwiperSlide } from "swiper/react";
 
 import { IArtistDto, IPaintingDto } from "@/entities/artists";
-import { DeleteArtwork, EditArtwork } from "@/features/artworks";
+import {
+  ArtworkSettings,
+  DeleteArtwork,
+  EditArtwork,
+} from "@/features/artworks";
 import { AuthContext } from "@/features/auth";
 import { ThemeContext } from "@/features/theme";
-import { Button } from "@/shared/ui/Button";
 import { OriginalImage } from "@/shared/ui/Image";
 
 import styles from "./ArtworksSlider.module.scss";
-import { ReactComponent as IconPic } from "./assets/change-pic_icon.svg";
 
 const cx = cn.bind(styles);
 
@@ -44,9 +46,11 @@ const Slide: React.FC<ISlide> = ({
       <div className={cx("slide__content")}>
         <div className={cx("slide__container")}>
           <div className={cx("slide__left")}>
-            <Button theme="dark" variant="text">
-              <IconPic /> Remove the cover
-            </Button>
+            <ArtworkSettings
+              artist={artist}
+              variant="button"
+              painting={painting}
+            />
             <div className={cx("slide__info-background")}>
               <div className={cx("slide__info")}>
                 <div className={cx("slide__year")}>{yearOfCreation}</div>

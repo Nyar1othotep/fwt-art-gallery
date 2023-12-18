@@ -36,14 +36,6 @@
     }
   }
 
-  &__search {
-    width: 100%;
-
-    @include mediaSmall {
-      display: none;
-    }
-  }
-
   &__menu {
     display: none;
 
@@ -53,8 +45,7 @@
     }
   }
 
-  &__icon-burger,
-  &__icon-search {
+  &__icon-burger {
     display: block;
     cursor: pointer;
     color: var(--primary-dark-gray);
@@ -66,18 +57,11 @@
     }
   }
 
-  &__icon-search {
-    @include mediaSmall {
-      display: none;
-    }
-  }
-
   &--dark {
     background: var(--primary-black);
 
     @include parent($parentClass) {
-      &__icon-burger,
-      &__icon-search {
+      &__icon-burger {
         color: var(--primary-light-gray);
       }
     }

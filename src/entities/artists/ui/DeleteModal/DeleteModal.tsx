@@ -45,7 +45,7 @@ const DeleteModal: React.FC<IDeleteModal> = ({
           </div>
           <p className={cx("delete-modal__text")}>
             You will not be able to recover this{" "}
-            {isArtistVariant ? "profile" : "picture"}? afterwards.
+            {isArtistVariant ? "profile" : "picture"} afterwards.
           </p>
           <Button theme={theme} onClick={onDelete}>
             Delete

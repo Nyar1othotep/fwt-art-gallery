@@ -41,7 +41,9 @@ const ArtworksList: React.FC<IArtworksList> = ({
               image={image}
               theme={theme}
               actionSlot={
-                <ArtworkSettings artist={artist} painting={painting} />
+                isAuth && (
+                  <ArtworkSettings artist={artist} painting={painting} />
+                )
               }
               onClick={() => onPainting(index)}
             />
