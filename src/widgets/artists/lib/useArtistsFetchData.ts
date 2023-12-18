@@ -4,8 +4,7 @@ import {
   useGetArtistsQuery,
 } from "@/entities/artists";
 import { IFilters } from "@/features/filters";
-
-import { getTotalPages } from "./getTotalPages";
+import { getTotalPages } from "@/shared/lib/getTotalPages";
 
 type Props = {
   isAuth: boolean;

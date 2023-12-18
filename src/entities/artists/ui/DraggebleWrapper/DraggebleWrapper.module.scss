@@ -1,0 +1,18 @@
+.draggble-wrapper {
+  position: relative;
+
+  &:hover {
+    .draggble-wrapper__btn {
+      display: block;
+    }
+  }
+
+  &__btn {
+    position: absolute;
+    display: none;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    cursor: pointer;
+  }
+}

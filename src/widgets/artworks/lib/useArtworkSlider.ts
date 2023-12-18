@@ -7,7 +7,7 @@ export const useArtworkSlider = () => {
   const [isSlider, { on: onSliderOpen, off: handleSliderClose }] =
     useBoolean(false);
 
-  const handleSliderOpen = (slide: number) => {
+  const handleSliderOpen = (slide: number) => () => {
     setSlideTo(slide);
     onSliderOpen();
   };

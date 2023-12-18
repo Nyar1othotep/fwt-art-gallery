@@ -15,12 +15,14 @@ const cx = cn.bind(styles);
 
 interface IArtworkForm extends HTMLAttributes<HTMLElement> {
   theme?: string;
+  isLoading?: boolean;
   defaultValues?: IartworkSchema;
   onSubmitHandler: ({ name, image, yearOfCreation }: IartworkSchema) => void;
 }
 
 const ArtworkForm: React.FC<IArtworkForm> = ({
   theme,
+  isLoading,
   defaultValues,
   onSubmitHandler,
 }) => {
@@ -59,7 +61,11 @@ const ArtworkForm: React.FC<IArtworkForm> = ({
           />
         </div>
         <ArtworkDropZone name="image" theme={theme} control={control} />
-        <Button className={cx("artwork-form__btn")} theme={theme}>
+        <Button
+          className={cx("artwork-form__btn")}
+          theme={theme}
+          disabled={isLoading}
+        >
           Save
         </Button>
       </div>

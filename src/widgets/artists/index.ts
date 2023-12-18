@@ -1,3 +1,3 @@
-export { ArtistsList } from "./ui/ArtistsList";
+export { ArtistsLayout } from "./ui/ArtistsLayout";
 
 export { ArtistInfo } from "./ui/ArtistInfo";

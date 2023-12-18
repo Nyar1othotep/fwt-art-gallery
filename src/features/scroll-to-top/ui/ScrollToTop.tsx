@@ -2,11 +2,11 @@ import cn from "classnames/bind";
 import React, { useContext } from "react";
 
 import { ThemeContext } from "@/features/theme";
+import { ReactComponent as IconArrow } from "@/shared/assets/arrow_icon.svg";
 import { Button } from "@/shared/ui/Button";
 
 import { useScrollToTop } from "../lib/useScrollToTop";
 
-import { ReactComponent as IconArrow } from "./assets/arrow_icon.svg";
 import styles from "./ScrollToTop.module.scss";
 
 const cx = cn.bind(styles);

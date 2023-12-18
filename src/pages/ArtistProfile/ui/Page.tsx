@@ -5,7 +5,7 @@ import { Navigate, Outlet, useNavigate, useParams } from "react-router-dom";
 import { DeleteArtist, EditArtist } from "@/features/artists";
 import { AuthContext } from "@/features/auth";
 import { ThemeContext } from "@/features/theme";
-import { ReactComponent as IconBack } from "@/shared/assets/arrow_icon.svg";
+import { ReactComponent as IconBack } from "@/shared/assets/arrow-line_icon.svg";
 import { routeBack } from "@/shared/helpers/routes";
 import { Button } from "@/shared/ui/Button";
 import { GridLayout } from "@/shared/ui/Layouts/GridLayout";

@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ThemeContext } from "@/features/theme";
-import { ReactComponent as IconBack } from "@/shared/assets/arrow_icon.svg";
+import { ReactComponent as IconBack } from "@/shared/assets/arrow-line_icon.svg";
 import { routeHome } from "@/shared/helpers/routes";
 import { Button } from "@/shared/ui/Button";
 

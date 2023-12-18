@@ -19,4 +19,8 @@ export type {
   IArtistDto,
 } from "./model/types";
 
+export { useDragAndDrop } from "./lib/useDragAndDrop";
+
 export { DeleteModal } from "./ui/DeleteModal";
+
+export { DraggebleWrapper } from "./ui/DraggebleWrapper";

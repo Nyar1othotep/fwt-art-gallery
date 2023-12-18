@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import { AddArtist } from "@/features/artists";
 import { AuthContext } from "@/features/auth";
 import { FiltersLayout } from "@/features/filters";
-import { ArtistsList } from "@/widgets/artists";
+import { ArtistsLayout } from "@/widgets/artists";
 
 import styles from "./Page.module.scss";
 
@@ -24,7 +24,7 @@ const MainPage: React.FC = () => {
           </div>
         )}
         <section>
-          <ArtistsList isAuth={isAuth} />
+          <ArtistsLayout />
         </section>
         <Outlet />
       </div>

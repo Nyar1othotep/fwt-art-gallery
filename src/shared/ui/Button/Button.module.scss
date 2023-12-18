@@ -6,6 +6,10 @@
   justify-content: center;
   cursor: pointer;
 
+  &:disabled {
+    pointer-events: none;
+  }
+
   &--default,
   &--text {
     @include pButton;

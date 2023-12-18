@@ -1,7 +1,12 @@
 import cn from "classnames/bind";
 import React, { useContext } from "react";
 
-import { IArtistDto } from "@/entities/artists";
+import {
+  DraggebleWrapper,
+  IArtistDto,
+  IPaintingDto,
+  useDragAndDrop,
+} from "@/entities/artists";
 import { AddArtwork, ArtworkSettings } from "@/features/artworks";
 import { AuthContext } from "@/features/auth";
 import { ThemeContext } from "@/features/theme";
@@ -13,40 +18,53 @@ import styles from "./ArtworksList.module.scss";
 const cx = cn.bind(styles);
 interface IArtworksList {
   artist: IArtistDto;
-  onPainting: (index: number) => void;
+  paintings: IPaintingDto[];
+  onPainting: (index: number) => () => void;
   isArtworksEmpty?: boolean;
 }
 
 const ArtworksList: React.FC<IArtworksList> = ({
   artist,
+  paintings,
   onPainting,
   isArtworksEmpty,
 }) => {
   const { isAuth } = useContext(AuthContext);
   const { theme } = useContext(ThemeContext);
+  const { draggedData, handleDragStart, handleDragOver, handleDragEnd } =
+    useDragAndDrop(paintings);
 
   return (
     <GridLayout className={cx("artworks-list")}>
       {isArtworksEmpty && isAuth ? (
         <AddArtwork artist={artist} />
       ) : (
-        artist.paintings.map((painting, index) => {
+        draggedData.map((painting, index) => {
           const { _id: id, name, image, yearOfCreation } = painting;
 
           return (
-            <Card
+            <DraggebleWrapper
               key={id}
-              year={yearOfCreation}
-              title={name}
-              image={image}
+              id={id}
               theme={theme}
-              actionSlot={
-                isAuth && (
-                  <ArtworkSettings artist={artist} painting={painting} />
-                )
-              }
-              onClick={() => onPainting(index)}
-            />
+              index={index}
+              onDragStart={handleDragStart(index)}
+              onDragOver={handleDragOver(index)}
+              onDragEnd={handleDragEnd}
+            >
+              <Card
+                year={yearOfCreation}
+                title={name}
+                image={image}
+                theme={theme}
+                actionSlot={
+                  isAuth && (
+                    <ArtworkSettings artist={artist} painting={painting} />
+                  )
+                }
+                onClick={onPainting(index)}
+              />
+            </DraggebleWrapper>
           );
         })
       )}

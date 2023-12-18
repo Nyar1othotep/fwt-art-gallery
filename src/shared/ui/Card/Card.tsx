@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { IImage } from "@/shared/model/types";
 
-import { ReactComponent as Icon } from "../../assets/arrow_icon.svg";
+import { ReactComponent as Icon } from "../../assets/arrow-line_icon.svg";
 import { Image } from "../Image";
 
 import styles from "./Card.module.scss";

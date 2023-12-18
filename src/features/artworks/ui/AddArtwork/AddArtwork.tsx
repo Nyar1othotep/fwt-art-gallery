@@ -32,7 +32,7 @@ const AddArtwork: React.FC<IAddArtwork> = ({
   const { theme } = useContext(ThemeContext);
   const [isModal, { on: handleModalOpen, off: handleModalClose }] =
     useBoolean(false);
-  const [createArtwork, { isSuccess }] = useCreateArtworkMutation();
+  const [createArtwork, { isSuccess, isLoading }] = useCreateArtworkMutation();
 
   useEffect(() => {
     if (isSuccess) handleModalClose();
@@ -68,7 +68,11 @@ const AddArtwork: React.FC<IAddArtwork> = ({
         isShow={isModal}
         onClose={handleModalClose}
       >
-        <ArtworkForm theme={theme} onSubmitHandler={onSubmit} />
+        <ArtworkForm
+          theme={theme}
+          isLoading={isLoading}
+          onSubmitHandler={onSubmit}
+        />
       </Modal>
     </div>
   );
