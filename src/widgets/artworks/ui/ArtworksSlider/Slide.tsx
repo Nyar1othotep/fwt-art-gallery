@@ -46,11 +46,14 @@ const Slide: React.FC<ISlide> = ({
       <div className={cx("slide__content")}>
         <div className={cx("slide__container")}>
           <div className={cx("slide__left")}>
-            <ArtworkSettings
-              artist={artist}
-              variant="button"
-              painting={painting}
-            />
+            {isAuth && (
+              <ArtworkSettings
+                className={cx("slide__settings")}
+                artist={artist}
+                variant="button"
+                painting={painting}
+              />
+            )}
             <div className={cx("slide__info-background")}>
               <div className={cx("slide__info")}>
                 <div className={cx("slide__year")}>{yearOfCreation}</div>

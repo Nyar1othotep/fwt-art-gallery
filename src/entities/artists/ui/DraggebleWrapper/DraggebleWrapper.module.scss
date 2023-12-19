@@ -3,7 +3,13 @@
 
   &:hover {
     .draggble-wrapper__btn {
-      display: block;
+      @media screen and (min-width: 1024px) {
+        display: block;
+      }
+
+      @media (pointer: coarse) {
+        display: none;
+      }
     }
   }
 
@@ -14,5 +20,9 @@
     right: 14px;
     z-index: 2;
     cursor: pointer;
+
+    @media (pointer: coarse) {
+      display: none;
+    }
   }
 }

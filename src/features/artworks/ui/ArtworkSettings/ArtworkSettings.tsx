@@ -19,7 +19,7 @@ import styles from "./ArtworkSettings.module.scss";
 
 const cx = cn.bind(styles);
 
-interface IArtworkSettings {
+interface IArtworkSettings extends React.HTMLAttributes<HTMLDivElement> {
   artist: IArtistDto;
   variant?: TArtworkVariant;
   painting: IPaintingDto;
@@ -29,6 +29,7 @@ const ArtworkSettings: React.FC<IArtworkSettings> = ({
   artist,
   variant = "default",
   painting,
+  className,
 }) => {
   const isButtonVariant = variant === "button";
   const isMainPainting = artist.mainPainting?._id === painting._id;
@@ -40,7 +41,13 @@ const ArtworkSettings: React.FC<IArtworkSettings> = ({
   }, [artist, painting]);
 
   return (
-    <div className={cx("artwork-settings", `artwork-settings--${theme}`)}>
+    <div
+      className={cx(
+        className,
+        "artwork-settings",
+        `artwork-settings--${theme}`,
+      )}
+    >
       {isButtonVariant ? (
         <Button theme="dark" variant="text" onClick={handleEditMainPainting}>
           <IconPic /> {isMainPainting ? "Remove the cover" : "Make the cover"}
