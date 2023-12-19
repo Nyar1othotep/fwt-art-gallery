@@ -1,0 +1,186 @@
+@use "sass:selector";
+@import "./breakpoints.scss";
+
+@mixin container {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+@mixin mediaLarge {
+  @media screen and (min-width: $l-viewport) {
+    @content;
+  }
+}
+
+@mixin mediaMedium {
+  @media screen and (min-width: $m-viewport) {
+    @content;
+  }
+}
+
+@mixin mediaSmall {
+  @media screen and (min-width: $s-viewport) {
+    @content;
+  }
+}
+
+@mixin mediaExtraSmall {
+  @media screen and (min-width: $xs-viewport) {
+    @content;
+  }
+}
+
+@mixin flexItemsCenter {
+  display: flex;
+  align-items: center;
+}
+
+@mixin h1 {
+  font-family: "Cormorant SC";
+  font-size: 60px;
+  font-weight: 500;
+}
+
+@mixin h2 {
+  font-family: "Cormorant SC";
+  font-size: 48px;
+  font-weight: 500;
+}
+
+@mixin h3 {
+  font-family: "Cormorant SC";
+  font-size: 32px;
+  font-weight: 500;
+}
+
+@mixin h4 {
+  font-family: "Cormorant SC";
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@mixin h5 {
+  font-family: "Cormorant SC";
+  font-size: 16px;
+  font-weight: 700;
+}
+
+@mixin h6 {
+  font-family: "Cormorant SC";
+  font-size: 12px;
+  font-weight: 500;
+}
+
+@mixin pButton {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@mixin pCaptionBold {
+  font-size: 8px;
+  font-weight: 700;
+}
+
+@mixin pCaptionSmall {
+  font-family: "Cormorant SC";
+  font-size: 12px;
+  font-weight: 500;
+}
+
+@mixin pCaptionMedium {
+  font-family: "Cormorant SC";
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@mixin pBaseLight {
+  font-size: 16px;
+  font-weight: 300;
+}
+
+@mixin pBaseMedium {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+@mixin pSmallLight {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+@mixin pSmallMedium {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+@mixin pTinyMedium {
+  font-size: 8px;
+  font-weight: 500;
+}
+
+@mixin pInput {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+@mixin collapse {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin imageCenter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin linearGradientText($first-color, $second-color) {
+  background: linear-gradient(180deg, $first-color 0%, $second-color 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@mixin circle($color, $opacity, $animation) {
+  transform: matrix(0, 0.880941, 0.880941, 0, 30, 30);
+  fill: none;
+  stroke: $color;
+  stroke-opacity: $opacity;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 1, 199;
+  animation: $animation 2s linear infinite;
+}
+
+@mixin skeleton($animation) {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 159px;
+  display: block;
+  left: -100%;
+  top: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(18, 18, 18, 0) 6.82%,
+    rgba(13, 13, 13, 0) 6.83%,
+    rgba(87, 87, 87, 0.1) 58.56%,
+    rgba(13, 13, 13, 0) 109.66%
+  );
+  animation: $animation 1s ease-out infinite;
+}
+
+@mixin parent($child) {
+  @at-root #{selector.nest(&, $child)} {
+    @content;
+  }
+}

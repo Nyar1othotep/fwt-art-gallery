@@ -1,0 +1,51 @@
+.artist-form {
+  $parentClass: &;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+
+  @include mediaSmall {
+    gap: 60px;
+  }
+
+  @include mediaLarge {
+    align-items: flex-start;
+    flex-direction: row;
+  }
+
+  &__content {
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    @include mediaSmall {
+      width: 340px;
+      gap: 40px;
+    }
+  }
+
+  &__btn {
+    margin: 0 auto;
+  }
+
+  &__option {
+    padding: 6px 15px;
+
+    &:hover {
+      background: rgba(18, 18, 18, 0.05);
+    }
+  }
+
+  &--dark {
+    @include parent($parentClass) {
+      &__option {
+        &:hover {
+          background: rgba(205, 205, 205, 0.05);
+        }
+      }
+    }
+  }
+}

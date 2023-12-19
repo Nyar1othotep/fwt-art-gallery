@@ -1,0 +1,29 @@
+@import "../../styles/mixins.scss";
+
+.image {
+  &-wrapper {
+    position: relative;
+  }
+
+  &--loading {
+    opacity: 0;
+  }
+
+  &__no-image {
+    @include imageCenter;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: 900;
+    color: var(--secondary-gray);
+    text-transform: uppercase;
+
+    &--dark {
+      background: var(--secondary-black);
+    }
+  }
+}
+
+.preloader {
+  @include imageCenter;
+}

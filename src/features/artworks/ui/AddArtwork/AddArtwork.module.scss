@@ -1,0 +1,41 @@
+.add-artwork {
+  $parentClass: &;
+
+  &__picture {
+    position: relative;
+    display: block;
+    padding: 0px 0px 66.32%;
+    border-radius: 2px;
+    border: 1px dashed var(--secondary-gray);
+  }
+
+  &__btn {
+    position: absolute;
+    padding: 0;
+    width: 48px;
+    height: 48px;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-red);
+  }
+
+  &__modal {
+    width: 100%;
+
+    @include mediaSmall {
+      width: auto;
+    }
+  }
+
+  &--dark {
+    @include parent($parentClass) {
+      &__picture {
+        border: 1px dashed var(--primary-dark-gray);
+      }
+      &__btn {
+        background: var(--accent-gold);
+      }
+    }
+  }
+}

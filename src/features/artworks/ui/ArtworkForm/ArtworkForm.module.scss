@@ -1,0 +1,42 @@
+.artwork-form {
+  &__content {
+    @include flexItemsCenter;
+    flex-direction: column;
+    padding: 80px 30px;
+
+    @include mediaSmall {
+      padding: 80px 100px;
+    }
+  }
+
+  &__inputs {
+    width: 100%;
+    margin: 0px 0px 40px 0px;
+    @include flexItemsCenter;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 30px;
+
+    @include mediaSmall {
+      margin: 0px 0px 60px 0px;
+      flex-direction: row;
+      gap: 40px;
+
+      & > *:first-child {
+        max-width: 340px;
+      }
+
+      & > *:last-child {
+        max-width: 105px;
+      }
+    }
+  }
+
+  &__btn {
+    margin-top: 40px;
+
+    @include mediaSmall {
+      margin-top: 60px;
+    }
+  }
+}
