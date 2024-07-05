@@ -1,0 +1,9 @@
+.edit-artwork {
+  &__modal {
+    width: 100%;
+
+    @include mediaSmall {
+      width: auto;
+    }
+  }
+}

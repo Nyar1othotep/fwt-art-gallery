@@ -1,0 +1,56 @@
+.delete-modal {
+  width: 100%;
+  margin: auto 0 0 0;
+
+  @include mediaSmall {
+    width: auto;
+    margin: auto;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    padding: 20px 30px;
+
+    @include mediaSmall {
+      display: block;
+      padding: 60px 40px;
+    }
+  }
+
+  &__inner {
+    max-width: 240px;
+    @include flexItemsCenter;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+
+    @include mediaSmall {
+      max-width: 280px;
+      gap: 32px;
+    }
+  }
+
+  &__icon {
+    display: none;
+
+    @include mediaSmall {
+      width: 48px;
+      height: 48px;
+      display: block;
+
+      path {
+        transform: scale(2);
+      }
+    }
+  }
+
+  &__title {
+    @include pBaseMedium;
+  }
+
+  &__text {
+    @include pSmallLight;
+    color: var(--secondary-gray);
+  }
+}

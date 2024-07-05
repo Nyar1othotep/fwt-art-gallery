@@ -1,0 +1,31 @@
+.label {
+  $parentClass: &;
+
+  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  @include pSmallMedium;
+  color: var(--primary-dark-gray);
+  gap: 8px;
+  border-radius: 30px;
+  background: rgba(18, 18, 18, 0.05);
+
+  &__icon {
+    transform: scale(0.5);
+    cursor: pointer;
+    color: var(--primary-dark-gray);
+  }
+
+  &--dark {
+    color: var(--primary-light-gray);
+    outline: 1px solid var(--primary-white);
+    background: rgba(205, 205, 205, 0.05);
+
+    @include parent($parentClass) {
+      &__icon {
+        color: var(--primary-light-gray);
+      }
+    }
+  }
+}

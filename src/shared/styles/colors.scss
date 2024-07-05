@@ -1,7 +1,7 @@
 :root {
   // primary
   --primary-white: #ffffff;
-  --primary-black: #000000;
+  --primary-black: #121212;
   --primary-light-gray: #dedede;
   --primary-dark-gray: #575757;
 
@@ -14,4 +14,7 @@
   --accent-red: #9b4b4b;
   --accent-gold: #ab8956;
   --accent-error: #ae2917;
+
+  // swiper
+  --swiper-theme-color: var(--secondary-gray) !important;
 }

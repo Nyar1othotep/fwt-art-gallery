@@ -1,0 +1,38 @@
+.error-page {
+  $parentClass: &;
+
+  padding: 100px 0;
+
+  &__container {
+    @include container;
+  }
+
+  &__content {
+    @include flexItemsCenter;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  &__message {
+    @include h4;
+    color: var(--primary-dark);
+    text-align: center;
+
+    @include mediaSmall {
+      @include h3;
+    }
+  }
+
+  &__icon {
+    transform: rotate(180deg);
+  }
+
+  &--dark {
+    @include parent($parentClass) {
+      &__message {
+        color: var(--primary-white);
+      }
+    }
+  }
+}

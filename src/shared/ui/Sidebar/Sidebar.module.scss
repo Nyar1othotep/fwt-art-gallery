@@ -1,0 +1,35 @@
+.sidebar {
+  &__wrapper {
+    position: fixed;
+    width: max-content;
+    height: 100%;
+    top: 0;
+    right: -100%;
+    background: var(--primary-white);
+    transition: right 500ms ease-in-out;
+    color: var(--primary-dark-gray);
+    overflow: auto;
+
+    &--dark {
+      background: var(--primary-black);
+      color: var(--primary-light-gray);
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+
+    @include mediaSmall {
+      top: 32px;
+    }
+  }
+
+  &__enter-done {
+    .sidebar__wrapper {
+      right: 0;
+    }
+  }
+}
