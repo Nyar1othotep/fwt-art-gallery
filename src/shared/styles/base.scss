@@ -1,0 +1,46 @@
+@import url("./colors.scss");
+@import url("./fonts.scss");
+
+:root {
+  font-family: "Iter", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizelegibility;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+input,
+textarea {
+  border: none;
+  background: none;
+}
+
+.image-box {
+  position: relative;
+}
+
+.image-box img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}

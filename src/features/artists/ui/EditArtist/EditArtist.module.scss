@@ -1,0 +1,22 @@
+.edit-artist {
+  &__modal {
+    width: 100%;
+
+    @include mediaLarge {
+      width: auto;
+    }
+  }
+
+  &__content {
+    position: relative;
+    padding: 80px 30px;
+
+    @include mediaSmall {
+      padding: 80px 210px;
+    }
+
+    @include mediaLarge {
+      padding: 80px 100px;
+    }
+  }
+}

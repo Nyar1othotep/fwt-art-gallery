@@ -1,0 +1,93 @@
+.toast {
+  $parentClass: &;
+
+  position: relative;
+  width: 100%;
+  padding: 8px;
+  @include flexItemsCenter;
+  outline: 1px solid var(--primary-light-gray);
+  background: var(--secondary-white);
+  gap: 8px;
+  overflow: hidden;
+
+  @include mediaSmall {
+    max-width: 440px;
+    padding: 20px;
+    align-items: flex-start;
+    flex-direction: column;
+    border-radius: 4px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8px;
+      height: 100%;
+      background: var(--accent-error);
+    }
+  }
+
+  &__title {
+    @include flexItemsCenter;
+    @include pBaseMedium;
+    color: var(--accent-error);
+    gap: 4px;
+  }
+
+  &__message {
+    @include pSmallLight;
+    color: var(--primary-dark-gray);
+
+    @include mediaSmall {
+      padding: 0px 0px 0px 32px;
+    }
+  }
+
+  &__icon {
+    &-close {
+      margin-left: auto;
+      color: var(--primary-dark-gray);
+      transform: scale(0.6);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--primary-black);
+      }
+
+      @include mediaSmall {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        transform: scale(1);
+      }
+    }
+  }
+
+  &__text {
+    display: none;
+
+    @include mediaSmall {
+      display: block;
+    }
+  }
+
+  &--dark {
+    outline: none;
+    background: var(--secondary-black);
+
+    @include parent($parentClass) {
+      &__message {
+        color: var(--primary-light-gray);
+      }
+
+      &__icon-close {
+        color: var(--secondary-gray);
+
+        &:hover {
+          color: var(--secondary-white);
+        }
+      }
+    }
+  }
+}

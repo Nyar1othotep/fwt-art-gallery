@@ -1,0 +1,28 @@
+.draggble-wrapper {
+  position: relative;
+
+  &:hover {
+    .draggble-wrapper__btn {
+      @media screen and (min-width: 1024px) {
+        display: block;
+      }
+
+      @media (pointer: coarse) {
+        display: none;
+      }
+    }
+  }
+
+  &__btn {
+    position: absolute;
+    display: none;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    cursor: pointer;
+
+    @media (pointer: coarse) {
+      display: none;
+    }
+  }
+}

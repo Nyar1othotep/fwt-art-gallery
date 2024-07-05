@@ -1,0 +1,14 @@
+.base-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--primary-white);
+
+  &--dark {
+    background: var(--primary-black);
+  }
+
+  &__main {
+    flex: 1 1 auto;
+  }
+}

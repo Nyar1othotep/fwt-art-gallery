@@ -1,0 +1,35 @@
+.search {
+  position: relative;
+  color: var(--primary-dark-gray);
+
+  &--dark {
+    color: var(--primary-light-gray);
+  }
+
+  &__search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &__input {
+    width: 100%;
+    position: relative;
+    padding: 7.5px 52px;
+    @include pSmallLight;
+    @include collapse;
+    color: inherit;
+    z-index: 2;
+  }
+
+  &__clear-icon {
+    position: absolute;
+    right: 16px;
+    top: 10%;
+    transform: translateY(-10%);
+    transform: scale(0.5);
+    z-index: 3;
+    cursor: pointer;
+  }
+}
